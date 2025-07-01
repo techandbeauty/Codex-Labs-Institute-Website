@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1751386812523,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1751388705526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -598,9 +598,9 @@\n                 <ul class=\"nav-links\">\n                     <li><a href=\"index.html\">Home</a></li>\n                     <li><a href=\"course-catalog.html\">Courses</a></li>\n                     <li><a href=\"interest.html\">Apply</a></li>\n-                    <li><a href=\"student-portal.html\">Portal</a></li>\n+                    <li><a href=\"portal.html\">Portal</a></li>\n                     <li><a href=\"contact.html\">Contact</a></li>\n                 </ul>\n                 <a href=\"interest.html\" class=\"cta-nav\">Get Started</a>\n             </div>\n"
                 }
             ],
             "date": 1751386812523,
