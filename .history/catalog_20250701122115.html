@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Catalog - Codex Labs Institute</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000;
+            color: #f5f5f7;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #f5f5f7;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #f5f5f7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007aff;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 40px 0;
+        }
+
+        /* Hero Section */
+        .catalog-hero {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(88, 86, 214, 0.1));
+            border-radius: 20px;
+            margin-bottom: 50px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .catalog-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .catalog-hero .subtitle {
+            font-size: 1.3rem;
+            color: #86868b;
+            margin-bottom: 30px;
+        }
+
+        .semester-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .semester-info h3 {
+            color: #30d158;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .enrollment-badge {
+            background: linear-gradient(135deg, #30d158, #007aff);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /* Search and Filters */
+        .search-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+        }
+
+        .search-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 150px;
+            gap: 20px;
+            align-items: end;
+        }
+
+        .search-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .search-group label {
+            color: #f5f5f7;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .search-group input,
+        .search-group select {
+            padding: 12px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #f5f5f7;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-group input:focus,
+        .search-group select:focus {
+            outline: none;
+            border-color: #007aff;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+        }
+
+        .search-group input::placeholder {
+            color: #86868b;
+        }
+
+        .search-btn {
+            background: #007aff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: fit-content;
+        }
+
+        .search-btn:hover {
+            background: #0056cc;
+            transform: translateY(-1px);
+        }
+
+        /* Program Sections */
+        .program-section {
+            margin-bottom: 60px;
+        }
+
+        .program-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .program-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .program-meta {
+            color: #86868b;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .program-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .stat-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Course Grid */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-header {
+            display: flex;
+            justify-content: between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .course-code {
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .course-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #f5f5f7;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .course-description {
+            color: #86868b;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .course-details {
+            margin-bottom: 25px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .detail-label {
+            color: #86868b;
+        }
+
+        .detail-value {
+            color: #f5f5f7;
+            font-weight: 500;
+        }
+
+        .instructor-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .instructor-name {
+            font-weight: 600;
+            color: #007aff;
+            margin-bottom: 5px;
+        }
+
+        .instructor-title {
+            font-size: 0.85rem;
+            color: #86868b;
+        }
+
+        .course-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-open {
+            background: rgba(48, 209, 88, 0.2);
+            color: #30d158;
+            border: 1px solid rgba(48, 209, 88, 0.3);
+        }
+
+        .status-waitlist {
+            background: rgba(255, 149, 0, 0.2);
+            color: #ff9500;
+            border: 1px solid rgba(255, 149, 0, 0.3);
+        }
+
+        .status-closed {
+            background: rgba(255, 59, 48, 0.2);
+            color: #ff3b30;
+            border: 1px solid rgba(255, 59, 48, 0.3);
+        }
+
+        .enrollment-count {
+            font-size: 0.85rem;
+            color: #86868b;
+        }
+
+        .course-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .course-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #30d158;
+        }
+
+        .enroll-btn {
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .enroll-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 122, 255, 0.3);
+        }
+
+        .enroll-btn.waitlist {
+            background: linear-gradient(135deg, #ff9500, #ff6b00);
+        }
+
+        .enroll-btn.waitlist:hover {
+            box-shadow: 0 10px 30px rgba(255, 149, 0, 0.3);
+        }
+
+        .enroll-btn.closed {
+            background: #48484a;
+            cursor: not-allowed;
+        }
+
+        .enroll-btn.closed:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .prerequisites {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid #007aff;
+            padding: 10px 15px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem;
+            color: #86868b;
+            margin-bottom: 20px;
+        }
+
+        /* Sidebar */
+        .content-layout {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+            backdrop-filter: blur(20px);
+        }
+
+        .sidebar h3 {
+            color: #f5f5f7;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-link {
+            display: block;
+            color: #007aff;
+            text-decoration: none;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-link:hover {
+            color: #0056cc;
+        }
+
+        .sidebar-link:last-child {
+            border-bottom: none;
+        }
+
+        .important-dates {
+            background: rgba(255, 149, 0, 0.1);
+            border: 1px solid rgba(255, 149, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .important-dates h4 {
+            color: #ff9500;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .date-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+
+        .date-label {
+            color: #86868b;
+        }
+
+        .date-value {
+            color: #f5f5f7;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .content-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                order: -1;
+            }
+
+            .search-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+
+            .search-group:last-child {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .catalog-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .program-header h2 {
+                font-size: 2rem;
+            }
+
+            .search-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-group:last-child {
+                grid-column: span 1;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-stats {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-card {
+                padding: 20px;
+            }
+
+            .course-actions {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+
+            .enroll-btn {
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading States */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid #007aff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <a href="index.html" class="logo">Codex Labs</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="course-catalog.html">Course Catalog</a></li>
+                    <li><a href="interest.html">Apply Now</a></li>
+                    <li><a href="student-portal.html">Student Portal</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="catalog-hero fade-in">
+                <h1>Spring 2025 Courses</h1>
+                <p class="subtitle">Choose your path. Build your future. Code your dreams.</p>
+                <div class="semester-info">
+                    <h3>Registration Now Open</h3>
+                    <p>Classes begin March 3, 2025</p>
+                    <div class="enrollment-badge">Early Bird: Save $50 until Feb 15</div>
+                </div>
+            </div>
+
+            <div class="search-section fade-in">
+                <div class="search-grid">
+                    <div class="search-group">
+                        <label for="search">Search Courses</label>
+                        <input type="text" id="search" placeholder="Course title, code, or keyword...">
+                    </div>
+                    <div class="search-group">
+                        <label for="program">Program</label>
+                        <select id="program">
+                            <option value="">All Programs</option>
+                            <option value="mini">Mini Coders (Ages 5-17)</option>
+                            <option value="nextgen">NextGen Coders (Ages 18+)</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <label for="level">Level</label>
+                        <select id="level">
+                            <option value="">All Levels</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <button class="search-btn" onclick="filterCourses()">Search</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-layout">
+                <div class="main-content">
+                    <!-- Mini Coders Program -->
+                    <div class="program-section fade-in" data-program="mini">
+                        <div class="program-header">
+                            <h2>Mini Coders</h2>
+                            <p class="program-meta">Ages 5-17 • Visual Programming & Creative Development</p>
+                            <div class="program-stats">
+                                <div class="stat-badge">🎮 Game Development</div>
+                                <div class="stat-badge">🎨 Creative Projects</div>
+                                <div class="stat-badge">🏆 Portfolio Building</div>
+                            </div>
+                        </div>
+
+                        <div class="courses-grid">
+                            <div class="course-card" data-level="beginner">
+                                <div class="course-code">MINI-101</div>
+                                <h3 class="course-title">Creative Storytelling with Scratch</h3>
+                                <p class="course-description">
+                                    Create interactive stories and animations using Scratch's visual programming blocks. 
+                                    Perfect introduction to programming concepts through creative expression and storytelling.
+                                </p>
+                                <div class="prerequisites">
+                                    📋 Prerequisites: None • Perfect for ages 5-8
+                                </div>
+                                <div class="course-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Duration:</span>
+                                        <span class="detail-value">8 weeks</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Schedule:</span>
+                                        <span class="detail-value">Saturdays 10:00 AM - 11:30 AM</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Format:</span>
+                                        <span class="detail-value">Live Online Sessions</span>
+                                    </div>
+                                </div>
+                                <div class="instructor-info">
+                                    <div class="instructor-name">Ms. Sarah Chen</div>
+                                    <div class="instructor-title">M.Ed. Educational Technology</div>
+                                </div>
+                                <div class="course-status">
+                                    <span class="status-badge status-open">Open</span>
+                                    <span class="enrollment-count">12/15 enrolled</span>
+                                </div>
+                                <div class="course-actions">
+                                    <span class="course-price">$249</span>
+                                    <a href="enrollment.html?course=scratch-storytelling" class="enroll-btn">Enroll Now</a>
+                                </div>
+                            </div>
+
+                            <div class="course-card" data-level="intermediate">
+                                <div class="course-code">MINI-201</div>
+                                <h3 class="course-title">Game Development with MakeCode</h3>
+                                <p class="course-description">
+                                    Build your first video games using MakeCode Arcade. Learn programming fundamentals 
+                                    through game creation and develop logical thinking and problem-solving skills.
+                                </p>
+                                <div class="prerequisites">
+                                    📋 Prerequisites: Basic computer skills • Perfect for ages 9-12
+                                </div>
+                                <div class="course-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Duration:</span>
+                                        <span class="detail-value">10 weeks</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Schedule:</span>
+                                        <span class="detail-value">Saturdays 2:00 PM - 3:30 PM</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Format:</span>
+                                        <span class="detail-value">Live Online + Self-Paced</span>
+                                    </div>
+                                </div>
+                                <div class="instructor-info">
+                                    <div class="instructor-name">Mr. David Rodriguez</div>
+                                    <div class="instructor-title">B.S. Computer Science</div>
+                                </div>
+                                <div class="course-status">
+                                    <span class="status-badge status-open">Open</span>
+                                    <span class="enrollment-count">8/15 enrolled</span>
+                                </div>
+                                <div class="course-actions">
+                                    <span class="course-price">$399</span>
+                                    <a href="enrollment.html?course=makecode-games" class="enroll-btn">Enroll Now</a>
+                                </div>
+                            </div>
+
+                            <div class="course-card" data-level="advanced">
+                                <div class="course-code">MINI-301</div>
+                                <h3 class="course-title">Robotics & IoT Programming</h3>
+                                <p class="course-description">
+                                    Program micro:bit and Arduino devices to control robots, sensors, and IoT projects. 
+                                    Advanced programming concepts through hands-on hardware development.
+                                </p>
+                                <div class="prerequisites">
+                                    📋 Prerequisites: MINI-201 or equivalent • Perfect for ages 13-17
+                                </div>
+                                <div class="course-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Duration:</span>
+                                        <span class="detail-value">12 weeks</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Schedule:</span>
+                                        <span class="detail-value">Sundays 1:00 PM - 3:00 PM</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Format:</span>
+                                        <span class="detail-value">Live Online + Hardware Kit</span>
+                                    </div>
+                                </div>
+                                <div class="instructor-info">
+                                    <div class="instructor-name">Dr. Emily Watson</div>
+                                    <div class="instructor-title">Ph.D. Computer Engineering</div>
+                                </div>
+                                <div class="course-status">
+                                    <span class="status-badge status-waitlist">Waitlist</span>
+                                    <span class="enrollment-count">15/15 enrolled</span>
+                                </div>
+                                <div class="course-actions">
+                                    <span class="course-price">$499</span>
+                                    <a href="enrollment.html?course=robotics-microbit" class="enroll-btn waitlist">Join Waitlist</a>
+                                </div>
+                            </div>
+
+                            <div class="course-card" data-level="advanced">
+                                <div class="course-code">MINI-302</div>
+                                <h3 class="course-title">Web Development for Teens</h3>
+                                <p class="course-description">
+                                    Learn HTML, CSS, and JavaScript to build professional websites and web applications. 
+                                    Prepare for advanced programming concepts and modern web development.
+                                </p>
+                                <div class="prerequisites">
+                                    📋 Prerequisites: Basic programming knowledge • Perfect for ages 13-17
+                                </div>
+                                <div class="course-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Duration:</span>
+                                        <span class="detail-value">14 weeks</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Schedule:</span>
+                                        <span class="detail-value">Saturdays 4:00 PM - 6:00 PM</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Format:</span>
+                                        <span class="detail-value">Live Online Sessions</span>
+                                    </div>
+                                </div>
+                                <div class="instructor-info">
+                                    <div class="instructor-name">Ms. Jessica Kim</div>
+                                    <div class="instructor-title">B.S. Web Development</div>
+                                </div>
+                                <div class="course-status">
+                                    <span class="status-badge status-open">Open</span>
+                                    <span class="enrollment-count">5/12 enrolled</span>
+                                </div>
+                                <div class="course-actions">
+                                    <span class="course-price">$549</span>
+                                    <a href="enrollment.html?course=teen-web-dev" class="enroll-btn">Enroll Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NextGen Coders Program -->
+                    <div class="program-section fade-in" data-program="nextgen">
+                        <div class="program-header">
+                            <h2>NextGen Coders</h2>
+                            <p class="program-meta">Ages 18+ • Professional Development & Career Preparation</p>
+                            <div class="program-stats">
+                                <div class="stat-badge">💻 Industry Tools</div>
+                                <div class="stat-badge">🚀 Real Projects</div>
+                                <div class="stat-badge">📈 Career Focus</div>
+                            </div>
+                        </div>
+
+                        <div class="courses-grid">
+                            <div class="course-card" data-level="beginner">
+                                <div class="course-code">NEXT-101</div>
+                                <h3 class="course-title">Python Programming Fundamentals</h3>
+                                <p class="course-description">
+                                    Master Python programming from basics to advanced concepts. Build real-world 
+                                    applications and develop a professional programming portfolio with industry-standard practices.
+                                </p>
+                                <div class="prerequisites">
+                                    📋 Prerequisites: None • Basic computer literacy recommended
+                                </div>
+                                <div class="course-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Duration:</span>
+                                        <span class="detail-value">12 weeks</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Schedule:</span>
+                                        <span class="detail-value">Tue & Thu 7:00 PM - 9:00 PM</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Format:</span>
+                                        <span class="detail-value">Live Online + Labs</span>
+                                    </div>
+                                </div>
+                                <div class="instructor-info">
+                                    <div class="instructor-name">Mr. Alex Thompson</div>
+                                    <div class="instructor-title">Senior Software Engineer</div>
+                                </div>
+                                <div class="course-status">
+                                    <span class="status-badge status-open">Open</span>
+                                    <span class="enrollment-count">18/20 enrolled</span>
+                                </div>
+                                <div class="course-actions">
+                                    <span class="course-price">$799</span>
+                                    <a href="enrollment.html?course=python-fundamentals" class="enroll-btn">Enroll Now</a>
+                                </div>
+                            </div>
+
+                            <div class="course-card" data-level="intermediate">
+                                <div class="course-code">NEXT-201</div>
+                                <h3 class="course-title">Full-Stack Web Development</h3>
+                                <p class="course-description">
+                                    Complete web development bootcamp covering React, Node.js, databases, and deployment. 
+                                    Build and deploy full-stack applications with modern development practices.
+                                </p>
+                                <div class="prerequisites">
+                                    📋 Prerequisites: Basic HTML/CSS knowledge or NEXT-101
+                                </div>
+                                <div class="course-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Duration:</span>
+                                        <span class="detail-value">20 weeks</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Schedule:</span>
+                                        <span class="detail-value">Saturdays 9:00 AM - 1:00 PM</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Format:</span>
+                                        <span class="detail-value">Live Online + Project Work</span>
+                                    </div>
+                                </div>
+                                <div class="instructor-info">
+                                    <div class="instructor-name">Ms. Maria Garcia</div>
+                                    <div class="instructor-title">Full-Stack Developer</div>
+                                </div>
+                                <div class="course-status">
+                                    <span class="status-badge status-open">Open</span>
+                                    <span class="enrollment-count">12/15 enrolled</span>
+                                </div>
+                                <div class="course-actions">
+                                    <span class="course-price">$1,499</span>
+                                    <a href="enrollment.html?course=fullstack-web" class="enroll-btn">Enroll Now</a>
+                                </div>
+                            </div>
+
+                            <div class="course-card" data-level="intermediate">
+                                <div class="course-code">NEXT-202</div>
+                                <h3 class="course-title">iOS App Development</h3>
+                                <p class="course-description">
+                                    Build native iOS applications using Swift and Xcode. Learn app design principles, 
+                                    development best practices, and App Store deployment processes.
+                                </p>
+                                <div class="prerequisites">
+                                    📋 Prerequisites: Programming experience or NEXT-101
+                                </div>
+                                <div class="course-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Duration:</span>
+                                        <span class="detail-value">16 weeks</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Schedule:</span>
+                                        <span class="detail-value">Sundays 2:00 PM - 6:00 PM</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Format:</span>
+                                        <span class="detail-value">Live Online + Labs</span>
+                                    </div>
+                                </div>
+                                <div class="instructor-info">
+                                    <div class="instructor-name">Mr. James Liu</div>
+                                    <div class="instructor-title">iOS Developer, Apple</div>
+                                </div>
+                                <div class="course-status">
+                                    <span class="status-badge status-open">Open</span>
+                                    <span class="enrollment-count">8/12 enrolled</span>
+                                </div>
+                                <div class="course-actions">
+                                    <span class="course-price">$1,199</span>
+                                    <a href="enrollment.html?course=ios-development" class="enroll-btn">Enroll Now</a>
+                                </div>
+                            </div>
+
+                            <div class="course-card" data-level="intermediate">
+                                <div class="course-code">NEXT-203</div>
+                                <h3 class="course-title">Data Science & Analytics</h3>
+                                <p class="course-description">
+                                    Learn data analysis, visualization, and machine learning with Python. 
+                                    Work with real datasets and build predictive models for business applications.
+                                </p>
+                                <div class="prerequisites">
+                                    📋 Prerequisites: NEXT-101 or equivalent Python knowledge
+                                </div>
+                                <div class="course-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Duration:</span>
+                                        <span class="detail-value">14 weeks</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Schedule:</span>
+                                        <span class="detail-value">Wednesdays 7:00 PM - 9:30 PM</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Format:</span>
+                                        <span class="detail-value">Live Online + Jupyter Labs</span>
+                                    </div>
+                                </div>
+                                <div class="instructor-info">
+                                    <div class="instructor-name">Dr. Rachel Adams</div>
+                                    <div class="instructor-title">Data Scientist, Ph.D.</div>
+                                </div>
+                                <div class="course-status">
+                                    <span class="status-badge status-open">Open</span>
+                                    <span class="enrollment-count">10/15 enrolled</span>
+                                </div>
+                                <div class="course-actions">
+                                    <span class="course-price">$999</span>
+                                    <a href="enrollment.html?course=data-science" class="enroll-btn">Enroll Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar fade-in">
+                    <div class="sidebar-section">
+                        <h3>Quick Actions</h3>
+                        <a href="interest.html" class="sidebar-link">📝 Apply for Admission</a>
+                        <a href="enrollment.html" class="sidebar-link">📋 Course Registration</a>
+                        <a href="student-portal.html" class="sidebar-link">🎓 Student Portal</a>
+                        <a href="#" class="sidebar-link">📅 Academic Calendar</a>
+                        <a href="#" class="sidebar-link">💰 Tuition & Fees</a>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3>Student Support</h3>
+                        <a href="#" class="sidebar-link">👨‍🏫 Academic Support</a>
+                        <a href="#" class="sidebar-link">🔧 Technical Help</a>
+                        <a href="#" class="sidebar-link">💬 Community Forum</a>
+                        <a href="#" class="sidebar-link">🚀 Career Guidance</a>
+                    </div>
+
+                    <div class="important-dates">
+                        <h4>📅 Important Dates</h4>
+                        <div class="date-item">
+                            <span class="date-label">Early Registration:</span>
+                            <span class="date-value">Feb 15</span>
+                        </div>
+                        <div class="date-item">
+                            <span class="date-label">Registration Ends:</span>
+                            <span class="date-value">Feb 28</span>
+                        </div>
+                        <div class="date-item">
+                            <span class="date-label">Classes Begin:</span>
+                            <span class="date-value">Mar 3</span>
+                        </div>
+                        <div class="date-item">
+                            <span class="date-label">Drop Deadline:</span>
+                            <span class="date-value">Mar 17</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function filterCourses() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const programFilter = document.getElementById('program').value;
+            const levelFilter = document.getElementById('level').value;
+            
+            const programSections = document.querySelectorAll('.program-section');
+            const courseCards = document.querySelectorAll('.course-card');
+            
+            // Reset all visibility
+            programSections.forEach(section => section.style.display = 'block');
+            courseCards.forEach(card => card.style.display = 'block');
+            
+            // Apply program filter
+            if (programFilter) {
+                programSections.forEach(section => {
+                    if (!section.getAttribute('data-program').includes(programFilter)) {
+                        section.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Apply course-level filters
+            courseCards.forEach(card => {
+                const cardText = card.textContent.toLowerCase();
+                const cardLevel = card.getAttribute('data-level');
+                
+                let showCard = true;
+                
+                // Search filter
+                if (searchTerm && !cardText.includes(searchTerm)) {
+                    showCard = false;
+                }
+                
+                // Level filter
+                if (levelFilter && cardLevel !== levelFilter) {
+                    showCard = false;
+                }
+                
+                card.style.display = showCard ? 'block' : 'none';
+            });
+            
+            // Hide program sections with no visible courses
+            programSections.forEach(section => {
+                const visibleCards = section.querySelectorAll('.course-card[style="display: block;"]');
+                if (visibleCards.length === 0) {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        // Add event listeners for real-time filtering
+        document.getElementById('search').addEventListener('input', filterCourses);
+        document.getElementById('program').addEventListener('change', filterCourses);
+        document.getElementById('level').addEventListener('change', filterCourses);
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all course cards
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.course-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Enrollment tracking
+            document.querySelectorAll('.enroll-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const courseCode = this.closest('.course-card').querySelector('.course-code').textContent;
+                    console.log(`Enrollment initiated for: ${courseCode}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply to Codex Labs - Express Your Interest</title>
+    <title>Apply to Codex Labs Institute- Express Your Interest</title>
     <style>
         * {
             margin: 0;
@@ -149,7 +149,7 @@
             color: #ffffff;
         }
 
-        .program-badge {
+        .university-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -492,12 +492,12 @@
 
     <header>
         <nav>
-            <a href="index.html" class="logo">Codex Labs Institute</a>
+            <a href="#" class="logo">Codex Labs University</a>
             <ul class="nav-links">
-                <li><a href="index.html#programs">Programs</a></li>
-                <li><a href="course-catalog.html">Course Catalog</a></li>
-                <li><a href="index.html#features">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#admissions">Admissions</a></li>
+                <li><a href="#campus">Campus</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -506,43 +506,43 @@
         <div class="container">
             <div class="content-wrapper">
                 <div class="hero-content">
-                    <div class="program-badge">
-                        💻 Real-World Projects & Portfolio Building
+                    <div class="university-badge">
+                        🏆 Accredited Instructors
                     </div>
-                    <h1>Learn to Code with Purpose</h1>
-                    <p class="subtitle">Build Real Projects, Solve Real Problems</p>
+                    <h1>Shape Your Future in Technology</h1>
+                    <p class="subtitle">Join the Next Generation of Innovators</p>
                     <p class="description">
-                        Join our innovative online coding program where students of all ages learn programming 
-                        through hands-on projects that make a real impact. From building apps to solving 
-                        community problems, we help you develop both coding skills and a professional portfolio.
+                        Express your interest in our cutting-edge computer science and technology programs. 
+                        From foundational programming to advanced software engineering, we prepare students 
+                        for successful careers in the tech industry.
                     </p>
                     
                     <div class="stats">
                         <div class="stat-item">
-                            <span class="stat-number">2</span>
-                            <span class="stat-label">Age Programs</span>
+                            <span class="stat-number">95%</span>
+                            <span class="stat-label">Job Placement Rate</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Project-Based Learning</span>
+                            <span class="stat-number">$85k</span>
+                            <span class="stat-label">Average Starting Salary</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number">New</span>
-                            <span class="stat-label">Growing Community</span>
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Industry Partners</span>
                         </div>
                     </div>
 
                     <div class="accreditation">
-                        <div class="accred-badge">Portfolio Building</div>
-                        <div class="accred-badge">Industry Mentorship</div>
-                        <div class="accred-badge">Mock Interviews (Coming Soon)</div>
+                        <div class="accred-badge">ABET Accredited</div>
+                        <div class="accred-badge">Regional Accreditation</div>
+                        <div class="accred-badge">Industry Partnerships</div>
                     </div>
                 </div>
 
                 <div class="form-container">
                     <div class="form-header">
-                        <h2>Start Your Coding Journey</h2>
-                        <p>Tell us about yourself and discover the perfect program</p>
+                        <h2>Express Your Interest</h2>
+                        <p>Take the first step toward your technology career</p>
                     </div>
 
                     <form class="application-form" id="interestForm">
@@ -572,12 +572,12 @@
                                 <label for="age">Age *</label>
                                 <select id="age" name="age" required onchange="updatePrograms()">
                                     <option value="">Select your age</option>
-                                    <option value="5-8">5-8 years old (Mini Coders)</option>
-                                    <option value="9-12">9-12 years old (Mini Coders)</option>
-                                    <option value="13-17">13-17 years old (Mini Coders)</option>
-                                    <option value="18-25">18-25 years old (NextGen Coders)</option>
-                                    <option value="26-35">26-35 years old (NextGen Coders)</option>
-                                    <option value="36-50">36+ years old (NextGen Coders)</option>
+                                    <option value="5-8">5-8 years old</option>
+                                    <option value="9-12">9-12 years old</option>
+                                    <option value="13-17">13-17 years old</option>
+                                    <option value="18-25">18-25 years old</option>
+                                    <option value="26-30">26-30 years old</option>
+                                    <option value="31-40">31-40 years old</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -631,14 +631,14 @@
                         <button type="submit" class="submit-btn">Submit Interest Application</button>
 
                         <div class="form-note">
-                            By submitting this form, you're taking the first step toward joining our coding community. 
-                            A program coordinator will contact you within 1-2 business days to discuss your learning goals.
+                            By submitting this form, you're taking the first step toward joining our community of innovators. 
+                            An admissions counselor will contact you within 1-2 business days.
                         </div>
                     </form>
 
                     <div class="success-message" id="successMessage">
                         <h3 style="color: #30d158; margin-bottom: 15px;">🎉 Thank You!</h3>
-                        <p style="color: #1d1d1f;">Your interest has been successfully submitted. A program coordinator will contact you soon to discuss your coding journey and help you choose the perfect program.</p>
+                        <p style="color: #1d1d1f;">Your interest has been successfully submitted. An admissions counselor will contact you soon to discuss your technology journey.</p>
                     </div>
                 </div>
             </div>
@@ -648,28 +648,28 @@
     <script>
         const programsByAge = {
             '5-8': [
-                { id: 'mini-creative', icon: '🎨', title: 'Creative Coding', desc: 'Stories & Games with Scratch' },
-                { id: 'mini-logic', icon: '🧩', title: 'Logic & Problem Solving', desc: 'Critical Thinking Skills' }
+                { id: 'mini-creative', icon: '🎨', title: 'Creative Coding', desc: 'Stories & Animation' },
+                { id: 'mini-games', icon: '🎮', title: 'Game Design', desc: 'Interactive Fun' }
             ],
             '9-12': [
-                { id: 'mini-games', icon: '🎮', title: 'Game Development', desc: 'MakeCode & Scratch Projects' },
-                { id: 'mini-art', icon: '🎭', title: 'Interactive Art', desc: 'Digital Art & Animation' }
+                { id: 'junior-dev', icon: '💻', title: 'Junior Developer', desc: 'Web & Apps' },
+                { id: 'junior-robotics', icon: '🤖', title: 'Robotics', desc: 'Build & Program' }
             ],
             '13-17': [
-                { id: 'mini-robotics', icon: '🤖', title: 'Robotics & IoT', desc: 'Micro:bit & Arduino Projects' },
-                { id: 'mini-web', icon: '🌐', title: 'Web Development', desc: 'HTML, CSS & JavaScript' }
+                { id: 'teen-cs', icon: '⚡', title: 'Computer Science', desc: 'Full Stack Development' },
+                { id: 'teen-mobile', icon: '📱', title: 'Mobile Development', desc: 'iOS & Android' }
             ],
             '18-25': [
-                { id: 'nextgen-python', icon: '🐍', title: 'Python Development', desc: 'Backend & Data Science' },
-                { id: 'nextgen-mobile', icon: '📱', title: 'Mobile Development', desc: 'iOS & Android Apps' }
+                { id: 'adult-se', icon: '🔧', title: 'Software Engineering', desc: 'Professional Track' },
+                { id: 'adult-ds', icon: '📊', title: 'Data Science', desc: 'AI & Analytics' }
             ],
-            '26-35': [
-                { id: 'nextgen-fullstack', icon: '🌐', title: 'Full-Stack Development', desc: 'Complete Web Applications' },
-                { id: 'nextgen-data', icon: '📊', title: 'Data Science', desc: 'Analytics & Machine Learning' }
+            '26-30': [
+                { id: 'career-se', icon: '🚀', title: 'Career Transition', desc: 'Software Engineering' },
+                { id: 'career-cyber', icon: '🔒', title: 'Cybersecurity', desc: 'Information Security' }
             ],
-            '36-50': [
-                { id: 'nextgen-career', icon: '🚀', title: 'Career Transition', desc: 'Professional Development' },
-                { id: 'nextgen-enterprise', icon: '🏢', title: 'Enterprise Development', desc: 'Java & Cloud Technologies' }
+            '31-40': [
+                { id: 'exec-tech', icon: '👔', title: 'Executive Tech', desc: 'Leadership & Strategy' },
+                { id: 'entrepreneurship', icon: '💡', title: 'Tech Entrepreneurship', desc: 'Startup & Innovation' }
             ]
         };
 

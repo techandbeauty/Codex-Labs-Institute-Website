@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codex Labs - Where Code Comes to Life</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000;
+            color: #f5f5f7;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #f5f5f7;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #f5f5f7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007aff;
+        }
+
+        .cta-nav {
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 30px rgba(0, 122, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(0, 122, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23333" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f5f5f7, #007aff, #5856d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #007aff;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            color: #86868b;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 122, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f5f5f7;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Impact Stats */
+        .impact-stats {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.05), rgba(88, 86, 214, 0.05));
+            backdrop-filter: blur(20px);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            animation: fadeInUp 1s ease both;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #86868b;
+            font-weight: 500;
+        }
+
+        /* Programs Overview */
+        .programs-overview {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f5f5f7, #007aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #86868b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .program-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .program-card:hover::before {
+            left: 100%;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .program-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .program-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #f5f5f7;
+        }
+
+        .age-range {
+            color: #007aff;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .program-description {
+            color: #86868b;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .tools-preview {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tool-badge {
+            background: rgba(0, 122, 255, 0.2);
+            color: #007aff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 122, 255, 0.3);
+        }
+
+        .program-cta {
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .program-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 122, 255, 0.4);
+        }
+
+        /* Success Stories */
+        .success-stories {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(88, 86, 214, 0.05), rgba(0, 122, 255, 0.05));
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .student-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            margin-right: 15px;
+        }
+
+        .student-details h4 {
+            color: #f5f5f7;
+            margin-bottom: 5px;
+        }
+
+        .student-details p {
+            color: #86868b;
+            font-size: 0.9rem;
+        }
+
+        .story-text {
+            color: #86868b;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* Learning Journey */
+        .learning-journey {
+            padding: 100px 0;
+        }
+
+        .journey-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007aff, #5856d6);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #f5f5f7;
+        }
+
+        .step-card p {
+            color: #86868b;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(88, 86, 214, 0.1));
+            backdrop-filter: blur(20px);
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f5f5f7, #007aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #86868b;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid #333;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .footer-content {
+            text-align: center;
+            color: #86868b;
+        }
+
+        .footer-content p {
+            margin-bottom: 10px;
+        }
+
+        .footer-content a {
+            color: #007aff;
+            text-decoration: none;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero .description {
+                font-size: 1rem;
+            }
+
+            .program-card {
+                padding: 30px 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <a href="index.html" class="logo">Codex Labs</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="course-catalog.html">Courses</a></li>
+                    <li><a href="interest.html">Apply</a></li>
+                    <li><a href="student-portal.html">Portal</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a href="interest.html" class="cta-nav">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Where Code Comes to Life</h1>
+                    <p class="subtitle">From First Line to Full Portfolio</p>
+                    <p class="description">
+                        Transform your curiosity into coding skills. Build real projects, solve real problems, 
+                        and create a portfolio that opens doors to your future.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="interest.html" class="btn-primary">
+                            🚀 Start Your Journey
+                        </a>
+                        <a href="course-catalog.html" class="btn-secondary">
+                            📚 Explore Courses
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Stats -->
+        <section class="impact-stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item reveal">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Age-Tailored Programs</span>
+                    </div>
+                    <div class="stat-item reveal">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Project-Based Learning</span>
+                    </div>
+                    <div class="stat-item reveal">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Creative Possibilities</span>
+                    </div>
+                    <div class="stat-item reveal">
+                        <span class="stat-number">1:1</span>
+                        <span class="stat-label">Personalized Support</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Overview -->
+        <section class="programs-overview" id="programs">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Your Coding Adventure Awaits</h2>
+                    <p>Choose your path and start building the projects that will define your future.</p>
+                </div>
+                
+                <div class="programs-grid">
+                    <div class="program-card reveal">
+                        <span class="program-icon">🎮</span>
+                        <h3>Mini Coders</h3>
+                        <p class="age-range">Ages 5-17</p>
+                        <p class="program-description">
+                            Discover the magic of coding through games, stories, and interactive adventures. 
+                            From Scratch animations to robotics projects that move in the real world.
+                        </p>
+                        <div class="tools-preview">
+                            <span class="tool-badge">Scratch</span>
+                            <span class="tool-badge">MakeCode</span>
+                            <span class="tool-badge">Robotics</span>
+                        </div>
+                        <a href="course-catalog.html?program=mini" class="program-cta">Discover Mini Coders</a>
+                    </div>
+
+                    <div class="program-card reveal">
+                        <span class="program-icon">💻</span>
+                        <h3>NextGen Coders</h3>
+                        <p class="age-range">Ages 18+</p>
+                        <p class="program-description">
+                            Master professional development tools and build portfolio-worthy applications. 
+                            From Python backends to iOS apps that could be the next big thing.
+                        </p>
+                        <div class="tools-preview">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">React</span>
+                            <span class="tool-badge">iOS Development</span>
+                        </div>
+                        <a href="course-catalog.html?program=nextgen" class="program-cta">Explore NextGen</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Stories -->
+        <section class="success-stories">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Real Students, Real Success</h2>
+                    <p>See how our students turn curiosity into capability</p>
+                </div>
+                
+                <div class="stories-grid">
+                    <div class="story-card reveal">
+                        <div class="student-info">
+                            <div class="student-avatar">AM</div>
+                            <div class="student-details">
+                                <h4>Alex Martinez, 14</h4>
+                                <p>Mini Coders Graduate</p>
+                            </div>
+                        </div>
+                        <p class="story-text">
+                            "I started with Scratch stories and now I'm building actual mobile apps. 
+                            My robotics project won our school's science fair!"
+                        </p>
+                    </div>
+
+                    <div class="story-card reveal">
+                        <div class="student-info">
+                            <div class="student-avatar">SJ</div>
+                            <div class="student-details">
+                                <h4>Sarah Johnson, 28</h4>
+                                <p>Career Transition Success</p>
+                            </div>
+                        </div>
+                        <p class="story-text">
+                            "From marketing to full-stack development in 6 months. 
+                            The project-based learning helped me build a portfolio that got me hired."
+                        </p>
+                    </div>
+
+                    <div class="story-card reveal">
+                        <div class="student-info">
+                            <div class="student-avatar">MK</div>
+                            <div class="student-details">
+                                <h4>Maya Kim, 10</h4>
+                                <p>Young Innovator</p>
+                            </div>
+                        </div>
+                        <p class="story-text">
+                            "I created a game to help my little brother learn math. 
+                            Now all his friends want to play it too!"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Journey -->
+        <section class="learning-journey">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Your Learning Journey</h2>
+                    <p>From first click to portfolio showcase</p>
+                </div>
+                
+                <div class="journey-steps">
+                    <div class="step-card reveal">
+                        <div class="step-number">1</div>
+                        <h3>Discover & Apply</h3>
+                        <p>Tell us about your goals and interests. We'll help you choose the perfect program to start your coding journey.</p>
+                    </div>
+
+                    <div class="step-card reveal">
+                        <div class="step-number">2</div>
+                        <h3>Learn by Building</h3>
+                        <p>Dive into hands-on projects from day one. No boring theory - just real code solving real problems.</p>
+                    </div>
+
+                    <div class="step-card reveal">
+                        <div class="step-number">3</div>
+                        <h3>Create Your Portfolio</h3>
+                        <p>Every project becomes part of your growing portfolio. Showcase your skills to schools, employers, or the world.</p>
+                    </div>
+
+                    <div class="step-card reveal">
+                        <div class="step-number">4</div>
+                        <h3>Launch Your Future</h3>
+                        <p>Whether it's college applications, career changes, or entrepreneurial ventures - your code opens doors.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Start Coding?</h2>
+                <p>
+                    Join students worldwide who are turning their ideas into reality through code. 
+                    Your journey from curious beginner to confident creator starts with a single click.
+                </p>
+                <div class="cta-actions">
+                    <a href="interest.html" class="btn-primary">
+                        🎯 Apply Now
+                    </a>
+                    <a href="course-catalog.html" class="btn-secondary">
+                        📖 View All Courses
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Codex Labs Institute. All rights reserved.</p>
+                <p>
+                    <a href="contact.html">Contact Us</a> | 
+                    hello@codexlabs.com | 
+                    (555) 123-CODE
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', reveal);
+        
+        // Trigger reveal on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            reveal();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add dynamic cursor effect for program cards
+        document.querySelectorAll('.program-card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', x + 'px');
+                card.style.setProperty('--mouse-y', y + 'px');
+            });
+        });
+
+        // Track user engagement
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track page view
+            console.log('Homepage loaded - tracking engagement');
+            
+            // Track CTA clicks
+            document.querySelectorAll('.btn-primary, .btn-secondary, .program-cta').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const action = this.textContent.trim();
+                    console.log(`CTA clicked: ${action}`);
+                    // In real implementation, send to analytics
+                });
+            });
+            
+            // Track scroll depth
+            let maxScroll = 0;
+            window.addEventListener('scroll', function() {
+                const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+                if (scrollPercent > maxScroll) {
+                    maxScroll = scrollPercent;
+                    if (maxScroll % 25 === 0) { // Track every 25%
+                        console.log(`Scroll depth: ${maxScroll}%`);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
