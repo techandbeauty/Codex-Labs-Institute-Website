@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuition & Financial Aid | Codex Labs Institute</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+/* Codex Labs Institute - Shared Styles */
+
+:root {
+    --primary: #1a3a5c;
+    --primary-dark: #0f2640;
+    --primary-light: #2c5282;
+    --accent: #d4a92a;
+    --accent-light: #e8bc3d;
+    --accent-dark: #b8922a;
+    --white: #ffffff;
+    --off-white: #f8f9fa;
+    --light-gray: #e9ecef;
+    --medium-gray: #5a6268;
+    --dark-gray: #2d3339;
+    --text: #1a1a1a;
+    --text-light: #4a5568;
+    --success: #28a745;
+    --error: #dc3545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    line-height: 1.7;
+    background: var(--white);
+    font-size: 16px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Utility Bar */
+.utility-bar {
+    background: var(--primary-dark);
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.utility-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.utility-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.utility-links a {
+    color: rgba(255,255,255,0.8);
+    transition: color 0.2s;
+}
+
+.utility-links a:hover {
+    color: var(--accent);
+}
+
+.utility-contact {
+    color: rgba(255,255,255,0.8);
+}
+
+.utility-contact a {
+    color: var(--accent);
+}
+
+/* Main Header */
+.main-header {
+    background: var(--primary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--white);
+}
+
+.logo-icon {
+    width: 45px;
+    height: 45px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.logo-name {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.375rem;
+    font-weight: 700;
+}
+
+.logo-tagline {
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: block;
+    padding: 1.5rem 1.25rem;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: var(--primary-light);
+    color: var(--accent);
+}
+
+.nav-cta {
+    background: var(--accent);
+    color: var(--primary-dark);
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-left: 1rem;
+    transition: background 0.2s;
+}
+
+.nav-cta:hover {
+    background: var(--accent-light);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Mega Menu */
+.mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    min-width: 280px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    border-top: 3px solid var(--accent);
+}
+
+.nav-item:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mega-menu a {
+    display: block;
+    padding: 0.875rem 1.5rem;
+    color: var(--text);
+    font-size: 0.9375rem;
+    border-bottom: 1px solid var(--light-gray);
+    transition: background 0.2s, padding-left 0.2s;
+}
+
+.mega-menu a:last-child {
+    border-bottom: none;
+}
+
+.mega-menu a:hover {
+    background: var(--off-white);
+    padding-left: 2rem;
+    color: var(--primary);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--primary-dark);
+}
+
+.btn-primary:hover {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-light);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-outline-white {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.btn-outline-white:hover {
+    background: var(--white);
+    color: var(--primary);
+}
+
+.btn-small {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+}
+
+.btn-large {
+    padding: 1.125rem 2.5rem;
+    font-size: 1.125rem;
+}
+
+/* Page Hero */
+.page-hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--white);
+}
+
+.page-hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.page-hero p {
+    font-size: 1.125rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.breadcrumb {
+    max-width: 1400px;
+    margin: 0 auto 1.5rem;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.7);
+}
+
+.breadcrumb a {
+    color: var(--accent);
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Section Styles */
+.section {
+    padding: 5rem 2rem;
+}
+
+.section-alt {
+    background: var(--off-white);
+}
+
+.section-dark {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.container-narrow {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-label {
+    color: var(--accent-dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.section-dark .section-header h2 {
+    color: var(--white);
+}
+
+.section-dark .section-label {
+    color: var(--accent);
+}
+
+.section-header p {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.section-dark .section-header p {
+    color: rgba(255,255,255,0.8);
+}
+
+/* Cards */
+.card {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.card-accent {
+    border-left: 4px solid var(--accent);
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid var(--light-gray);
+    border-radius: 6px;
+    background: var(--off-white);
+    color: var(--text);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--white);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-note {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background: var(--primary-dark);
+    color: var(--white);
+    padding: 4rem 2rem 2rem;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-brand p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9375rem;
+    margin-top: 1rem;
+    line-height: 1.7;
+    max-width: 300px;
+}
+
+.footer-column h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-column a {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9375rem;
+    transition: color 0.2s;
+}
+
+.footer-column a:hover {
+    color: var(--white);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-copy {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.footer-legal {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-legal a {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.footer-legal a:hover {
+    color: var(--white);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .utility-bar {
+        display: none;
+    }
+
+    .header-container {
+        height: 60px;
+    }
+
+    .main-nav {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .section {
+        padding: 3rem 1.5rem;
+    }
+
+    .page-hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+</style>
+    <style>
+        /* Financial Aid Page Specific Styles */
+        
+        .page-hero {
+            background: linear-gradient(135deg, rgba(26, 58, 92, 0.92) 0%, rgba(15, 38, 64, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1920&q=80') center/cover no-repeat;
+        }
+
+        /* Tuition Cards */
+        .tuition-section {
+            padding: 5rem 2rem;
+        }
+
+        .tuition-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 3rem auto 0;
+        }
+
+        .tuition-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .tuition-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .tuition-card-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+
+        .tuition-card-header.featured {
+            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent) 100%);
+        }
+
+        .tuition-card-header h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .tuition-card-header p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .tuition-card-body {
+            padding: 2rem;
+        }
+
+        .tuition-price {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .tuition-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Source Serif 4', serif;
+        }
+
+        .tuition-period {
+            font-size: 0.9375rem;
+            color: #4a5568;
+        }
+
+        .tuition-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .tuition-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            font-size: 0.9375rem;
+            color: var(--text);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .tuition-features li:last-child {
+            border-bottom: none;
+        }
+
+        .tuition-features li::before {
+            content: '✓';
+            color: var(--accent-dark);
+            font-weight: bold;
+            margin-top: 0.125rem;
+        }
+
+        .tuition-card-footer {
+            padding: 0 2rem 2rem;
+        }
+
+        .tuition-card-footer .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* What's Included */
+        .included-section {
+            padding: 5rem 2rem;
+            background: var(--off-white);
+        }
+
+        .included-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 3rem auto 0;
+        }
+
+        .included-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .included-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .included-card h3 {
+            font-size: 1.125rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .included-card p {
+            font-size: 0.9375rem;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        /* Payment Options */
+        .payment-section {
+            padding: 5rem 2rem;
+        }
+
+        .payment-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .payment-option {
+            background: var(--off-white);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .payment-option:hover {
+            border-color: var(--accent);
+        }
+
+        .payment-option h3 {
+            font-size: 1.125rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-option p {
+            font-size: 0.9375rem;
+            color: #4a5568;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .payment-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary-dark);
+            padding: 0.375rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+
+        /* Financial Aid Section */
+        .aid-section {
+            padding: 5rem 2rem;
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .aid-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .aid-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .aid-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .aid-info p {
+            color: rgba(255,255,255,0.95);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .aid-list {
+            list-style: none;
+        }
+
+        .aid-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9375rem;
+        }
+
+        .aid-list li::before {
+            content: '→';
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .aid-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .aid-form h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .aid-form .form-group label {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .aid-form .form-group input,
+        .aid-form .form-group select,
+        .aid-form .form-group textarea {
+            background: rgba(255,255,255,0.9);
+        }
+
+        .aid-form .btn {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        /* Refund Policy */
+        .refund-section {
+            padding: 5rem 2rem;
+        }
+
+        .refund-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .refund-content {
+            background: var(--off-white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+
+        .refund-content h3 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .refund-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .refund-table th,
+        .refund-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .refund-table th {
+            background: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.9375rem;
+        }
+
+        .refund-table th:first-child {
+            border-radius: 6px 0 0 0;
+        }
+
+        .refund-table th:last-child {
+            border-radius: 0 6px 0 0;
+        }
+
+        .refund-table td {
+            font-size: 0.9375rem;
+            color: #1a1a1a;
+        }
+
+        .refund-note {
+            margin-top: 1.5rem;
+            font-size: 0.9375rem;
+            color: #4a5568;
+            font-style: italic;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 5rem 2rem;
+            background: var(--off-white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: inherit;
+        }
+
+        .faq-question:hover {
+            color: var(--accent-dark);
+        }
+
+        .faq-icon {
+            font-size: 1.25rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.5rem;
+            color: #4a5568;
+            font-size: 0.9375rem;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        @media (max-width: 1024px) {
+            .tuition-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .included-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+
+            .aid-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Utility Bar -->
+    <div class="utility-bar">
+        <div class="utility-container">
+            <div class="utility-links">
+                <a href="student-portal.html">Student Portal</a>
+                <a href="coming-soon.html">Help Center</a>
+            </div>
+            <div class="utility-contact">
+                Questions? Email <a href="mailto:admissions@codexlabsinstitute.com">admissions@codexlabsinstitute.com</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">C</div>
+                <div class="logo-text">
+                    <span class="logo-name">Codex Labs Institute</span>
+                    <span class="logo-tagline">From Code to Career</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <div class="nav-item">
+                    <a href="programs.html" class="nav-link">Programs</a>
+                </div>
+                <div class="nav-item">
+                    <a href="admissions.html" class="nav-link">Admissions</a>
+                </div>
+                <div class="nav-item">
+                    <a href="financial-aid.html" class="nav-link active">Tuition</a>
+                </div>
+                <div class="nav-item">
+                    <a href="coming-soon.html" class="nav-link">About</a>
+                </div>
+                <a href="admissions.html#apply" class="nav-cta">Apply Now</a>
+            </nav>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> / Tuition & Financial Aid
+        </div>
+        <h1>Tuition & Financial Aid</h1>
+        <p>Invest in your future with transparent pricing and flexible payment options.</p>
+    </section>
+
+    <!-- 2026 Tuition Rates -->
+    <section class="tuition-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">2026 Tuition Rates</p>
+                <h2>Program Pricing</h2>
+                <p>Our tuition rates are effective January 1, 2026 through December 31, 2026. All programs include comprehensive support and resources.</p>
+            </div>
+
+            <div class="tuition-grid">
+                <div class="tuition-card">
+                    <div class="tuition-card-header featured">
+                        <h3>Full-Stack Web Development</h3>
+                        <p>12-Week Certificate Program</p>
+                    </div>
+                    <div class="tuition-card-body">
+                        <div class="tuition-price">
+                            <div class="tuition-amount">$4,995</div>
+                            <div class="tuition-period">One-time payment or payment plan</div>
+                        </div>
+                        <ul class="tuition-features">
+                            <li>12 weeks of comprehensive curriculum</li>
+                            <li>Live instruction and recorded lessons</li>
+                            <li>1:1 weekly mentor sessions</li>
+                            <li>5+ portfolio projects</li>
+                            <li>Career services and job support</li>
+                            <li>Certificate of completion</li>
+                            <li>Alumni community access</li>
+                        </ul>
+                    </div>
+                    <div class="tuition-card-footer">
+                        <a href="admissions.html#apply" class="btn btn-primary">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="tuition-card">
+                    <div class="tuition-card-header">
+                        <h3>iOS App Development</h3>
+                        <p>8-Week Certificate Program</p>
+                    </div>
+                    <div class="tuition-card-body">
+                        <div class="tuition-price">
+                            <div class="tuition-amount">$3,495</div>
+                            <div class="tuition-period">One-time payment or payment plan</div>
+                        </div>
+                        <ul class="tuition-features">
+                            <li>8 weeks of focused curriculum</li>
+                            <li>Live instruction and recorded lessons</li>
+                            <li>1:1 weekly mentor sessions</li>
+                            <li>3+ portfolio apps</li>
+                            <li>App Store submission guidance</li>
+                            <li>Certificate of completion</li>
+                            <li>Alumni community access</li>
+                        </ul>
+                    </div>
+                    <div class="tuition-card-footer">
+                        <a href="admissions.html#apply" class="btn btn-primary">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="tuition-card">
+                    <div class="tuition-card-header">
+                        <h3>Python & Automation</h3>
+                        <p>6-Week Certificate Program</p>
+                    </div>
+                    <div class="tuition-card-body">
+                        <div class="tuition-price">
+                            <div class="tuition-amount">$1,995</div>
+                            <div class="tuition-period">One-time payment or payment plan</div>
+                        </div>
+                        <ul class="tuition-features">
+                            <li>6 weeks of practical curriculum</li>
+                            <li>Live instruction and recorded lessons</li>
+                            <li>1:1 bi-weekly mentor sessions</li>
+                            <li>Real-world automation projects</li>
+                            <li>Career guidance</li>
+                            <li>Certificate of completion</li>
+                            <li>Alumni community access</li>
+                        </ul>
+                    </div>
+                    <div class="tuition-card-footer">
+                        <a href="admissions.html#apply" class="btn btn-primary">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="tuition-card">
+                    <div class="tuition-card-header">
+                        <h3>Tech Startup Foundations</h3>
+                        <p>6-Week Certificate Program</p>
+                    </div>
+                    <div class="tuition-card-body">
+                        <div class="tuition-price">
+                            <div class="tuition-amount">$1,495</div>
+                            <div class="tuition-period">One-time payment or payment plan</div>
+                        </div>
+                        <ul class="tuition-features">
+                            <li>6 weeks of business curriculum</li>
+                            <li>Live sessions with entrepreneurs</li>
+                            <li>1:1 business coaching sessions</li>
+                            <li>Business plan development</li>
+                            <li>Pitch deck creation</li>
+                            <li>Certificate of completion</li>
+                            <li>Founder community access</li>
+                        </ul>
+                    </div>
+                    <div class="tuition-card-footer">
+                        <a href="admissions.html#apply" class="btn btn-primary">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Included -->
+    <section class="included-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Your Investment</p>
+                <h2>What's Included</h2>
+                <p>Every program comes with comprehensive support to ensure your success.</p>
+            </div>
+
+            <div class="included-grid">
+                <div class="included-card">
+                    <div class="included-icon">📚</div>
+                    <h3>Complete Curriculum</h3>
+                    <p>All course materials, recorded lessons, live sessions, and hands-on projects are included in your tuition.</p>
+                </div>
+                <div class="included-card">
+                    <div class="included-icon">👤</div>
+                    <h3>1:1 Mentorship</h3>
+                    <p>Regular one-on-one sessions with an industry professional who guides your learning journey.</p>
+                </div>
+                <div class="included-card">
+                    <div class="included-icon">💼</div>
+                    <h3>Career Services</h3>
+                    <p>Resume review, interview prep, portfolio feedback, and job search support at no additional cost.</p>
+                </div>
+                <div class="included-card">
+                    <div class="included-icon">🎓</div>
+                    <h3>Certificate</h3>
+                    <p>Official certificate of completion to showcase your new skills to employers.</p>
+                </div>
+                <div class="included-card">
+                    <div class="included-icon">👥</div>
+                    <h3>Community Access</h3>
+                    <p>Lifetime access to our alumni community for networking, support, and opportunities.</p>
+                </div>
+                <div class="included-card">
+                    <div class="included-icon">🔄</div>
+                    <h3>Curriculum Updates</h3>
+                    <p>Access to updated course materials even after graduation to keep your skills current.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Options -->
+    <section class="payment-section">
+        <div class="payment-container">
+            <div class="section-header">
+                <p class="section-label">Flexible Options</p>
+                <h2>Payment Plans</h2>
+                <p>We offer flexible payment options to make your education accessible.</p>
+            </div>
+
+            <div class="payment-options">
+                <div class="payment-option">
+                    <h3>Pay in Full</h3>
+                    <p>Pay your full tuition upfront and save with our early payment discount.</p>
+                    <span class="payment-badge">Save 10%</span>
+                </div>
+                <div class="payment-option">
+                    <h3>3-Month Plan</h3>
+                    <p>Split your tuition into 3 equal monthly payments with no interest.</p>
+                    <span class="payment-badge">0% Interest</span>
+                </div>
+                <div class="payment-option">
+                    <h3>6-Month Plan</h3>
+                    <p>Extended payment plan with 6 monthly installments for maximum flexibility.</p>
+                    <span class="payment-badge">Low Monthly</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Aid -->
+    <section class="aid-section" id="aid">
+        <div class="aid-container">
+            <div class="section-header">
+                <p class="section-label" style="color: var(--accent);">Need Assistance?</p>
+                <h2>Financial Aid & Scholarships</h2>
+                <p style="color: rgba(255,255,255,0.85);">We're committed to making education accessible. Explore our financial assistance options.</p>
+            </div>
+
+            <div class="aid-content">
+                <div class="aid-info">
+                    <h3>Scholarship Opportunities</h3>
+                    <p>We offer merit-based and need-based scholarships to help offset tuition costs. Scholarships are awarded based on application materials and demonstrated financial need.</p>
+                    
+                    <ul class="aid-list">
+                        <li>Career Changer Scholarship — up to $500</li>
+                        <li>Women in Tech Scholarship — up to $500</li>
+                        <li>Veterans Scholarship — up to $750</li>
+                        <li>Need-Based Grant — varies by situation</li>
+                    </ul>
+
+                    <h3 style="margin-top: 2rem;">Other Options</h3>
+                    <ul class="aid-list">
+                        <li>Employer tuition reimbursement (ask your HR)</li>
+                        <li>GI Bill® and military benefits may apply</li>
+                        <li>Workforce development programs</li>
+                    </ul>
+                </div>
+
+                <div class="aid-form">
+                    <h3>Request Information</h3>
+                    <form id="aidForm" name="financial-aid-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                        <input type="hidden" name="form-name" value="financial-aid-inquiry">
+                        <p style="display:none;"><input name="bot-field"></p>
+                        <div class="form-group">
+                            <label for="aidName">Full Name *</label>
+                            <input type="text" id="aidName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="aidEmail">Email Address *</label>
+                            <input type="email" id="aidEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="aidProgram">Program of Interest</label>
+                            <select id="aidProgram" name="program">
+                                <option value="">Select a program</option>
+                                <option value="fullstack">Full-Stack Web Development</option>
+                                <option value="ios">iOS App Development</option>
+                                <option value="python">Python & Automation</option>
+                                <option value="startup">Tech Startup Foundations</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="aidMessage">Questions or Comments</label>
+                            <textarea id="aidMessage" name="message" placeholder="Tell us about your situation..." style="min-height: 80px;"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Request Information</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Refund Policy -->
+    <section class="refund-section">
+        <div class="refund-container">
+            <div class="section-header">
+                <p class="section-label">Policy</p>
+                <h2>Refund Policy</h2>
+                <p>We want you to feel confident in your investment. Here's our refund schedule.</p>
+            </div>
+
+            <div class="refund-content">
+                <h3>Tuition Refund Schedule</h3>
+                <table class="refund-table">
+                    <thead>
+                        <tr>
+                            <th>Withdrawal Timing</th>
+                            <th>Refund Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Before program start date</td>
+                            <td><strong>100% refund</strong> (less $100 admin fee)</td>
+                        </tr>
+                        <tr>
+                            <td>Within first week of program</td>
+                            <td><strong>75% refund</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Week 2 of program</td>
+                            <td><strong>50% refund</strong></td>
+                        </tr>
+                        <tr>
+                            <td>After Week 2</td>
+                            <td>No refund available</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="refund-note">Refunds are processed within 10 business days of approved withdrawal request. Contact admissions@codexlabsinstitute.com to request a withdrawal.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="section-header">
+                <p class="section-label">Questions</p>
+                <h2>Tuition FAQ</h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        When is tuition due?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            If paying in full, tuition is due before your program start date. For payment plans, your first installment is due before the start date, with subsequent payments due monthly.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do you offer financing?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! Our 3-month and 6-month payment plans allow you to spread out your tuition with no interest. For longer financing terms, we recommend exploring personal education loans through your bank or credit union.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can my employer pay for the program?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely! Many employers offer tuition reimbursement or professional development budgets. We can provide documentation for your HR department. Contact us for an invoice or letter of enrollment.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Are there any additional fees?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            No hidden fees! Tuition covers everything: curriculum, mentorship, career services, and your certificate. The only additional costs are personal items like your computer and internet connection.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How do I apply for a scholarship?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            When you complete your application, you'll have the opportunity to indicate interest in financial aid. Our admissions team will follow up with scholarship application details after reviewing your application.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">C</div>
+                        <div class="logo-text">
+                            <span class="logo-name">Codex Labs Institute</span>
+                            <span class="logo-tagline">From Code to Career</span>
+                        </div>
+                    </a>
+                    <p>Transforming careers through technology education. Rigorous curriculum, expert mentorship, and career support that gets results.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="programs.html#webdev">Web Development</a></li>
+                        <li><a href="programs.html#ios">iOS Development</a></li>
+                        <li><a href="programs.html#python">Python & Automation</a></li>
+                        <li><a href="programs.html#startup">Tech Startup</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Admissions</h4>
+                    <ul>
+                        <li><a href="admissions.html#process">How to Apply</a></li>
+                        <li><a href="admissions.html#requirements">Requirements</a></li>
+                        <li><a href="#tuition">Tuition & Fees</a></li>
+                        <li><a href="#aid">Financial Aid</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="student-portal.html">Student Portal</a></li>
+                        <li><a href="coming-soon.html">Career Services</a></li>
+                        <li><a href="coming-soon.html">Help Center</a></li>
+                        <li><a href="programs.html#quiz">Find Your Path Quiz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="coming-soon.html">Our Mission</a></li>
+                        <li><a href="coming-soon.html">Contact Us</a></li>
+                        <li><a href="coming-soon.html">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2025 Codex Labs Institute. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="coming-soon.html">Privacy Policy</a>
+                    <a href="coming-soon.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', function() {
+                const item = this.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Aid form - Netlify
+        document.getElementById('aidForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const btn = form.querySelector('button');
+            
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(form)).toString()
+            })
+            .then(() => {
+                btn.innerHTML = '✓ Request Sent!';
+                btn.style.background = '#28a745';
+                form.reset();
+                setTimeout(() => {
+                    btn.innerHTML = 'Request Information';
+                    btn.style.background = '';
+                }, 3000);
+            })
+            .catch((error) => {
+                btn.innerHTML = 'Error - Try Again';
+                btn.style.background = '#dc3545';
+            });
+        });
+    </script>
+</body>
+</html>

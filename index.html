@@ -3,907 +3,1433 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply to Codex Labs - Express Your Interest</title>
+    <title>Codex Labs Institute | From Code to Career</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* Codex Labs Institute - Shared Styles */
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', Helvetica, Arial, sans-serif;
-            background-color: #ffffff;
-            color: #1d1d1f;
-            line-height: 1.47;
-            letter-spacing: -0.022em;
-        }
+:root {
+    --primary: #1a3a5c;
+    --primary-dark: #0f2640;
+    --primary-light: #2c5282;
+    --accent: #d4a92a;
+    --accent-light: #e8bc3d;
+    --accent-dark: #b8922a;
+    --white: #ffffff;
+    --off-white: #f8f9fa;
+    --light-gray: #e9ecef;
+    --medium-gray: #5a6268;
+    --dark-gray: #2d3339;
+    --text: #1a1a1a;
+    --text-light: #4a5568;
+    --success: #28a745;
+    --error: #dc3545;
+}
 
-        /* Header - Apple Style */
-        header {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: saturate(180%) blur(20px);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        nav {
-            max-width: 1024px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 22px;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        .logo {
-            font-size: 21px;
-            font-weight: 600;
-            color: #1d1d1f;
-            text-decoration: none;
-            letter-spacing: -0.022em;
-        }
+body {
+    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    line-height: 1.7;
+    background: var(--white);
+    font-size: 16px;
+}
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-        }
+h1, h2, h3, h4 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+}
 
-        .nav-links a {
-            color: #1d1d1f;
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
-        .nav-links a:hover {
-            color: #0071e3;
-        }
+/* Utility Bar */
+.utility-bar {
+    background: var(--primary-dark);
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+}
 
-        /* Main Content */
-        main {
-            margin-top: 44px;
-            background: #f5f5f7;
-            min-height: calc(100vh - 44px);
-        }
+.utility-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .container {
-            max-width: 1024px;
-            margin: 0 auto;
-            padding: 0 22px;
-        }
+.utility-links {
+    display: flex;
+    gap: 1.5rem;
+}
 
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+.utility-links a {
+    color: rgba(255,255,255,0.8);
+    transition: color 0.2s;
+}
+
+.utility-links a:hover {
+    color: var(--accent);
+}
+
+.utility-contact {
+    color: rgba(255,255,255,0.8);
+}
+
+.utility-contact a {
+    color: var(--accent);
+}
+
+/* Main Header */
+.main-header {
+    background: var(--primary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--white);
+}
+
+.logo-icon {
+    width: 45px;
+    height: 45px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.logo-name {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.375rem;
+    font-weight: 700;
+}
+
+.logo-tagline {
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: block;
+    padding: 1.5rem 1.25rem;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: var(--primary-light);
+    color: var(--accent);
+}
+
+.nav-cta {
+    background: var(--accent);
+    color: var(--primary-dark);
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-left: 1rem;
+    transition: background 0.2s;
+}
+
+.nav-cta:hover {
+    background: var(--accent-light);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Mega Menu */
+.mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    min-width: 280px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    border-top: 3px solid var(--accent);
+}
+
+.nav-item:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mega-menu a {
+    display: block;
+    padding: 0.875rem 1.5rem;
+    color: var(--text);
+    font-size: 0.9375rem;
+    border-bottom: 1px solid var(--light-gray);
+    transition: background 0.2s, padding-left 0.2s;
+}
+
+.mega-menu a:last-child {
+    border-bottom: none;
+}
+
+.mega-menu a:hover {
+    background: var(--off-white);
+    padding-left: 2rem;
+    color: var(--primary);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--primary-dark);
+}
+
+.btn-primary:hover {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-light);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-outline-white {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.btn-outline-white:hover {
+    background: var(--white);
+    color: var(--primary);
+}
+
+.btn-small {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+}
+
+.btn-large {
+    padding: 1.125rem 2.5rem;
+    font-size: 1.125rem;
+}
+
+/* Page Hero */
+.page-hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--white);
+}
+
+.page-hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.page-hero p {
+    font-size: 1.125rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.breadcrumb {
+    max-width: 1400px;
+    margin: 0 auto 1.5rem;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.7);
+}
+
+.breadcrumb a {
+    color: var(--accent);
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Section Styles */
+.section {
+    padding: 5rem 2rem;
+}
+
+.section-alt {
+    background: var(--off-white);
+}
+
+.section-dark {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.container-narrow {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-label {
+    color: var(--accent-dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.section-dark .section-header h2 {
+    color: var(--white);
+}
+
+.section-dark .section-label {
+    color: var(--accent);
+}
+
+.section-header p {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.section-dark .section-header p {
+    color: rgba(255,255,255,0.8);
+}
+
+/* Cards */
+.card {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.card-accent {
+    border-left: 4px solid var(--accent);
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid var(--light-gray);
+    border-radius: 6px;
+    background: var(--off-white);
+    color: var(--text);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--white);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-note {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background: var(--primary-dark);
+    color: var(--white);
+    padding: 4rem 2rem 2rem;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-brand p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9375rem;
+    margin-top: 1rem;
+    line-height: 1.7;
+    max-width: 300px;
+}
+
+.footer-column h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-column a {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9375rem;
+    transition: color 0.2s;
+}
+
+.footer-column a:hover {
+    color: var(--white);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-copy {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.footer-legal {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-legal a {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.footer-legal a:hover {
+    color: var(--white);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .utility-bar {
+        display: none;
+    }
+
+    .header-container {
+        height: 60px;
+    }
+
+    .main-nav {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .section {
+        padding: 3rem 1.5rem;
+    }
+
+    .page-hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+</style>
+    <style>
+        /* Homepage Specific Styles */
+        .announcement-bar {
+            background: var(--accent);
+            color: var(--primary-dark);
             text-align: center;
-            padding: 80px 22px;
+            padding: 0.875rem 2rem;
+            font-weight: 500;
         }
 
-        .hero-section h1 {
-            font-size: 56px;
+        .announcement-bar a {
+            text-decoration: underline;
             font-weight: 600;
-            line-height: 1.07;
-            letter-spacing: -0.005em;
-            margin-bottom: 16px;
         }
 
-        .hero-section .subtitle {
-            font-size: 28px;
-            font-weight: 400;
-            line-height: 1.14;
-            letter-spacing: 0.007em;
-            margin-bottom: 24px;
-            color: rgba(255, 255, 255, 0.9);
+        .hero {
+            position: relative;
+            min-height: 550px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(26, 58, 92, 0.95) 0%, rgba(15, 38, 64, 0.95) 100%), 
+                        url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&q=80') center/cover no-repeat;
+            overflow: hidden;
         }
 
-        .hero-section .description {
-            font-size: 21px;
-            font-weight: 400;
-            line-height: 1.38;
-            letter-spacing: 0.011em;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 640px;
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .hero-container {
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Stats Section */
-        .stats-section {
-            background: white;
-            padding: 80px 0;
+        .hero-content {
+            color: var(--white);
         }
 
-        .stats-grid {
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary-dark);
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.25rem, 4vw, 3.25rem);
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            gap: 1.5rem;
+        }
+
+        .hero-stat {
             text-align: center;
-        }
-
-        .stat-item {
-            padding: 40px 20px;
-        }
-
-        .stat-number {
-            font-size: 48px;
-            font-weight: 600;
-            color: #0071e3;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 17px;
-            font-weight: 400;
-            color: #86868b;
-        }
-
-        /* Application Section */
-        .application-section {
-            padding: 80px 0;
-            background: #f5f5f7;
-        }
-
-        .content-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        /* Left Column - Content */
-        .info-content h2 {
-            font-size: 48px;
-            font-weight: 600;
-            line-height: 1.08;
-            letter-spacing: -0.003em;
-            color: #1d1d1f;
-            margin-bottom: 16px;
-        }
-
-        .info-content .description {
-            font-size: 21px;
-            font-weight: 400;
-            line-height: 1.38;
-            letter-spacing: 0.011em;
-            color: #86868b;
-            margin-bottom: 40px;
-        }
-
-        .program-highlights {
-            margin-bottom: 40px;
-        }
-
-        .program-highlight {
-            background: white;
-            border-radius: 18px;
-            padding: 32px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .program-highlight h3 {
-            font-size: 28px;
-            font-weight: 600;
-            color: #1d1d1f;
-            margin-bottom: 8px;
-        }
-
-        .program-highlight .age-range {
-            font-size: 19px;
-            color: #0071e3;
-            margin-bottom: 12px;
-        }
-
-        .program-highlight .description {
-            font-size: 17px;
-            color: #86868b;
-            line-height: 1.47;
-        }
-
-        .testimonial {
-            background: white;
-            border-radius: 18px;
-            padding: 32px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .testimonial-text {
-            font-size: 21px;
-            font-weight: 400;
-            line-height: 1.38;
-            color: #1d1d1f;
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-
-        .testimonial-author {
-            font-size: 17px;
-            font-weight: 600;
-            color: #86868b;
-        }
-
-        /* Right Column - Form */
-        .form-container {
-            background: white;
-            border-radius: 18px;
-            padding: 48px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 100px;
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .form-header h2 {
-            font-size: 32px;
-            font-weight: 600;
-            color: #1d1d1f;
-            margin-bottom: 12px;
-        }
-
-        .form-header p {
-            font-size: 17px;
-            color: #86868b;
-        }
-
-        .application-form {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        label {
-            font-size: 17px;
-            font-weight: 600;
-            color: #1d1d1f;
-            margin-bottom: 8px;
-        }
-
-        input, select, textarea {
-            padding: 16px 12px;
-            border: 1px solid #d2d2d7;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
             border-radius: 8px;
-            background: white;
-            font-size: 17px;
-            font-family: inherit;
-            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #0071e3;
-            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+        .hero-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
         }
 
-        input::placeholder, textarea::placeholder {
-            color: #86868b;
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.8);
         }
 
-        select {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2386868b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 12px center;
-            background-repeat: no-repeat;
-            background-size: 16px;
-            padding-right: 40px;
+        /* Quick Links */
+        .quick-links {
+            padding: 4rem 2rem;
+            background: var(--off-white);
+            border-bottom: 1px solid var(--light-gray);
         }
 
-        /* Program Selection */
-        .program-selection {
-            margin: 16px 0;
-        }
-
-        .program-cards {
+        .quick-links-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-top: 12px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .quick-link-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--accent);
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .quick-link-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .quick-link-card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .quick-link-card p {
+            font-size: 0.9375rem;
+            color: #4a5568;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .quick-link-arrow {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9375rem;
+        }
+
+        /* Programs Grid */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
         }
 
         .program-card {
-            border: 2px solid #d2d2d7;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: white;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .program-card:hover {
-            border-color: #0071e3;
-            background: rgba(0, 113, 227, 0.02);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
 
-        .program-card.selected {
-            border-color: #0071e3;
-            background: rgba(0, 113, 227, 0.05);
-        }
-
-        .program-icon {
-            font-size: 32px;
-            margin-bottom: 12px;
-        }
-
-        .program-card h4 {
-            font-size: 17px;
-            font-weight: 600;
-            color: #1d1d1f;
-            margin-bottom: 4px;
-        }
-
-        .program-card p {
-            font-size: 14px;
-            color: #86868b;
-        }
-
-        /* Checkbox Groups */
-        .checkbox-group {
+        .program-image {
+            background: var(--primary);
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin: 20px 0;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            min-height: 200px;
         }
 
-        .checkbox-group input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            margin: 2px 0 0 0;
-            flex-shrink: 0;
-            accent-color: #0071e3;
+        .program-card:nth-child(1) .program-image { background: linear-gradient(135deg, #1a3a5c 0%, #2c5282 100%); }
+        .program-card:nth-child(2) .program-image { background: linear-gradient(135deg, #5c4b1a 0%, #8b7355 100%); }
+        .program-card:nth-child(3) .program-image { background: linear-gradient(135deg, #1a5c3a 0%, #2e7d5a 100%); }
+        .program-card:nth-child(4) .program-image { background: linear-gradient(135deg, #4a1a5c 0%, #7b4b8a 100%); }
+
+        .program-content {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
         }
 
-        .checkbox-group label {
-            margin: 0;
-            font-weight: 400;
-            font-size: 17px;
-            color: #86868b;
-            line-height: 1.47;
-        }
-
-        .checkbox-group label a {
-            color: #0071e3;
-            text-decoration: none;
-        }
-
-        .checkbox-group label a:hover {
-            text-decoration: underline;
-        }
-
-        /* Submit Button */
-        .submit-btn {
-            background: #0071e3;
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 980px;
-            font-size: 17px;
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 16px;
-        }
-
-        .submit-btn:hover {
-            background: #0077ed;
-        }
-
-        .submit-btn:disabled {
-            background: #86868b;
-            cursor: not-allowed;
-        }
-
-        .form-note {
-            text-align: center;
-            font-size: 14px;
-            color: #86868b;
-            margin-top: 16px;
-            line-height: 1.4;
-        }
-
-        /* Success Message */
-        .success-message {
-            display: none;
-            text-align: center;
-            padding: 48px;
-            background: rgba(52, 199, 89, 0.1);
-            border-radius: 18px;
-            border: 2px solid rgba(52, 199, 89, 0.2);
-            margin-top: 24px;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: slideIn 0.5s ease;
-        }
-
-        .success-message h3 {
-            font-size: 28px;
+        .program-type {
+            font-size: 0.75rem;
             font-weight: 600;
-            color: #34c759;
-            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-dark);
+            margin-bottom: 0.5rem;
         }
 
-        .success-message p {
-            font-size: 17px;
-            color: #1d1d1f;
-            line-height: 1.47;
+        .program-content h3 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
         }
 
-        /* Responsive Design */
+        .program-content p {
+            font-size: 0.9375rem;
+            color: #4a5568;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .program-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            color: #4a5568;
+            padding-top: 1rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .program-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9375rem;
+            margin-top: 1rem;
+        }
+
+        .program-link:hover {
+            color: var(--accent-dark);
+        }
+
+        /* Why Grid */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .why-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin: 0 auto 1.25rem;
+            border: 2px solid var(--accent);
+        }
+
+        .why-card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+            color: var(--accent);
+        }
+
+        .why-card p {
+            font-size: 0.9375rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.7;
+        }
+
+        /* Email Signup */
+        .email-signup {
+            background: var(--off-white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .email-signup-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .email-signup h2 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .email-signup p {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .email-form input {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .email-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Testimonial */
+        .testimonial-section {
+            padding: 5rem 2rem;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-quote {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+            line-height: 1.6;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -0.5rem;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.5;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 56px;
+            height: 56px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        .testimonial-info {
+            text-align: left;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .testimonial-role {
+            font-size: 0.9375rem;
+            color: #4a5568;
+        }
+
         @media (max-width: 1024px) {
-            .content-wrapper {
+            .hero-container {
                 grid-template-columns: 1fr;
-                gap: 60px;
+                text-align: center;
             }
 
-            .form-container {
-                position: static;
+            .hero-subtitle {
+                margin: 0 auto 2rem;
+            }
+
+            .hero-ctas {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .quick-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-card {
+                grid-template-columns: 1fr;
+            }
+
+            .program-image {
+                min-height: 150px;
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-section h1 {
-                font-size: 40px;
-            }
-
-            .hero-section .subtitle {
-                font-size: 24px;
-            }
-
-            .info-content h2 {
-                font-size: 36px;
-            }
-
-            .form-container {
-                padding: 32px 24px;
-            }
-
-            .form-row {
+            .quick-links-grid {
                 grid-template-columns: 1fr;
             }
 
-            .program-cards {
+            .hero-stats {
                 grid-template-columns: 1fr;
             }
 
-            .stats-grid {
+            .why-grid {
                 grid-template-columns: 1fr;
-                gap: 24px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-section {
-                padding: 60px 22px;
             }
 
-            .hero-section h1 {
-                font-size: 32px;
+            .email-form {
+                flex-direction: column;
             }
-
-            .hero-section .subtitle {
-                font-size: 20px;
-            }
-
-            .application-section {
-                padding: 60px 0;
-            }
-
-            .program-highlight,
-            .testimonial {
-                padding: 24px;
-            }
-        }
-
-        /* Animations */
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html" class="logo">Codex Labs</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="catalog.html">Courses</a></li>
-                <li><a href="interest.html">Apply</a></li>
-                <li><a href="student-portal.html">Portal</a></li>
-                <li><a href="contact.html">Support</a></li>
-            </ul>
-        </nav>
+    <!-- Utility Bar -->
+    <div class="utility-bar">
+        <div class="utility-container">
+            <div class="utility-links">
+                <a href="student-portal.html">Student Portal</a>
+                <a href="coming-soon.html">Help Center</a>
+            </div>
+            <div class="utility-contact">
+                Questions? Email <a href="mailto:admissions@codexlabsinstitute.com">admissions@codexlabsinstitute.com</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">C</div>
+                <div class="logo-text">
+                    <span class="logo-name">Codex Labs Institute</span>
+                    <span class="logo-tagline">From Code to Career</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <div class="nav-item">
+                    <a href="programs.html" class="nav-link">Programs</a>
+                    <div class="mega-menu">
+                        <a href="programs.html#webdev">Full-Stack Web Development</a>
+                        <a href="programs.html#ios">iOS App Development</a>
+                        <a href="programs.html#python">Python & Automation</a>
+                        <a href="programs.html#startup">Tech Startup Foundations</a>
+                        <a href="programs.html">View All Programs</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="admissions.html" class="nav-link">Admissions</a>
+                    <div class="mega-menu">
+                        <a href="admissions.html#process">Admission Process</a>
+                        <a href="admissions.html#requirements">Requirements</a>
+                        <a href="admissions.html#apply">Apply Now</a>
+                        <a href="financial-aid.html">Tuition & Financial Aid</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="financial-aid.html" class="nav-link">Tuition</a>
+                </div>
+                <div class="nav-item">
+                    <a href="coming-soon.html" class="nav-link">About</a>
+                </div>
+                <a href="admissions.html#apply" class="nav-cta">Apply Now</a>
+            </nav>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
     </header>
 
-    <main>
-        <div class="hero-section">
-            <h1>Start Your Coding Journey</h1>
-            <p class="subtitle">Real projects. Real skills. Real results.</p>
-            <p class="description">
-                Express your interest in our innovative coding programs designed for every age and experience level. 
-                Build a portfolio that showcases your potential.
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        🚀 <strong>Launching February 2026!</strong> Applications now open for our inaugural class. <a href="admissions.html">Apply Today →</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">Now Accepting Applications</div>
+                <h1>Launch Your Career in Technology</h1>
+                <p class="hero-subtitle">
+                    Industry-aligned certificate programs designed for career changers. Learn from working professionals. Graduate job-ready.
+                </p>
+                <div class="hero-ctas">
+                    <a href="admissions.html#apply" class="btn btn-primary">Apply for Admission</a>
+                    <a href="programs.html" class="btn btn-outline-white">Explore Programs</a>
+                </div>
+            </div>
+            <div class="hero-stats-container">
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">6-12</span>
+                        <span class="hero-stat-label">Week Programs</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">100%</span>
+                        <span class="hero-stat-label">Online Learning</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">1:8</span>
+                        <span class="hero-stat-label">Mentor Ratio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+        <div class="quick-links-grid">
+            <a href="programs.html" class="quick-link-card">
+                <div class="quick-link-icon">📚</div>
+                <h3>Programs & Courses</h3>
+                <p>Explore our certificate programs in web development, mobile apps, Python, and business.</p>
+                <span class="quick-link-arrow">View Catalog →</span>
+            </a>
+            <a href="admissions.html" class="quick-link-card">
+                <div class="quick-link-icon">🎓</div>
+                <h3>Admissions</h3>
+                <p>Learn about requirements, deadlines, and how to apply for admission.</p>
+                <span class="quick-link-arrow">How to Apply →</span>
+            </a>
+            <a href="financial-aid.html" class="quick-link-card">
+                <div class="quick-link-icon">💳</div>
+                <h3>Tuition & Financial Aid</h3>
+                <p>Understand program costs and explore payment plans and scholarship options.</p>
+                <span class="quick-link-arrow">View Costs →</span>
+            </a>
+            <a href="programs.html#quiz" class="quick-link-card">
+                <div class="quick-link-icon">🎯</div>
+                <h3>Find Your Path</h3>
+                <p>Not sure which program is right for you? Take our quick quiz to get a personalized recommendation.</p>
+                <span class="quick-link-arrow">Take the Quiz →</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="section" id="programs">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Academic Programs</p>
+                <h2>Find Your Path</h2>
+                <p>Our certificate programs combine rigorous curriculum with hands-on projects, preparing you for in-demand technology careers.</p>
+            </div>
+
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-image" style="background: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop') center/cover;"></div>
+                    <div class="program-content">
+                        <p class="program-type">Certificate Program</p>
+                        <h3>Full-Stack Web Development</h3>
+                        <p>Master frontend and backend development. Build production-ready applications with React, Node.js, and databases.</p>
+                        <div class="program-meta">
+                            <span>📅 12 Weeks</span>
+                            <span>💻 Online</span>
+                        </div>
+                        <a href="programs.html#webdev" class="program-link">View Program Details →</a>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-image" style="background: url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=300&fit=crop') center/cover;"></div>
+                    <div class="program-content">
+                        <p class="program-type">Certificate Program</p>
+                        <h3>iOS App Development</h3>
+                        <p>Create native iOS applications with Swift and SwiftUI. From fundamentals to App Store submission.</p>
+                        <div class="program-meta">
+                            <span>📅 8 Weeks</span>
+                            <span>💻 Online</span>
+                        </div>
+                        <a href="programs.html#ios" class="program-link">View Program Details →</a>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-image" style="background: url('https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=300&fit=crop') center/cover;"></div>
+                    <div class="program-content">
+                        <p class="program-type">Certificate Program</p>
+                        <h3>Python & Automation</h3>
+                        <p>Build your programming foundation. Automate tasks, work with data, and prepare for advanced tech roles.</p>
+                        <div class="program-meta">
+                            <span>📅 6 Weeks</span>
+                            <span>💻 Online</span>
+                        </div>
+                        <a href="programs.html#python" class="program-link">View Program Details →</a>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-image" style="background: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=300&fit=crop') center/cover;"></div>
+                    <div class="program-content">
+                        <p class="program-type">Certificate Program</p>
+                        <h3>Tech Startup Foundations</h3>
+                        <p>Learn to build and launch a technology business. Product development, marketing, funding, and operations.</p>
+                        <div class="program-meta">
+                            <span>📅 6 Weeks</span>
+                            <span>💻 Online</span>
+                        </div>
+                        <a href="programs.html#startup" class="program-link">View Program Details →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Why Codex Labs</p>
+                <h2>Education That Gets Results</h2>
+                <p>Our curriculum is developed with hiring managers to ensure you graduate job-ready.</p>
+            </div>
+
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon">📁</div>
+                    <h3>Portfolio-First Learning</h3>
+                    <p>Graduate with production-quality projects that demonstrate your skills to employers.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">👤</div>
+                    <h3>1:1 Mentorship</h3>
+                    <p>Weekly sessions with industry professionals who guide your learning and career path.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🎯</div>
+                    <h3>Career Services</h3>
+                    <p>Resume reviews, mock interviews, and direct introductions to hiring partners.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">⏰</div>
+                    <h3>Flexible Learning</h3>
+                    <p>Self-paced lessons with live support. Learn on your schedule without sacrificing quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Signup -->
+    <section class="email-signup">
+        <div class="email-signup-container">
+            <h2>Stay Informed</h2>
+            <p>Not ready to apply yet? Sign up to receive updates about programs, enrollment deadlines, and free resources.</p>
+            <form class="email-form" id="emailForm" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="newsletter">
+                <p class="hidden" style="display:none;"><input name="bot-field"></p>
+                <input type="email" name="email" placeholder="Enter your email address" required>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+            <p class="form-note" style="margin-top: 1rem;">We respect your privacy. Unsubscribe anytime.</p>
+        </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="testimonial-section">
+        <div class="testimonial-container">
+            <p class="testimonial-quote">
+                The project-based approach helped me build a portfolio that actually impressed interviewers. The mentorship was incredible — my mentor helped me navigate the job search and negotiate my offer.
             </p>
-        </div>
-
-        <div class="stats-section">
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <span class="stat-number">2</span>
-                        <span class="stat-label">Age-Tailored Programs</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Project-Based Learning</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">∞</span>
-                        <span class="stat-label">Creative Possibilities</span>
-                    </div>
+            <div class="testimonial-author">
+                <div class="testimonial-avatar">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop&crop=face" alt="Sarah Johnson" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover;">
+                </div>
+                <div class="testimonial-info">
+                    <div class="testimonial-name">Sarah Johnson</div>
+                    <div class="testimonial-role">Teacher → Frontend Developer</div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="application-section">
-            <div class="container">
-                <div class="content-wrapper">
-                    <div class="info-content">
-                        <h2>Choose Your Path</h2>
-                        <p class="description">
-                            Our programs are designed to meet you where you are and take you where you want to go. 
-                            Whether you're 5 or 50, we have the perfect coding journey for you.
-                        </p>
-
-                        <div class="program-highlights">
-                            <div class="program-highlight fade-in">
-                                <h3>Mini Coders</h3>
-                                <p class="age-range">Ages 5-17</p>
-                                <p class="description">
-                                    Discover coding through interactive games, stories, and creative projects. 
-                                    Build confidence while learning fundamental programming concepts.
-                                </p>
-                            </div>
-
-                            <div class="program-highlight fade-in">
-                                <h3>NextGen Coders</h3>
-                                <p class="age-range">Ages 18+</p>
-                                <p class="description">
-                                    Master professional development tools and build industry-ready applications. 
-                                    Perfect for career transitions and skill advancement.
-                                </p>
-                            </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">C</div>
+                        <div class="logo-text">
+                            <span class="logo-name">Codex Labs Institute</span>
+                            <span class="logo-tagline">From Code to Career</span>
                         </div>
-
-                        <div class="testimonial fade-in">
-                            <p class="testimonial-text">
-                                "The project-based approach helped me build a portfolio that landed me my dream job. 
-                                I went from complete beginner to confident developer in just 6 months."
-                            </p>
-                            <p class="testimonial-author">— Sarah J., Career Changer</p>
-                        </div>
-                    </div>
-
-                    <div class="form-container">
-                        <div class="form-header">
-                            <h2>Express Your Interest</h2>
-                            <p>Take the first step toward your coding future</p>
-                        </div>
-
-                        <form class="application-form" id="interestForm" name="interest-signup" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                            <!-- Netlify honeypot field -->
-                            <p style="display: none;">
-                                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-                            </p>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="firstName">First Name *</label>
-                                    <input type="text" id="firstName" name="firstName" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastName">Last Name *</label>
-                                    <input type="text" id="lastName" name="lastName" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="phone">Phone Number *</label>
-                                <input type="tel" id="phone" name="phone" required>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="age">Age *</label>
-                                    <select id="age" name="age" required onchange="updatePrograms()">
-                                        <option value="">Select your age</option>
-                                        <option value="5-8">5-8 years old (Mini Coders)</option>
-                                        <option value="9-12">9-12 years old (Mini Coders)</option>
-                                        <option value="13-17">13-17 years old (Mini Coders)</option>
-                                        <option value="18-25">18-25 years old (NextGen Coders)</option>
-                                        <option value="26-35">26-35 years old (NextGen Coders)</option>
-                                        <option value="36-50">36+ years old (NextGen Coders)</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="education">Current Education Level</label>
-                                    <select id="education" name="education">
-                                        <option value="">Select level</option>
-                                        <option value="elementary">Elementary School</option>
-                                        <option value="middle">Middle School</option>
-                                        <option value="high">High School</option>
-                                        <option value="college">College Student</option>
-                                        <option value="graduate">College Graduate</option>
-                                        <option value="professional">Working Professional</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group program-selection">
-                                <label>Program of Interest *</label>
-                                <div class="program-cards" id="programCards">
-                                    <!-- Programs will be populated based on age selection -->
-                                </div>
-                                <input type="hidden" id="selectedProgram" name="selectedProgram" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="experience">Programming Experience</label>
-                                <select id="experience" name="experience">
-                                    <option value="">Select experience level</option>
-                                    <option value="none">No prior experience</option>
-                                    <option value="beginner">Beginner (basic concepts)</option>
-                                    <option value="intermediate">Intermediate (some projects)</option>
-                                    <option value="advanced">Advanced (multiple languages)</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="goals">Goals & Interests (Optional)</label>
-                                <textarea id="goals" name="goals" rows="3" placeholder="Tell us about your aspirations in technology..."></textarea>
-                            </div>
-
-                            <div class="checkbox-group">
-                                <input type="checkbox" id="updates" name="updates">
-                                <label for="updates">I would like to receive updates about programs, admissions, and events</label>
-                            </div>
-
-                            <div class="checkbox-group">
-                                <input type="checkbox" id="privacy" name="privacy" required>
-                                <label for="privacy">I agree to the <a href="#" target="_blank">Privacy Policy</a> and <a href="#" target="_blank">Terms of Service</a> *</label>
-                            </div>
-
-                            <button type="submit" class="submit-btn">Submit Application</button>
-
-                            <div class="form-note">
-                                By submitting this form, you're taking the first step toward joining our coding community. 
-                                A program coordinator will contact you within 1-2 business days to discuss your learning goals.
-                            </div>
-                        </form>
-
-                        <div class="success-message" id="successMessage">
-                            <h3>🎉 Application Submitted!</h3>
-                            <p>Thank you for your interest in Codex Labs. A program coordinator will contact you soon to discuss your coding journey and help you choose the perfect program.</p>
-                        </div>
-                    </div>
+                    </a>
+                    <p>Transforming careers through technology education. Rigorous curriculum, expert mentorship, and career support that gets results.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="programs.html#webdev">Web Development</a></li>
+                        <li><a href="programs.html#ios">iOS Development</a></li>
+                        <li><a href="programs.html#python">Python & Automation</a></li>
+                        <li><a href="programs.html#startup">Tech Startup</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Admissions</h4>
+                    <ul>
+                        <li><a href="admissions.html#process">How to Apply</a></li>
+                        <li><a href="admissions.html#requirements">Requirements</a></li>
+                        <li><a href="financial-aid.html">Tuition & Fees</a></li>
+                        <li><a href="financial-aid.html#aid">Financial Aid</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="student-portal.html">Student Portal</a></li>
+                        <li><a href="coming-soon.html">Career Services</a></li>
+                        <li><a href="coming-soon.html">Help Center</a></li>
+                        <li><a href="programs.html#quiz">Find Your Path Quiz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="coming-soon.html">Our Mission</a></li>
+                        <li><a href="coming-soon.html">Leadership</a></li>
+                        <li><a href="coming-soon.html">Contact Us</a></li>
+                        <li><a href="coming-soon.html">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2025 Codex Labs Institute. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="coming-soon.html">Privacy Policy</a>
+                    <a href="coming-soon.html">Terms of Service</a>
+                    <a href="coming-soon.html">Accessibility</a>
                 </div>
             </div>
         </div>
-    </main>
+    </footer>
 
     <script>
-        const programsByAge = {
-            '5-8': [
-                { id: 'mini-creative', icon: '🎨', title: 'Creative Coding', desc: 'Stories & Games with Scratch' },
-                { id: 'mini-logic', icon: '🧩', title: 'Logic & Problem Solving', desc: 'Critical Thinking Skills' }
-            ],
-            '9-12': [
-                { id: 'mini-games', icon: '🎮', title: 'Game Development', desc: 'MakeCode & Scratch Projects' },
-                { id: 'mini-art', icon: '🎭', title: 'Interactive Art', desc: 'Digital Art & Animation' }
-            ],
-            '13-17': [
-                { id: 'mini-robotics', icon: '🤖', title: 'Robotics & IoT', desc: 'Micro:bit & Arduino Projects' },
-                { id: 'mini-web', icon: '🌐', title: 'Web Development', desc: 'HTML, CSS & JavaScript' }
-            ],
-            '18-25': [
-                { id: 'nextgen-python', icon: '🐍', title: 'Python Development', desc: 'Backend & Data Science' },
-                { id: 'nextgen-mobile', icon: '📱', title: 'Mobile Development', desc: 'iOS & Android Apps' }
-            ],
-            '26-35': [
-                { id: 'nextgen-fullstack', icon: '🌐', title: 'Full-Stack Development', desc: 'Complete Web Applications' },
-                { id: 'nextgen-data', icon: '📊', title: 'Data Science', desc: 'Analytics & Machine Learning' }
-            ],
-            '36-50': [
-                { id: 'nextgen-career', icon: '🚀', title: 'Career Transition', desc: 'Professional Development' },
-                { id: 'nextgen-enterprise', icon: '🏢', title: 'Enterprise Development', desc: 'Java & Cloud Technologies' }
-            ]
-        };
-
-        function updatePrograms() {
-            const age = document.getElementById('age').value;
-            const programCards = document.getElementById('programCards');
-            const selectedProgramInput = document.getElementById('selectedProgram');
-            
-            programCards.innerHTML = '';
-            selectedProgramInput.value = '';
-            
-            if (age && programsByAge[age]) {
-                programsByAge[age].forEach(program => {
-                    const card = document.createElement('div');
-                    card.className = 'program-card';
-                    card.onclick = () => selectProgram(program.id, card);
-                    card.innerHTML = `
-                        <div class="program-icon">${program.icon}</div>
-                        <h4>${program.title}</h4>
-                        <p>${program.desc}</p>
-                    `;
-                    programCards.appendChild(card);
-                });
-            }
-        }
-
-        function selectProgram(programId, cardElement) {
-            // Remove selection from all cards
-            document.querySelectorAll('.program-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            
-            // Select current card
-            cardElement.classList.add('selected');
-            document.getElementById('selectedProgram').value = programId;
-        }
-
-        document.getElementById('interestForm').addEventListener('submit', function(e) {
+        // Email form - Netlify
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Validate required fields
-            const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'age', 'selectedProgram'];
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                const input = document.getElementById(field);
-                if (!input.value.trim()) {
-                    isValid = false;
-                    input.style.borderColor = '#ff3b30';
-                } else {
-                    input.style.borderColor = '#d2d2d7';
-                }
-            });
-            
-            // Check privacy agreement
-            if (!document.getElementById('privacy').checked) {
-                isValid = false;
-                alert('Please agree to the Privacy Policy and Terms of Service.');
-                return;
-            }
-            
-            if (!isValid) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            // Prepare form data for Netlify
-            const formData = new FormData(this);
-            
-            // Add hidden program selection
-            formData.append('selectedProgram', document.getElementById('selectedProgram').value);
-            
-            // Submit to Netlify
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Submitting...';
-            submitBtn.disabled = true;
+            const form = this;
+            const btn = form.querySelector('button');
+            const input = form.querySelector('input[type="email"]');
             
             fetch('/', {
                 method: 'POST',
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams(formData).toString()
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(form)).toString()
             })
             .then(() => {
-                // Hide form and show success message
-                document.querySelector('.application-form').style.display = 'none';
-                document.getElementById('successMessage').classList.add('show');
-                
-                // Track successful submission
-                console.log('Interest form submitted successfully to Netlify');
+                btn.innerHTML = '✓ Subscribed!';
+                btn.style.background = '#28a745';
+                input.value = '';
+                setTimeout(() => {
+                    btn.innerHTML = 'Subscribe';
+                    btn.style.background = '';
+                }, 3000);
             })
             .catch((error) => {
-                console.error('Error:', error);
-                alert('There was an error submitting your form. Please try again.');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
+                btn.innerHTML = 'Error - Try Again';
+                btn.style.background = '#dc3545';
             });
         });
 
-        // Form validation on input
-        document.querySelectorAll('input[required], select[required]').forEach(input => {
-            input.addEventListener('blur', function() {
-                if (this.value.trim()) {
-                    this.style.borderColor = '#d2d2d7';
-                }
-            });
-        });
-
-        // Phone number formatting
-        document.getElementById('phone').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 6) {
-                value = value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
-            } else if (value.length >= 3) {
-                value = value.replace(/(\d{3})(\d{3})/, '($1) $2');
-            }
-            e.target.value = value;
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        // Animate on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        // Observe all fade-in elements
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
+        document.querySelectorAll('.program-card, .quick-link-card, .why-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
         });
     </script>
 </body>

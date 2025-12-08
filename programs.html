@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs & Courses | Codex Labs Institute</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+/* Codex Labs Institute - Shared Styles */
+
+:root {
+    --primary: #1a3a5c;
+    --primary-dark: #0f2640;
+    --primary-light: #2c5282;
+    --accent: #d4a92a;
+    --accent-light: #e8bc3d;
+    --accent-dark: #b8922a;
+    --white: #ffffff;
+    --off-white: #f8f9fa;
+    --light-gray: #e9ecef;
+    --medium-gray: #5a6268;
+    --dark-gray: #2d3339;
+    --text: #1a1a1a;
+    --text-light: #4a5568;
+    --success: #28a745;
+    --error: #dc3545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    line-height: 1.7;
+    background: var(--white);
+    font-size: 16px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Utility Bar */
+.utility-bar {
+    background: var(--primary-dark);
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.utility-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.utility-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.utility-links a {
+    color: rgba(255,255,255,0.8);
+    transition: color 0.2s;
+}
+
+.utility-links a:hover {
+    color: var(--accent);
+}
+
+.utility-contact {
+    color: rgba(255,255,255,0.8);
+}
+
+.utility-contact a {
+    color: var(--accent);
+}
+
+/* Main Header */
+.main-header {
+    background: var(--primary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--white);
+}
+
+.logo-icon {
+    width: 45px;
+    height: 45px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.logo-name {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.375rem;
+    font-weight: 700;
+}
+
+.logo-tagline {
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: block;
+    padding: 1.5rem 1.25rem;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: var(--primary-light);
+    color: var(--accent);
+}
+
+.nav-cta {
+    background: var(--accent);
+    color: var(--primary-dark);
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-left: 1rem;
+    transition: background 0.2s;
+}
+
+.nav-cta:hover {
+    background: var(--accent-light);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Mega Menu */
+.mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    min-width: 280px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    border-top: 3px solid var(--accent);
+}
+
+.nav-item:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mega-menu a {
+    display: block;
+    padding: 0.875rem 1.5rem;
+    color: var(--text);
+    font-size: 0.9375rem;
+    border-bottom: 1px solid var(--light-gray);
+    transition: background 0.2s, padding-left 0.2s;
+}
+
+.mega-menu a:last-child {
+    border-bottom: none;
+}
+
+.mega-menu a:hover {
+    background: var(--off-white);
+    padding-left: 2rem;
+    color: var(--primary);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--primary-dark);
+}
+
+.btn-primary:hover {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-light);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-outline-white {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.btn-outline-white:hover {
+    background: var(--white);
+    color: var(--primary);
+}
+
+.btn-small {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+}
+
+.btn-large {
+    padding: 1.125rem 2.5rem;
+    font-size: 1.125rem;
+}
+
+/* Page Hero */
+.page-hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--white);
+}
+
+.page-hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.page-hero p {
+    font-size: 1.125rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.breadcrumb {
+    max-width: 1400px;
+    margin: 0 auto 1.5rem;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.7);
+}
+
+.breadcrumb a {
+    color: var(--accent);
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Section Styles */
+.section {
+    padding: 5rem 2rem;
+}
+
+.section-alt {
+    background: var(--off-white);
+}
+
+.section-dark {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.container-narrow {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-label {
+    color: var(--accent-dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.section-dark .section-header h2 {
+    color: var(--white);
+}
+
+.section-dark .section-label {
+    color: var(--accent);
+}
+
+.section-header p {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.section-dark .section-header p {
+    color: rgba(255,255,255,0.8);
+}
+
+/* Cards */
+.card {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.card-accent {
+    border-left: 4px solid var(--accent);
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid var(--light-gray);
+    border-radius: 6px;
+    background: var(--off-white);
+    color: var(--text);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--white);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-note {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background: var(--primary-dark);
+    color: var(--white);
+    padding: 4rem 2rem 2rem;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-brand p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9375rem;
+    margin-top: 1rem;
+    line-height: 1.7;
+    max-width: 300px;
+}
+
+.footer-column h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-column a {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9375rem;
+    transition: color 0.2s;
+}
+
+.footer-column a:hover {
+    color: var(--white);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-copy {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.footer-legal {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-legal a {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.footer-legal a:hover {
+    color: var(--white);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .utility-bar {
+        display: none;
+    }
+
+    .header-container {
+        height: 60px;
+    }
+
+    .main-nav {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .section {
+        padding: 3rem 1.5rem;
+    }
+
+    .page-hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+</style>
+    <style>
+        /* Programs Page Specific Styles */
+        
+        .page-hero {
+            background: linear-gradient(135deg, rgba(26, 58, 92, 0.92) 0%, rgba(15, 38, 64, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&q=80') center/cover no-repeat;
+        }
+        
+        /* Quiz Section */
+        .quiz-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 4rem 2rem;
+        }
+
+        .quiz-container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quiz-container h2 {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .quiz-container > p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: left;
+        }
+
+        .quiz-progress {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-progress-step {
+            flex: 1;
+            height: 6px;
+            background: var(--light-gray);
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+
+        .quiz-progress-step.active {
+            background: var(--accent);
+        }
+
+        .quiz-progress-step.completed {
+            background: var(--primary);
+        }
+
+        .quiz-question {
+            display: none;
+        }
+
+        .quiz-question.active {
+            display: block;
+        }
+
+        .quiz-question h3 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            background: var(--off-white);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary);
+            background: rgba(26, 58, 92, 0.05);
+        }
+
+        .quiz-option input {
+            display: none;
+        }
+
+        .quiz-option-radio {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--medium-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .quiz-option.selected .quiz-option-radio {
+            border-color: var(--primary);
+            background: var(--primary);
+        }
+
+        .quiz-option.selected .quiz-option-radio::after {
+            content: '✓';
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .quiz-option-text {
+            font-size: 1rem;
+            color: #1a1a1a;
+        }
+
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .quiz-result {
+            display: none;
+            text-align: center;
+        }
+
+        .quiz-result.active {
+            display: block;
+        }
+
+        .quiz-result-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-result h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-result-program {
+            font-size: 1.25rem;
+            color: var(--accent-dark);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-result p {
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Program Cards Full */
+        .program-full {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .program-full:last-child {
+            border-bottom: none;
+        }
+
+        .program-full-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .program-full-image {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            font-size: 5rem;
+            position: sticky;
+            top: 100px;
+        }
+
+        .program-full-content h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .program-full-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .program-full-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9375rem;
+            color: #4a5568;
+        }
+
+        .program-full-meta span strong {
+            color: #1a1a1a;
+        }
+
+        .program-full-content > p {
+            font-size: 1.0625rem;
+            color: #3d4852;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .program-section {
+            margin-bottom: 2rem;
+        }
+
+        .program-section h3 {
+            font-size: 1.125rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        .program-section ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .program-section li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9375rem;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        .program-section li::before {
+            content: '✓';
+            color: var(--accent-dark);
+            font-weight: bold;
+            margin-top: 0.125rem;
+        }
+
+        .curriculum-modules {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .curriculum-module {
+            background: var(--off-white);
+            padding: 1.25rem 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .curriculum-module h4 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 0.375rem;
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+        }
+
+        .curriculum-module p {
+            font-size: 0.9375rem;
+            color: #4a5568;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .program-cta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* Email Section */
+        .email-section {
+            background: var(--off-white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .email-section-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .email-section h2 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .email-section p {
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .email-form input {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .email-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        @media (max-width: 1024px) {
+            .program-full-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-full-image {
+                position: static;
+                max-width: 300px;
+                margin: 0 auto 2rem;
+            }
+
+            .program-section ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .email-form {
+                flex-direction: column;
+            }
+
+            .program-full-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Utility Bar -->
+    <div class="utility-bar">
+        <div class="utility-container">
+            <div class="utility-links">
+                <a href="student-portal.html">Student Portal</a>
+                <a href="coming-soon.html">Help Center</a>
+            </div>
+            <div class="utility-contact">
+                Questions? Email <a href="mailto:admissions@codexlabsinstitute.com">admissions@codexlabsinstitute.com</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">C</div>
+                <div class="logo-text">
+                    <span class="logo-name">Codex Labs Institute</span>
+                    <span class="logo-tagline">From Code to Career</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <div class="nav-item">
+                    <a href="programs.html" class="nav-link active">Programs</a>
+                </div>
+                <div class="nav-item">
+                    <a href="admissions.html" class="nav-link">Admissions</a>
+                </div>
+                <div class="nav-item">
+                    <a href="financial-aid.html" class="nav-link">Tuition</a>
+                </div>
+                <div class="nav-item">
+                    <a href="coming-soon.html" class="nav-link">About</a>
+                </div>
+                <a href="admissions.html#apply" class="nav-cta">Apply Now</a>
+            </nav>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> / Programs & Courses
+        </div>
+        <h1>Programs & Courses</h1>
+        <p>Explore our certificate programs designed to take you from beginner to job-ready in weeks, not years.</p>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section" id="quiz">
+        <div class="quiz-container">
+            <h2>Not Sure Where to Start?</h2>
+            <p>Answer a few quick questions and we'll recommend the best program for your goals.</p>
+
+            <div class="quiz-card">
+                <div class="quiz-progress">
+                    <div class="quiz-progress-step active"></div>
+                    <div class="quiz-progress-step"></div>
+                    <div class="quiz-progress-step"></div>
+                    <div class="quiz-progress-step"></div>
+                </div>
+
+                <!-- Question 1 -->
+                <div class="quiz-question active" data-question="1">
+                    <h3>What's your primary goal?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="career">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Get a job as a software developer</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="apps">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Build mobile apps for iOS</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="automate">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Automate tasks and work with data</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="business">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Start or grow a tech business</span>
+                        </label>
+                    </div>
+                    <div class="quiz-nav">
+                        <div></div>
+                        <button class="btn btn-primary btn-small quiz-next" disabled>Next →</button>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="quiz-question" data-question="2">
+                    <h3>How much time can you commit per week?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="fulltime">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Full-time (30-40+ hours)</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="parttime">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Part-time (15-20 hours)</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="minimal">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Flexible (5-10 hours)</span>
+                        </label>
+                    </div>
+                    <div class="quiz-nav">
+                        <button class="btn btn-outline btn-small quiz-prev">← Back</button>
+                        <button class="btn btn-primary btn-small quiz-next" disabled>Next →</button>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="quiz-question" data-question="3">
+                    <h3>What's your current experience with coding?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="none">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Complete beginner — never written code</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="beginner">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Beginner — completed some tutorials</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="intermediate">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Intermediate — built small projects</span>
+                        </label>
+                    </div>
+                    <div class="quiz-nav">
+                        <button class="btn btn-outline btn-small quiz-prev">← Back</button>
+                        <button class="btn btn-primary btn-small quiz-next" disabled>Next →</button>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="quiz-question" data-question="4">
+                    <h3>What interests you most?</h3>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="websites">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Building websites and web applications</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="mobile">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Creating mobile apps for iPhone/iPad</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="data">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Working with data and automation</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="entrepreneurship">
+                            <span class="quiz-option-radio"></span>
+                            <span class="quiz-option-text">Building and running a business</span>
+                        </label>
+                    </div>
+                    <div class="quiz-nav">
+                        <button class="btn btn-outline btn-small quiz-prev">← Back</button>
+                        <button class="btn btn-primary btn-small quiz-submit">See My Results →</button>
+                    </div>
+                </div>
+
+                <!-- Result -->
+                <div class="quiz-result" id="quizResult">
+                    <div class="quiz-result-icon">🎯</div>
+                    <h3>Your Recommended Program</h3>
+                    <p class="quiz-result-program" id="resultProgram">Full-Stack Web Development</p>
+                    <p id="resultDescription">Based on your answers, this program is the best fit for your goals and schedule.</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="#webdev" class="btn btn-primary" id="resultLink">View Program Details</a>
+                        <a href="admissions.html#apply" class="btn btn-outline">Apply Now</a>
+                    </div>
+                    <button class="btn btn-small" style="margin-top: 1.5rem; background: none; color: var(--medium-gray);" onclick="resetQuiz()">← Take Quiz Again</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs List -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Course Catalog</p>
+                <h2>Our Programs</h2>
+                <p>Each program includes live instruction, hands-on projects, 1:1 mentorship, and career support.</p>
+            </div>
+
+            <!-- Full-Stack Web Development -->
+            <div class="program-full" id="webdev">
+                <div class="program-full-grid">
+                    <div class="program-full-image" style="background: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80') center/cover; font-size: 0;"></div>
+                    <div class="program-full-content">
+                        <p class="section-label">Certificate Program</p>
+                        <h2>Full-Stack Web Development</h2>
+                        <div class="program-full-meta">
+                            <span>📅 <strong>12 Weeks</strong></span>
+                            <span>💻 <strong>100% Online</strong></span>
+                            <span>⏰ <strong>~30 hrs/week</strong></span>
+                            <span>🎓 <strong>Certificate</strong></span>
+                        </div>
+                        <p>Master both frontend and backend development. You'll learn to build complete, production-ready web applications from scratch using modern technologies like React, Node.js, and PostgreSQL. Graduate with a professional portfolio that demonstrates your ability to employers.</p>
+
+                        <div class="program-section">
+                            <h3>What You'll Learn</h3>
+                            <ul>
+                                <li>HTML, CSS, and responsive design</li>
+                                <li>JavaScript fundamentals and ES6+</li>
+                                <li>React.js and component-based architecture</li>
+                                <li>Node.js and Express backend development</li>
+                                <li>Database design with PostgreSQL</li>
+                                <li>RESTful API development</li>
+                                <li>Authentication and security</li>
+                                <li>Git, GitHub, and deployment</li>
+                            </ul>
+                        </div>
+
+                        <div class="program-section">
+                            <h3>Curriculum Overview</h3>
+                            <div class="curriculum-modules">
+                                <div class="curriculum-module">
+                                    <h4>Weeks 1-3: Frontend Foundations</h4>
+                                    <p>HTML, CSS, JavaScript, responsive design, DOM manipulation</p>
+                                </div>
+                                <div class="curriculum-module">
+                                    <h4>Weeks 4-6: React Development</h4>
+                                    <p>Components, state management, hooks, routing, API integration</p>
+                                </div>
+                                <div class="curriculum-module">
+                                    <h4>Weeks 7-9: Backend & Databases</h4>
+                                    <p>Node.js, Express, PostgreSQL, RESTful APIs, authentication</p>
+                                </div>
+                                <div class="curriculum-module">
+                                    <h4>Weeks 10-12: Capstone Project</h4>
+                                    <p>Build and deploy a full-stack application for your portfolio</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="program-section">
+                            <h3>Career Outcomes</h3>
+                            <ul>
+                                <li>Frontend Developer</li>
+                                <li>Backend Developer</li>
+                                <li>Full-Stack Developer</li>
+                                <li>Web Application Developer</li>
+                            </ul>
+                        </div>
+
+                        <div class="program-cta">
+                            <a href="admissions.html#apply" class="btn btn-primary">Apply Now</a>
+                            <a href="financial-aid.html" class="btn btn-outline">View Tuition</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- iOS App Development -->
+            <div class="program-full" id="ios">
+                <div class="program-full-grid">
+                    <div class="program-full-image" style="background: url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80') center/cover; font-size: 0;"></div>
+                    <div class="program-full-content">
+                        <p class="section-label">Certificate Program</p>
+                        <h2>iOS App Development</h2>
+                        <div class="program-full-meta">
+                            <span>📅 <strong>8 Weeks</strong></span>
+                            <span>💻 <strong>100% Online</strong></span>
+                            <span>⏰ <strong>~20 hrs/week</strong></span>
+                            <span>🎓 <strong>Certificate</strong></span>
+                        </div>
+                        <p>Learn to build native iOS applications using Swift and SwiftUI. From your first "Hello World" to publishing on the App Store, you'll gain the skills to create beautiful, functional apps for iPhone and iPad.</p>
+
+                        <div class="program-section">
+                            <h3>What You'll Learn</h3>
+                            <ul>
+                                <li>Swift programming fundamentals</li>
+                                <li>SwiftUI for modern UI development</li>
+                                <li>iOS app architecture patterns</li>
+                                <li>Working with APIs and data</li>
+                                <li>Core Data for local storage</li>
+                                <li>Firebase integration</li>
+                                <li>App Store submission process</li>
+                                <li>UI/UX best practices for mobile</li>
+                            </ul>
+                        </div>
+
+                        <div class="program-section">
+                            <h3>Curriculum Overview</h3>
+                            <div class="curriculum-modules">
+                                <div class="curriculum-module">
+                                    <h4>Weeks 1-2: Swift Fundamentals</h4>
+                                    <p>Variables, control flow, functions, classes, and Swift syntax</p>
+                                </div>
+                                <div class="curriculum-module">
+                                    <h4>Weeks 3-4: SwiftUI Basics</h4>
+                                    <p>Views, layouts, navigation, state management</p>
+                                </div>
+                                <div class="curriculum-module">
+                                    <h4>Weeks 5-6: Data & APIs</h4>
+                                    <p>Networking, JSON parsing, Core Data, Firebase</p>
+                                </div>
+                                <div class="curriculum-module">
+                                    <h4>Weeks 7-8: Capstone & Launch</h4>
+                                    <p>Build your app and prepare for App Store submission</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="program-section">
+                            <h3>Career Outcomes</h3>
+                            <ul>
+                                <li>iOS Developer</li>
+                                <li>Mobile App Developer</li>
+                                <li>Swift Developer</li>
+                                <li>Freelance App Developer</li>
+                            </ul>
+                        </div>
+
+                        <div class="program-cta">
+                            <a href="admissions.html#apply" class="btn btn-primary">Apply Now</a>
+                            <a href="financial-aid.html" class="btn btn-outline">View Tuition</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Python & Automation -->
+            <div class="program-full" id="python">
+                <div class="program-full-grid">
+                    <div class="program-full-image" style="background: url('https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600&q=80') center/cover; font-size: 0;"></div>
+                    <div class="program-full-content">
+                        <p class="section-label">Certificate Program</p>
+                        <h2>Python & Automation</h2>
+                        <div class="program-full-meta">
+                            <span>📅 <strong>6 Weeks</strong></span>
+                            <span>💻 <strong>100% Online</strong></span>
+                            <span>⏰ <strong>~15 hrs/week</strong></span>
+                            <span>🎓 <strong>Certificate</strong></span>
+                        </div>
+                        <p>Build a strong programming foundation with Python, one of the most versatile and in-demand languages. Learn to automate repetitive tasks, work with data, and build scripts that save hours of manual work.</p>
+
+                        <div class="program-section">
+                            <h3>What You'll Learn</h3>
+                            <ul>
+                                <li>Python fundamentals and syntax</li>
+                                <li>Working with files and data</li>
+                                <li>Web scraping with BeautifulSoup</li>
+                                <li>Automation with Python scripts</li>
+                                <li>Introduction to Pandas for data</li>
+                                <li>Working with APIs</li>
+                                <li>Error handling and debugging</li>
+                                <li>Best practices and code organization</li>
+                            </ul>
+                        </div>
+
+                        <div class="program-section">
+                            <h3>Curriculum Overview</h3>
+                            <div class="curriculum-modules">
+                                <div class="curriculum-module">
+                                    <h4>Weeks 1-2: Python Fundamentals</h4>
+                                    <p>Variables, data types, control flow, functions, modules</p>
+                                </div>
+                                <div class="curriculum-module">
+                                    <h4>Weeks 3-4: Data & Files</h4>
+                                    <p>File I/O, CSV/JSON handling, web scraping, APIs</p>
+                                </div>
+                                <div class="curriculum-module">
+                                    <h4>Weeks 5-6: Automation Projects</h4>
+                                    <p>Build real automation scripts and a capstone project</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="program-section">
+                            <h3>Career Outcomes</h3>
+                            <ul>
+                                <li>Python Developer</li>
+                                <li>Automation Engineer</li>
+                                <li>Data Analyst (entry-level)</li>
+                                <li>QA Automation Specialist</li>
+                            </ul>
+                        </div>
+
+                        <div class="program-cta">
+                            <a href="admissions.html#apply" class="btn btn-primary">Apply Now</a>
+                            <a href="financial-aid.html" class="btn btn-outline">View Tuition</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Startup Foundations -->
+            <div class="program-full" id="startup">
+                <div class="program-full-grid">
+                    <div class="program-full-image" style="background: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80') center/cover; font-size: 0;"></div>
+                    <div class="program-full-content">
+                        <p class="section-label">Certificate Program</p>
+                        <h2>Tech Startup Foundations</h2>
+                        <div class="program-full-meta">
+                            <span>📅 <strong>6 Weeks</strong></span>
+                            <span>💻 <strong>100% Online</strong></span>
+                            <span>⏰ <strong>~10 hrs/week</strong></span>
+                            <span>🎓 <strong>Certificate</strong></span>
+                        </div>
+                        <p>Learn the fundamentals of building and launching a technology business. From validating your idea to acquiring your first customers, this program gives you the framework to turn your vision into a real company.</p>
+
+                        <div class="program-section">
+                            <h3>What You'll Learn</h3>
+                            <ul>
+                                <li>Idea validation and market research</li>
+                                <li>Building an MVP (Minimum Viable Product)</li>
+                                <li>Business model development</li>
+                                <li>Digital marketing fundamentals</li>
+                                <li>Financial planning for startups</li>
+                                <li>Fundraising and pitching</li>
+                                <li>Legal basics for founders</li>
+                                <li>Growth strategies and scaling</li>
+                            </ul>
+                        </div>
+
+                        <div class="program-section">
+                            <h3>Curriculum Overview</h3>
+                            <div class="curriculum-modules">
+                                <div class="curriculum-module">
+                                    <h4>Weeks 1-2: Ideation & Validation</h4>
+                                    <p>Problem discovery, market research, customer interviews</p>
+                                </div>
+                                <div class="curriculum-module">
+                                    <h4>Weeks 3-4: Building & Launching</h4>
+                                    <p>MVP development, no-code tools, go-to-market strategy</p>
+                                </div>
+                                <div class="curriculum-module">
+                                    <h4>Weeks 5-6: Growth & Funding</h4>
+                                    <p>Marketing, metrics, fundraising, pitch deck creation</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="program-section">
+                            <h3>Career Outcomes</h3>
+                            <ul>
+                                <li>Startup Founder</li>
+                                <li>Product Manager</li>
+                                <li>Business Development</li>
+                                <li>Entrepreneur</li>
+                            </ul>
+                        </div>
+
+                        <div class="program-cta">
+                            <a href="admissions.html#apply" class="btn btn-primary">Apply Now</a>
+                            <a href="financial-aid.html" class="btn btn-outline">View Tuition</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Signup -->
+    <section class="email-section">
+        <div class="email-section-container">
+            <h2>Stay Updated</h2>
+            <p>Not ready to apply? Get program updates, enrollment deadlines, and free learning resources delivered to your inbox.</p>
+            <form class="email-form" id="emailForm" name="newsletter-programs" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="newsletter-programs">
+                <p style="display:none;"><input name="bot-field"></p>
+                <input type="email" name="email" placeholder="Enter your email address" required>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+            <p class="form-note" style="margin-top: 1rem;">No spam. Unsubscribe anytime.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">C</div>
+                        <div class="logo-text">
+                            <span class="logo-name">Codex Labs Institute</span>
+                            <span class="logo-tagline">From Code to Career</span>
+                        </div>
+                    </a>
+                    <p>Transforming careers through technology education. Rigorous curriculum, expert mentorship, and career support that gets results.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="#webdev">Web Development</a></li>
+                        <li><a href="#ios">iOS Development</a></li>
+                        <li><a href="#python">Python & Automation</a></li>
+                        <li><a href="#startup">Tech Startup</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Admissions</h4>
+                    <ul>
+                        <li><a href="admissions.html#process">How to Apply</a></li>
+                        <li><a href="admissions.html#requirements">Requirements</a></li>
+                        <li><a href="financial-aid.html">Tuition & Fees</a></li>
+                        <li><a href="financial-aid.html#aid">Financial Aid</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="student-portal.html">Student Portal</a></li>
+                        <li><a href="coming-soon.html">Career Services</a></li>
+                        <li><a href="coming-soon.html">Help Center</a></li>
+                        <li><a href="#quiz">Find Your Path Quiz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="coming-soon.html">Our Mission</a></li>
+                        <li><a href="coming-soon.html">Contact Us</a></li>
+                        <li><a href="coming-soon.html">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2025 Codex Labs Institute. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="coming-soon.html">Privacy Policy</a>
+                    <a href="coming-soon.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz functionality
+        let currentQuestion = 1;
+        const totalQuestions = 4;
+        const answers = {};
+
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const question = this.closest('.quiz-question');
+                question.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                this.querySelector('input').checked = true;
+                
+                const questionNum = question.dataset.question;
+                answers[questionNum] = this.querySelector('input').value;
+                
+                question.querySelector('.quiz-next, .quiz-submit').disabled = false;
+            });
+        });
+
+        document.querySelectorAll('.quiz-next').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (currentQuestion < totalQuestions) {
+                    document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.remove('active');
+                    currentQuestion++;
+                    document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.add('active');
+                    updateProgress();
+                }
+            });
+        });
+
+        document.querySelectorAll('.quiz-prev').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (currentQuestion > 1) {
+                    document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.remove('active');
+                    currentQuestion--;
+                    document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.add('active');
+                    updateProgress();
+                }
+            });
+        });
+
+        document.querySelector('.quiz-submit').addEventListener('click', function() {
+            showResult();
+        });
+
+        function updateProgress() {
+            document.querySelectorAll('.quiz-progress-step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index + 1 === currentQuestion) {
+                    step.classList.add('active');
+                } else if (index + 1 < currentQuestion) {
+                    step.classList.add('completed');
+                }
+            });
+        }
+
+        function showResult() {
+            document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('active'));
+            document.getElementById('quizResult').classList.add('active');
+            
+            // Simple recommendation logic
+            let recommendation = 'webdev';
+            let programName = 'Full-Stack Web Development';
+            let description = 'This comprehensive program will give you all the skills needed to build complete web applications and launch your developer career.';
+            
+            if (answers['1'] === 'apps' || answers['4'] === 'mobile') {
+                recommendation = 'ios';
+                programName = 'iOS App Development';
+                description = 'Perfect for aspiring mobile developers! Learn to build native iOS apps with Swift and SwiftUI.';
+            } else if (answers['1'] === 'automate' || answers['4'] === 'data') {
+                recommendation = 'python';
+                programName = 'Python & Automation';
+                description = 'Ideal for learning to automate tasks and work with data. Python is versatile and beginner-friendly.';
+            } else if (answers['1'] === 'business' || answers['4'] === 'entrepreneurship') {
+                recommendation = 'startup';
+                programName = 'Tech Startup Foundations';
+                description = 'Learn the fundamentals of building and launching a technology business from idea to launch.';
+            }
+            
+            document.getElementById('resultProgram').textContent = programName;
+            document.getElementById('resultDescription').textContent = description;
+            document.getElementById('resultLink').href = '#' + recommendation;
+            
+            document.querySelectorAll('.quiz-progress-step').forEach(step => step.classList.add('completed'));
+        }
+
+        function resetQuiz() {
+            currentQuestion = 1;
+            document.getElementById('quizResult').classList.remove('active');
+            document.querySelector('.quiz-question[data-question="1"]').classList.add('active');
+            document.querySelectorAll('.quiz-option').forEach(o => {
+                o.classList.remove('selected');
+                o.querySelector('input').checked = false;
+            });
+            document.querySelectorAll('.quiz-next').forEach(btn => btn.disabled = true);
+            updateProgress();
+        }
+
+        // Email form - Netlify
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const btn = form.querySelector('button');
+            const input = form.querySelector('input[type="email"]');
+            
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(form)).toString()
+            })
+            .then(() => {
+                btn.innerHTML = '✓ Subscribed!';
+                btn.style.background = '#28a745';
+                input.value = '';
+                setTimeout(() => {
+                    btn.innerHTML = 'Subscribe';
+                    btn.style.background = '';
+                }, 3000);
+            })
+            .catch((error) => {
+                btn.innerHTML = 'Error - Try Again';
+                btn.style.background = '#dc3545';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissions | Codex Labs Institute</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+/* Codex Labs Institute - Shared Styles */
+
+:root {
+    --primary: #1a3a5c;
+    --primary-dark: #0f2640;
+    --primary-light: #2c5282;
+    --accent: #d4a92a;
+    --accent-light: #e8bc3d;
+    --accent-dark: #b8922a;
+    --white: #ffffff;
+    --off-white: #f8f9fa;
+    --light-gray: #e9ecef;
+    --medium-gray: #5a6268;
+    --dark-gray: #2d3339;
+    --text: #1a1a1a;
+    --text-light: #4a5568;
+    --success: #28a745;
+    --error: #dc3545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    line-height: 1.7;
+    background: var(--white);
+    font-size: 16px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Utility Bar */
+.utility-bar {
+    background: var(--primary-dark);
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.utility-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.utility-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.utility-links a {
+    color: rgba(255,255,255,0.8);
+    transition: color 0.2s;
+}
+
+.utility-links a:hover {
+    color: var(--accent);
+}
+
+.utility-contact {
+    color: rgba(255,255,255,0.8);
+}
+
+.utility-contact a {
+    color: var(--accent);
+}
+
+/* Main Header */
+.main-header {
+    background: var(--primary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--white);
+}
+
+.logo-icon {
+    width: 45px;
+    height: 45px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.logo-name {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.375rem;
+    font-weight: 700;
+}
+
+.logo-tagline {
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: block;
+    padding: 1.5rem 1.25rem;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: var(--primary-light);
+    color: var(--accent);
+}
+
+.nav-cta {
+    background: var(--accent);
+    color: var(--primary-dark);
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-left: 1rem;
+    transition: background 0.2s;
+}
+
+.nav-cta:hover {
+    background: var(--accent-light);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Mega Menu */
+.mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    min-width: 280px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    border-top: 3px solid var(--accent);
+}
+
+.nav-item:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mega-menu a {
+    display: block;
+    padding: 0.875rem 1.5rem;
+    color: var(--text);
+    font-size: 0.9375rem;
+    border-bottom: 1px solid var(--light-gray);
+    transition: background 0.2s, padding-left 0.2s;
+}
+
+.mega-menu a:last-child {
+    border-bottom: none;
+}
+
+.mega-menu a:hover {
+    background: var(--off-white);
+    padding-left: 2rem;
+    color: var(--primary);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--primary-dark);
+}
+
+.btn-primary:hover {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-light);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-outline-white {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.btn-outline-white:hover {
+    background: var(--white);
+    color: var(--primary);
+}
+
+.btn-small {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+}
+
+.btn-large {
+    padding: 1.125rem 2.5rem;
+    font-size: 1.125rem;
+}
+
+/* Page Hero */
+.page-hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--white);
+}
+
+.page-hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.page-hero p {
+    font-size: 1.125rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.breadcrumb {
+    max-width: 1400px;
+    margin: 0 auto 1.5rem;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.7);
+}
+
+.breadcrumb a {
+    color: var(--accent);
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Section Styles */
+.section {
+    padding: 5rem 2rem;
+}
+
+.section-alt {
+    background: var(--off-white);
+}
+
+.section-dark {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.container-narrow {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-label {
+    color: var(--accent-dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.section-dark .section-header h2 {
+    color: var(--white);
+}
+
+.section-dark .section-label {
+    color: var(--accent);
+}
+
+.section-header p {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.section-dark .section-header p {
+    color: rgba(255,255,255,0.8);
+}
+
+/* Cards */
+.card {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.card-accent {
+    border-left: 4px solid var(--accent);
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid var(--light-gray);
+    border-radius: 6px;
+    background: var(--off-white);
+    color: var(--text);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--white);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-note {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background: var(--primary-dark);
+    color: var(--white);
+    padding: 4rem 2rem 2rem;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-brand p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9375rem;
+    margin-top: 1rem;
+    line-height: 1.7;
+    max-width: 300px;
+}
+
+.footer-column h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-column a {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9375rem;
+    transition: color 0.2s;
+}
+
+.footer-column a:hover {
+    color: var(--white);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-copy {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.footer-legal {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-legal a {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.footer-legal a:hover {
+    color: var(--white);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .utility-bar {
+        display: none;
+    }
+
+    .header-container {
+        height: 60px;
+    }
+
+    .main-nav {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .section {
+        padding: 3rem 1.5rem;
+    }
+
+    .page-hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+</style>
+    <style>
+        /* Admissions Page Specific Styles */
+        
+        .page-hero {
+            background: linear-gradient(135deg, rgba(26, 58, 92, 0.92) 0%, rgba(15, 38, 64, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80') center/cover no-repeat;
+        }
+
+        .info-banner {
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 900px;
+            margin: 2rem auto 0;
+        }
+
+        .info-banner-icon {
+            font-size: 1.5rem;
+        }
+
+        .info-banner p {
+            margin: 0;
+            color: var(--text);
+        }
+
+        .info-banner strong {
+            color: var(--primary);
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 5rem 2rem;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: -1rem;
+            width: calc(100% - 80px);
+            height: 2px;
+            background: var(--light-gray);
+            transform: translateX(50%);
+        }
+
+        .process-number {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step h3 {
+            font-size: 1.125rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .process-step p {
+            font-size: 0.9375rem;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        /* Requirements Section */
+        .requirements-section {
+            padding: 5rem 2rem;
+            background: var(--off-white);
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 3rem auto 0;
+        }
+
+        .requirement-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .requirement-card h3 {
+            font-size: 1.125rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .requirement-card p {
+            font-size: 0.9375rem;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        .requirement-icon {
+            font-size: 1.25rem;
+        }
+
+        /* Dates Section */
+        .dates-section {
+            padding: 5rem 2rem;
+        }
+
+        .dates-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .dates-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .dates-table th,
+        .dates-table td {
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .dates-table th {
+            background: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.9375rem;
+        }
+
+        .dates-table th:first-child {
+            border-radius: 8px 0 0 0;
+        }
+
+        .dates-table th:last-child {
+            border-radius: 0 8px 0 0;
+        }
+
+        .dates-table td {
+            font-size: 0.9375rem;
+            color: #1a1a1a;
+        }
+
+        .dates-table tr:hover td {
+            background: var(--off-white);
+        }
+
+        .date-highlight {
+            background: rgba(201, 162, 39, 0.1);
+            color: var(--accent-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Application Section */
+        .application-section {
+            padding: 5rem 2rem;
+            background: var(--off-white);
+        }
+
+        .application-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .application-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 2rem;
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .form-section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .form-checkbox input {
+            width: 20px;
+            height: 20px;
+            margin-top: 0.125rem;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .form-checkbox label {
+            font-size: 0.9375rem;
+            color: var(--medium-gray);
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .form-checkbox a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .form-submit {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .form-submit .btn {
+            min-width: 250px;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .success-message h3 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .success-message p {
+            color: var(--medium-gray);
+            font-size: 1.0625rem;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 2rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.5rem 0;
+            text-align: left;
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: inherit;
+        }
+
+        .faq-question:hover {
+            color: var(--accent-dark);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 0 1.5rem;
+            color: #4a5568;
+            font-size: 0.9375rem;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        @media (max-width: 1024px) {
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-step:not(:last-child)::after {
+                display: none;
+            }
+
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dates-table {
+                font-size: 0.875rem;
+            }
+
+            .dates-table th,
+            .dates-table td {
+                padding: 1rem;
+            }
+
+            .application-form {
+                padding: 2rem 1.5rem;
+            }
+
+            .info-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Utility Bar -->
+    <div class="utility-bar">
+        <div class="utility-container">
+            <div class="utility-links">
+                <a href="student-portal.html">Student Portal</a>
+                <a href="coming-soon.html">Help Center</a>
+            </div>
+            <div class="utility-contact">
+                Questions? Email <a href="mailto:admissions@codexlabsinstitute.com">admissions@codexlabsinstitute.com</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">C</div>
+                <div class="logo-text">
+                    <span class="logo-name">Codex Labs Institute</span>
+                    <span class="logo-tagline">From Code to Career</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <div class="nav-item">
+                    <a href="programs.html" class="nav-link">Programs</a>
+                </div>
+                <div class="nav-item">
+                    <a href="admissions.html" class="nav-link active">Admissions</a>
+                </div>
+                <div class="nav-item">
+                    <a href="financial-aid.html" class="nav-link">Tuition</a>
+                </div>
+                <div class="nav-item">
+                    <a href="coming-soon.html" class="nav-link">About</a>
+                </div>
+                <a href="#apply" class="nav-cta">Apply Now</a>
+            </nav>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> / Admissions
+        </div>
+        <h1>Admissions</h1>
+        <p>We're looking for motivated learners ready to transform their careers through technology.</p>
+        
+        <div class="info-banner">
+            <span class="info-banner-icon">📅</span>
+            <p><strong>February 2026 Launch:</strong> Applications are now open for our inaugural class. Classes begin February 2, 2026. Apply early for priority consideration.</p>
+        </div>
+    </section>
+
+    <!-- Admission Process -->
+    <section class="process-section" id="process">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">How It Works</p>
+                <h2>Admission Process</h2>
+                <p>Our streamlined admission process is designed to identify motivated learners who are ready to commit to their education.</p>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <h3>Submit Application</h3>
+                    <p>Complete our online application form with your background information, program interest, and learning goals. Takes about 10-15 minutes.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <h3>Application Review</h3>
+                    <p>Our admissions team reviews your application within 2-3 business days. We evaluate motivation, commitment, and fit for your chosen program.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <h3>Admissions Interview</h3>
+                    <p>Selected applicants are invited for a 20-minute video interview to discuss your goals and answer any questions about the program.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <h3>Enrollment</h3>
+                    <p>Accepted students receive an enrollment packet with next steps, payment options, and onboarding materials to prepare for class.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requirements -->
+    <section class="requirements-section" id="requirements">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">What We Look For</p>
+                <h2>Admission Requirements</h2>
+                <p>No prior coding experience is required. We're looking for motivated individuals ready to invest in their future.</p>
+            </div>
+
+            <div class="requirements-grid">
+                <div class="requirement-card">
+                    <h3><span class="requirement-icon">🎓</span> Education</h3>
+                    <p>High school diploma or equivalent (GED) required. No college degree necessary. We welcome learners of all educational backgrounds.</p>
+                </div>
+                <div class="requirement-card">
+                    <h3><span class="requirement-icon">💻</span> Technical Requirements</h3>
+                    <p>Access to a computer (Mac or Windows) with reliable internet connection. Specific software requirements vary by program and will be provided upon enrollment.</p>
+                </div>
+                <div class="requirement-card">
+                    <h3><span class="requirement-icon">⏰</span> Time Commitment</h3>
+                    <p>Ability to dedicate 10-30+ hours per week depending on your chosen program. Self-paced learning with scheduled live sessions and mentor meetings.</p>
+                </div>
+                <div class="requirement-card">
+                    <h3><span class="requirement-icon">🔥</span> Motivation</h3>
+                    <p>Strong desire to learn and commitment to completing the program. We look for self-starters who are ready to put in the work to achieve their goals.</p>
+                </div>
+                <div class="requirement-card">
+                    <h3><span class="requirement-icon">🌐</span> English Proficiency</h3>
+                    <p>All instruction is conducted in English. You should be comfortable reading, writing, and speaking in English at a conversational level.</p>
+                </div>
+                <div class="requirement-card">
+                    <h3><span class="requirement-icon">📝</span> No Experience Required</h3>
+                    <p>Previous coding or technical experience is NOT required. Our programs are designed for complete beginners as well as those with some background.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Dates -->
+    <section class="dates-section">
+        <div class="dates-container">
+            <div class="section-header">
+                <p class="section-label">2026 Calendar</p>
+                <h2>Important Dates</h2>
+                <p>Mark your calendar for these key admission and enrollment deadlines.</p>
+            </div>
+
+            <table class="dates-table">
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Applications Open</strong></td>
+                        <td><span class="date-highlight">Now Open</span></td>
+                        <td>Submit your application today</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Priority Application Deadline</strong></td>
+                        <td>January 15, 2026</td>
+                        <td>Apply early for best consideration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Final Application Deadline</strong></td>
+                        <td>January 26, 2026</td>
+                        <td>Last day to apply for February start</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enrollment Deadline</strong></td>
+                        <td>January 30, 2026</td>
+                        <td>Complete enrollment and payment</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Classes Begin</strong></td>
+                        <td><span class="date-highlight">February 2, 2026</span></td>
+                        <td>First day of instruction</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="application-section" id="apply">
+        <div class="application-container">
+            <div class="section-header">
+                <p class="section-label">Get Started</p>
+                <h2>Apply for Admission</h2>
+                <p>Take the first step toward your new career in technology. Complete the application below.</p>
+            </div>
+
+            <div class="application-form" id="applicationFormContainer">
+                <form id="applicationForm" name="application" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="application">
+                    <p style="display:none;"><input name="bot-field"></p>
+                    
+                    <div class="form-section">
+                        <h3 class="form-section-title">📋 Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State/Country *</label>
+                                <input type="text" id="state" name="state" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title">🎓 Program Selection</h3>
+                        <div class="form-group">
+                            <label for="program">Which program are you applying for? *</label>
+                            <select id="program" name="program" required>
+                                <option value="">Select a program</option>
+                                <option value="fullstack">Full-Stack Web Development (12 weeks)</option>
+                                <option value="ios">iOS App Development (8 weeks)</option>
+                                <option value="python">Python & Automation (6 weeks)</option>
+                                <option value="startup">Tech Startup Foundations (6 weeks)</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="experience">Programming Experience</label>
+                                <select id="experience" name="experience">
+                                    <option value="">Select experience level</option>
+                                    <option value="none">No prior experience</option>
+                                    <option value="beginner">Beginner (completed some tutorials)</option>
+                                    <option value="intermediate">Intermediate (built small projects)</option>
+                                    <option value="advanced">Advanced (professional experience)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="education">Highest Education Level</label>
+                                <select id="education" name="education">
+                                    <option value="">Select education level</option>
+                                    <option value="highschool">High School / GED</option>
+                                    <option value="some-college">Some College</option>
+                                    <option value="associates">Associate's Degree</option>
+                                    <option value="bachelors">Bachelor's Degree</option>
+                                    <option value="masters">Master's Degree or higher</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title">💬 About You</h3>
+                        <div class="form-group">
+                            <label for="goals">Why do you want to learn to code? What are your career goals? *</label>
+                            <textarea id="goals" name="goals" placeholder="Tell us about your motivation, what you hope to achieve, and why you're interested in this program..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="commitment">How many hours per week can you dedicate to this program? *</label>
+                            <select id="commitment" name="commitment" required>
+                                <option value="">Select your availability</option>
+                                <option value="10-15">10-15 hours per week</option>
+                                <option value="15-20">15-20 hours per week</option>
+                                <option value="20-30">20-30 hours per week</option>
+                                <option value="30+">30+ hours per week (full-time)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="referral">How did you hear about Codex Labs Institute?</label>
+                            <select id="referral" name="referral">
+                                <option value="">Select an option</option>
+                                <option value="google">Google Search</option>
+                                <option value="social">Social Media</option>
+                                <option value="friend">Friend or Family</option>
+                                <option value="linkedin">LinkedIn</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the <a href="coming-soon.html">Terms of Service</a> and <a href="coming-soon.html">Privacy Policy</a>. I understand that submitting this application does not guarantee admission, and that I will be contacted by the admissions team regarding next steps.</label>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary btn-large">Submit Application</button>
+                        <p class="form-note" style="margin-top: 1rem;">Applications are reviewed within 2-3 business days.</p>
+                    </div>
+                </form>
+
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">🎉</div>
+                    <h3>Application Submitted!</h3>
+                    <p>Thank you for applying to Codex Labs Institute. Our admissions team will review your application and contact you within 2-3 business days to discuss next steps.</p>
+                    <p style="font-size: 0.9375rem;">Check your email for a confirmation message. If you don't see it, please check your spam folder.</p>
+                    <a href="index.html" class="btn btn-outline">Return to Homepage</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="section-header">
+                <p class="section-label">Common Questions</p>
+                <h2>Admissions FAQ</h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do I need prior coding experience to apply?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            No! Our programs are designed for complete beginners. While some students come with prior experience, it's not required. We'll teach you everything you need to know from the ground up.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What is the admissions interview like?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            The admissions interview is a casual 20-minute video call with a member of our team. We'll discuss your goals, answer your questions, and help determine if the program is a good fit. It's not a technical interview — no coding questions!
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How competitive is admission?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We're selective, but not in the traditional sense. We're looking for motivated individuals who are genuinely committed to learning. If you can demonstrate dedication and have realistic expectations about the work involved, you're a strong candidate.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can I defer my enrollment to a later session?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, accepted students can defer enrollment up to 6 months. Simply contact our admissions team to discuss your situation and arrange a later start date.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What if I'm not accepted?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            If we determine a program isn't the right fit at this time, we'll provide feedback and suggestions. Many students reapply after addressing specific areas and are admitted on their second application.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">C</div>
+                        <div class="logo-text">
+                            <span class="logo-name">Codex Labs Institute</span>
+                            <span class="logo-tagline">From Code to Career</span>
+                        </div>
+                    </a>
+                    <p>Transforming careers through technology education. Rigorous curriculum, expert mentorship, and career support that gets results.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Programs</h4>
+                    <ul>
+                        <li><a href="programs.html#webdev">Web Development</a></li>
+                        <li><a href="programs.html#ios">iOS Development</a></li>
+                        <li><a href="programs.html#python">Python & Automation</a></li>
+                        <li><a href="programs.html#startup">Tech Startup</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Admissions</h4>
+                    <ul>
+                        <li><a href="#process">How to Apply</a></li>
+                        <li><a href="#requirements">Requirements</a></li>
+                        <li><a href="financial-aid.html">Tuition & Fees</a></li>
+                        <li><a href="financial-aid.html#aid">Financial Aid</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="student-portal.html">Student Portal</a></li>
+                        <li><a href="coming-soon.html">Career Services</a></li>
+                        <li><a href="coming-soon.html">Help Center</a></li>
+                        <li><a href="programs.html#quiz">Find Your Path Quiz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="coming-soon.html">Our Mission</a></li>
+                        <li><a href="coming-soon.html">Contact Us</a></li>
+                        <li><a href="coming-soon.html">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2025 Codex Labs Institute. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="coming-soon.html">Privacy Policy</a>
+                    <a href="coming-soon.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission - Netlify
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const btn = form.querySelector('button[type="submit"]');
+            btn.innerHTML = 'Submitting...';
+            btn.disabled = true;
+            
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(form)).toString()
+            })
+            .then(() => {
+                form.style.display = 'none';
+                document.getElementById('successMessage').classList.add('active');
+                window.scrollTo({ top: document.getElementById('apply').offsetTop - 100, behavior: 'smooth' });
+            })
+            .catch((error) => {
+                btn.innerHTML = 'Error - Try Again';
+                btn.disabled = false;
+                btn.style.background = '#dc3545';
+            });
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', function() {
+                const item = this.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all others
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                
+                // Toggle current
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

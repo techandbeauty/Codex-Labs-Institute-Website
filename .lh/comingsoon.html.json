@@ -3,11 +3,19 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1751681394208,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1751807365794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -469,9 +469,9 @@\n </head>\n <body>\n     <header>\n         <nav>\n-            <a href=\"index.html\" class=\"logo\">Codex Labs</a>\n+            <a href=\"index.html\" class=\"logo\">Codex Labs Institute</a>\n             <ul class=\"nav-links\">\n                 <li><a href=\"index.html\">Home</a></li>\n                 <li><a href=\"course-catalog.html\">Courses</a></li>\n                 <li><a href=\"interest.html\">Apply</a></li>\n"
+                },
+                {
+                    "date": 1751807371838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -472,9 +472,9 @@\n         <nav>\n             <a href=\"index.html\" class=\"logo\">Codex Labs Institute</a>\n             <ul class=\"nav-links\">\n                 <li><a href=\"index.html\">Home</a></li>\n-                <li><a href=\"course-catalog.html\">Courses</a></li>\n+                <li><a href=\"comingsoo\">Courses</a></li>\n                 <li><a href=\"interest.html\">Apply</a></li>\n                 <li><a href=\"student-portal.html\">Portal</a></li>\n                 <li><a href=\"contact.html\">Support</a></li>\n             </ul>\n"
                 }
             ],
             "date": 1751681394208,

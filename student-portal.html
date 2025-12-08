@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal | Codex Labs Institute</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+/* Codex Labs Institute - Shared Styles */
+
+:root {
+    --primary: #1a3a5c;
+    --primary-dark: #0f2640;
+    --primary-light: #2c5282;
+    --accent: #d4a92a;
+    --accent-light: #e8bc3d;
+    --accent-dark: #b8922a;
+    --white: #ffffff;
+    --off-white: #f8f9fa;
+    --light-gray: #e9ecef;
+    --medium-gray: #5a6268;
+    --dark-gray: #2d3339;
+    --text: #1a1a1a;
+    --text-light: #4a5568;
+    --success: #28a745;
+    --error: #dc3545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    line-height: 1.7;
+    background: var(--white);
+    font-size: 16px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Utility Bar */
+.utility-bar {
+    background: var(--primary-dark);
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.utility-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.utility-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.utility-links a {
+    color: rgba(255,255,255,0.8);
+    transition: color 0.2s;
+}
+
+.utility-links a:hover {
+    color: var(--accent);
+}
+
+.utility-contact {
+    color: rgba(255,255,255,0.8);
+}
+
+.utility-contact a {
+    color: var(--accent);
+}
+
+/* Main Header */
+.main-header {
+    background: var(--primary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--white);
+}
+
+.logo-icon {
+    width: 45px;
+    height: 45px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.logo-name {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.375rem;
+    font-weight: 700;
+}
+
+.logo-tagline {
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: block;
+    padding: 1.5rem 1.25rem;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: var(--primary-light);
+    color: var(--accent);
+}
+
+.nav-cta {
+    background: var(--accent);
+    color: var(--primary-dark);
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-left: 1rem;
+    transition: background 0.2s;
+}
+
+.nav-cta:hover {
+    background: var(--accent-light);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Mega Menu */
+.mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    min-width: 280px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    border-top: 3px solid var(--accent);
+}
+
+.nav-item:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mega-menu a {
+    display: block;
+    padding: 0.875rem 1.5rem;
+    color: var(--text);
+    font-size: 0.9375rem;
+    border-bottom: 1px solid var(--light-gray);
+    transition: background 0.2s, padding-left 0.2s;
+}
+
+.mega-menu a:last-child {
+    border-bottom: none;
+}
+
+.mega-menu a:hover {
+    background: var(--off-white);
+    padding-left: 2rem;
+    color: var(--primary);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--primary-dark);
+}
+
+.btn-primary:hover {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-light);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-outline-white {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.btn-outline-white:hover {
+    background: var(--white);
+    color: var(--primary);
+}
+
+.btn-small {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+}
+
+.btn-large {
+    padding: 1.125rem 2.5rem;
+    font-size: 1.125rem;
+}
+
+/* Page Hero */
+.page-hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--white);
+}
+
+.page-hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.page-hero p {
+    font-size: 1.125rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.breadcrumb {
+    max-width: 1400px;
+    margin: 0 auto 1.5rem;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.7);
+}
+
+.breadcrumb a {
+    color: var(--accent);
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Section Styles */
+.section {
+    padding: 5rem 2rem;
+}
+
+.section-alt {
+    background: var(--off-white);
+}
+
+.section-dark {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.container-narrow {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-label {
+    color: var(--accent-dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.section-dark .section-header h2 {
+    color: var(--white);
+}
+
+.section-dark .section-label {
+    color: var(--accent);
+}
+
+.section-header p {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.section-dark .section-header p {
+    color: rgba(255,255,255,0.8);
+}
+
+/* Cards */
+.card {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.card-accent {
+    border-left: 4px solid var(--accent);
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid var(--light-gray);
+    border-radius: 6px;
+    background: var(--off-white);
+    color: var(--text);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--white);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-note {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background: var(--primary-dark);
+    color: var(--white);
+    padding: 4rem 2rem 2rem;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-brand p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9375rem;
+    margin-top: 1rem;
+    line-height: 1.7;
+    max-width: 300px;
+}
+
+.footer-column h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-column a {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9375rem;
+    transition: color 0.2s;
+}
+
+.footer-column a:hover {
+    color: var(--white);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-copy {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.footer-legal {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-legal a {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.footer-legal a:hover {
+    color: var(--white);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .utility-bar {
+        display: none;
+    }
+
+    .header-container {
+        height: 60px;
+    }
+
+    .main-nav {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .section {
+        padding: 3rem 1.5rem;
+    }
+
+    .page-hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+</style>
+    <style>
+        /* Student Portal Styles */
+        .portal-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Login Section */
+        .login-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(26, 58, 92, 0.95) 0%, rgba(15, 38, 64, 0.97) 100%),
+                        url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&q=80') center/cover no-repeat;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .login-logo .logo-icon {
+            width: 50px;
+            height: 50px;
+            font-size: 1.75rem;
+        }
+
+        .login-header h1 {
+            font-size: 1.75rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .login-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .login-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .login-tab {
+            flex: 1;
+            padding: 1rem;
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--medium-gray);
+            cursor: pointer;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .login-tab.active {
+            color: var(--primary);
+        }
+
+        .login-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .login-form {
+            display: none;
+        }
+
+        .login-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            font-size: 1rem;
+            font-family: inherit;
+            border: 1px solid var(--light-gray);
+            border-radius: 6px;
+            background: var(--off-white);
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+        }
+
+        .form-options label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4a5568;
+            cursor: pointer;
+        }
+
+        .form-options a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .form-options a:hover {
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .login-btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .login-btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        .login-btn-google {
+            background: var(--white);
+            color: var(--text);
+            border: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .login-btn-google:hover {
+            background: var(--off-white);
+            border-color: var(--medium-gray);
+        }
+
+        .login-btn-google img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: var(--medium-gray);
+            font-size: 0.875rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--light-gray);
+        }
+
+        .divider span {
+            padding: 0 1rem;
+        }
+
+        .error-message {
+            background: #fee2e2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            background: #dcfce7;
+            border: 1px solid #bbf7d0;
+            color: #16a34a;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .login-footer p {
+            font-size: 0.9375rem;
+            color: #4a5568;
+        }
+
+        .login-footer a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* Dashboard Section */
+        .dashboard-section {
+            display: none;
+            flex: 1;
+            background: var(--off-white);
+        }
+
+        .dashboard-section.active {
+            display: block;
+        }
+
+        .dashboard-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 2rem;
+        }
+
+        .dashboard-header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-welcome h1 {
+            font-size: 1.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .dashboard-welcome p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9375rem;
+        }
+
+        .dashboard-user {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .dashboard-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: var(--primary-dark);
+        }
+
+        .dashboard-user-info {
+            text-align: right;
+        }
+
+        .dashboard-user-name {
+            font-weight: 600;
+        }
+
+        .dashboard-user-email {
+            font-size: 0.9375rem;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: inherit;
+            margin-left: 1rem;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .dashboard-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .dashboard-main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .dashboard-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+
+        .dashboard-card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-card-header h2 {
+            font-size: 1.125rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dashboard-card-body {
+            padding: 1.5rem;
+        }
+
+        /* Enrolled Courses */
+        .course-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .course-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--off-white);
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .course-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .course-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .course-info {
+            flex: 1;
+        }
+
+        .course-info h3 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+
+        .course-info p {
+            font-size: 0.875rem;
+            color: #4a5568;
+        }
+
+        .course-progress {
+            margin-top: 0.5rem;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--light-gray);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        .progress-text {
+            font-size: 0.8125rem;
+            color: #4a5568;
+            margin-top: 0.25rem;
+        }
+
+        .course-action {
+            flex-shrink: 0;
+        }
+
+        .course-action .btn {
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+        }
+
+        .no-courses {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--medium-gray);
+        }
+
+        .no-courses-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .no-courses h3 {
+            font-size: 1.125rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Quick Links */
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .quick-link-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--off-white);
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .quick-link-item:hover {
+            background: var(--light-gray);
+            transform: translateY(-2px);
+        }
+
+        .quick-link-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .quick-link-info h3 {
+            font-size: 0.9375rem;
+            color: var(--primary);
+            margin-bottom: 0.125rem;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+
+        .quick-link-info p {
+            font-size: 0.875rem;
+            color: #4a5568;
+        }
+
+        /* Sidebar */
+        .dashboard-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            padding: 1.5rem;
+        }
+
+        .sidebar-card h3 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .announcement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .announcement-item {
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .announcement-item:last-child {
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .announcement-date {
+            font-size: 0.75rem;
+            color: var(--accent-dark);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .announcement-title {
+            font-size: 0.9375rem;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9375rem;
+            color: #1a1a1a;
+        }
+
+        .contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Password Reset Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--medium-gray);
+            cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-header-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .dashboard-user {
+                flex-direction: column;
+            }
+
+            .dashboard-user-info {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .login-card {
+                padding: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .course-action {
+                width: 100%;
+            }
+
+            .course-action .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="portal-page">
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">C</div>
+                <div class="logo-text">
+                    <span class="logo-name">Codex Labs Institute</span>
+                    <span class="logo-tagline">From Code to Career</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <div class="nav-item">
+                    <a href="programs.html" class="nav-link">Programs</a>
+                </div>
+                <div class="nav-item">
+                    <a href="admissions.html" class="nav-link">Admissions</a>
+                </div>
+                <div class="nav-item">
+                    <a href="financial-aid.html" class="nav-link">Tuition</a>
+                </div>
+                <div class="nav-item">
+                    <a href="student-portal.html" class="nav-link active">Student Portal</a>
+                </div>
+                <a href="admissions.html#apply" class="nav-cta">Apply Now</a>
+            </nav>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <!-- Login Section (shown when logged out) -->
+    <section class="login-section" id="loginSection">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="login-logo">
+                    <div class="logo-icon">C</div>
+                    <div class="logo-text">
+                        <span class="logo-name">Codex Labs Institute</span>
+                    </div>
+                </div>
+                <h1>Student Portal</h1>
+                <p>Access your courses, resources, and account</p>
+            </div>
+
+            <div class="login-card">
+                <div class="login-tabs">
+                    <button class="login-tab active" data-tab="login">Sign In</button>
+                    <button class="login-tab" data-tab="register">Create Account</button>
+                </div>
+
+                <div id="errorMessage" class="error-message"></div>
+                <div id="successMessage" class="success-message"></div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="login-form active">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                    </div>
+                    <div class="form-options">
+                        <label>
+                            <input type="checkbox" id="rememberMe"> Remember me
+                        </label>
+                        <a href="#" id="forgotPasswordLink">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="login-btn login-btn-primary">Sign In</button>
+                    
+                    <div class="divider"><span>or</span></div>
+                    
+                    <button type="button" class="login-btn login-btn-google" id="googleSignIn">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                        Continue with Google
+                    </button>
+                </form>
+
+                <!-- Register Form -->
+                <form id="registerForm" class="login-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="registerFirstName">First Name</label>
+                            <input type="text" id="registerFirstName" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerLastName">Last Name</label>
+                            <input type="text" id="registerLastName" placeholder="Doe" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email Address</label>
+                        <input type="email" id="registerEmail" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" placeholder="Min. 8 characters" required minlength="8">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Confirm Password</label>
+                        <input type="password" id="registerConfirmPassword" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="login-btn login-btn-primary">Create Account</button>
+                    
+                    <div class="divider"><span>or</span></div>
+                    
+                    <button type="button" class="login-btn login-btn-google" id="googleSignUp">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                        Continue with Google
+                    </button>
+                </form>
+
+                <div class="login-footer">
+                    <p>Need help? <a href="mailto:support@codexlabsinstitute.com">Contact Support</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section (shown when logged in) -->
+    <section class="dashboard-section" id="dashboardSection">
+        <div class="dashboard-header">
+            <div class="dashboard-header-container">
+                <div class="dashboard-welcome">
+                    <h1>Welcome back, <span id="userName">Student</span>!</h1>
+                    <p>Here's what's happening with your courses today.</p>
+                </div>
+                <div class="dashboard-user">
+                    <div class="dashboard-avatar" id="userAvatar">S</div>
+                    <div class="dashboard-user-info">
+                        <div class="dashboard-user-name" id="userDisplayName">Student Name</div>
+                        <div class="dashboard-user-email" id="userEmail">student@example.com</div>
+                    </div>
+                    <button class="logout-btn" id="logoutBtn">Sign Out</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="dashboard-grid">
+                <div class="dashboard-main">
+                    <!-- Enrolled Courses -->
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-header">
+                            <h2>📚 My Courses</h2>
+                            <a href="programs.html" class="btn btn-small btn-outline">Browse Programs</a>
+                        </div>
+                        <div class="dashboard-card-body">
+                            <div class="course-list" id="courseList">
+                                <!-- Courses will be populated here -->
+                                <!-- Example course (this would be dynamic based on enrollment) -->
+                                <div class="course-item">
+                                    <div class="course-icon" style="background: linear-gradient(135deg, #1a3a5c 0%, #2c5282 100%);">💻</div>
+                                    <div class="course-info">
+                                        <h3>Full-Stack Web Development</h3>
+                                        <p>12-Week Certificate Program</p>
+                                        <div class="course-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 35%;"></div>
+                                            </div>
+                                            <span class="progress-text">35% Complete • Week 4 of 12</span>
+                                        </div>
+                                    </div>
+                                    <div class="course-action">
+                                        <a href="#" class="btn btn-primary btn-small course-launch-btn" data-course="fullstack">Continue →</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- No courses message (shown if no enrollments) -->
+                            <div class="no-courses" id="noCourses" style="display: none;">
+                                <div class="no-courses-icon">📖</div>
+                                <h3>No Active Enrollments</h3>
+                                <p>You're not currently enrolled in any courses. Browse our programs to get started!</p>
+                                <a href="programs.html" class="btn btn-primary" style="margin-top: 1rem;">Explore Programs</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links / Resources -->
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-header">
+                            <h2>🔗 Student Resources</h2>
+                        </div>
+                        <div class="dashboard-card-body">
+                            <div class="quick-links-grid">
+                                <a href="#" class="quick-link-item" id="linkTuition">
+                                    <div class="quick-link-icon">💳</div>
+                                    <div class="quick-link-info">
+                                        <h3>Tuition & Payments</h3>
+                                        <p>View balance, make payments</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="quick-link-item" id="linkSchedule">
+                                    <div class="quick-link-icon">📅</div>
+                                    <div class="quick-link-info">
+                                        <h3>Class Schedule</h3>
+                                        <p>Live sessions & deadlines</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="quick-link-item" id="linkMentor">
+                                    <div class="quick-link-icon">👤</div>
+                                    <div class="quick-link-info">
+                                        <h3>Book Mentor Session</h3>
+                                        <p>Schedule 1:1 meeting</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="quick-link-item" id="linkCareer">
+                                    <div class="quick-link-icon">💼</div>
+                                    <div class="quick-link-info">
+                                        <h3>Career Services</h3>
+                                        <p>Resume, interviews, jobs</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="quick-link-item" id="linkCommunity">
+                                    <div class="quick-link-icon">👥</div>
+                                    <div class="quick-link-info">
+                                        <h3>Student Community</h3>
+                                        <p>Connect with classmates</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="quick-link-item" id="linkSupport">
+                                    <div class="quick-link-icon">❓</div>
+                                    <div class="quick-link-info">
+                                        <h3>Help & Support</h3>
+                                        <p>FAQs, contact support</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-sidebar">
+                    <!-- Announcements -->
+                    <div class="sidebar-card">
+                        <h3>📢 Announcements</h3>
+                        <div class="announcement-list">
+                            <div class="announcement-item">
+                                <div class="announcement-date">Dec 5, 2025</div>
+                                <div class="announcement-title">Welcome to Codex Labs Institute! Your portal access is now active.</div>
+                            </div>
+                            <div class="announcement-item">
+                                <div class="announcement-date">Dec 3, 2025</div>
+                                <div class="announcement-title">February 2026 cohort enrollment deadline extended to January 26th.</div>
+                            </div>
+                            <div class="announcement-item">
+                                <div class="announcement-date">Dec 1, 2025</div>
+                                <div class="announcement-title">Holiday office hours: Dec 23 - Jan 2. Support available via email.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="sidebar-card">
+                        <h3>📞 Need Help?</h3>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <span>📧</span>
+                                <a href="mailto:support@codexlabsinstitute.com">support@codexlabsinstitute.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>💬</span>
+                                <a href="#" id="liveChatLink">Start Live Chat</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>📚</span>
+                                <a href="coming-soon.html">Help Center & FAQs</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Settings -->
+                    <div class="sidebar-card">
+                        <h3>⚙️ Account</h3>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <span>👤</span>
+                                <a href="#" id="editProfileLink">Edit Profile</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>🔒</span>
+                                <a href="#" id="changePasswordLink">Change Password</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>🔔</span>
+                                <a href="#" id="notificationSettingsLink">Notification Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Password Reset Modal -->
+    <div class="modal-overlay" id="resetModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Reset Password</h2>
+                <button class="modal-close" id="closeResetModal">&times;</button>
+            </div>
+            <p style="margin-bottom: 1.5rem; color: var(--medium-gray);">Enter your email address and we'll send you a link to reset your password.</p>
+            <form id="resetForm">
+                <div class="form-group">
+                    <label for="resetEmail">Email Address</label>
+                    <input type="email" id="resetEmail" placeholder="you@example.com" required>
+                </div>
+                <button type="submit" class="login-btn login-btn-primary">Send Reset Link</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p class="footer-copy">© 2025 Codex Labs Institute. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="coming-soon.html">Privacy Policy</a>
+                    <a href="coming-soon.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+    <script>
+        // ============================================
+        // FIREBASE CONFIGURATION
+        // ============================================
+        // TODO: Replace with your Firebase project config
+        // Get this from: Firebase Console > Project Settings > Your Apps > Config
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // ============================================
+        // EXTERNAL LINKS CONFIGURATION
+        // ============================================
+        // TODO: Replace these with your actual Google Docs/Forms/Canva URLs
+        const EXTERNAL_LINKS = {
+            // Canva Course Portals (replace with your actual Canva links)
+            courses: {
+                fullstack: "https://www.canva.com/design/YOUR_FULLSTACK_COURSE_ID/view",
+                ios: "https://www.canva.com/design/YOUR_IOS_COURSE_ID/view",
+                python: "https://www.canva.com/design/YOUR_PYTHON_COURSE_ID/view",
+                startup: "https://www.canva.com/design/YOUR_STARTUP_COURSE_ID/view"
+            },
+            // Google Forms/Docs for student resources
+            tuition: "https://docs.google.com/forms/d/YOUR_TUITION_FORM_ID/viewform",
+            schedule: "https://docs.google.com/document/d/YOUR_SCHEDULE_DOC_ID/view",
+            mentor: "https://calendly.com/YOUR_CALENDLY_LINK",  // or Google Calendar booking
+            career: "https://docs.google.com/document/d/YOUR_CAREER_DOC_ID/view",
+            community: "https://discord.gg/YOUR_DISCORD_INVITE",  // or Slack/other community
+            support: "https://docs.google.com/forms/d/YOUR_SUPPORT_FORM_ID/viewform"
+        };
+
+        // ============================================
+        // DOM ELEMENTS
+        // ============================================
+        const loginSection = document.getElementById('loginSection');
+        const dashboardSection = document.getElementById('dashboardSection');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const resetForm = document.getElementById('resetForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const resetModal = document.getElementById('resetModal');
+
+        // ============================================
+        // TAB SWITCHING
+        // ============================================
+        document.querySelectorAll('.login-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const targetTab = this.dataset.tab;
+                
+                // Update active tab
+                document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show correct form
+                document.querySelectorAll('.login-form').forEach(f => f.classList.remove('active'));
+                document.getElementById(targetTab + 'Form').classList.add('active');
+                
+                // Clear messages
+                hideMessages();
+            });
+        });
+
+        // ============================================
+        // HELPER FUNCTIONS
+        // ============================================
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+            successMessage.classList.remove('show');
+        }
+
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.classList.add('show');
+            errorMessage.classList.remove('show');
+        }
+
+        function hideMessages() {
+            errorMessage.classList.remove('show');
+            successMessage.classList.remove('show');
+        }
+
+        function showDashboard(user) {
+            loginSection.style.display = 'none';
+            dashboardSection.classList.add('active');
+            
+            // Update user info
+            const displayName = user.displayName || user.email.split('@')[0];
+            const firstName = displayName.split(' ')[0];
+            const initials = displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+            
+            document.getElementById('userName').textContent = firstName;
+            document.getElementById('userDisplayName').textContent = displayName;
+            document.getElementById('userEmail').textContent = user.email;
+            document.getElementById('userAvatar').textContent = initials;
+        }
+
+        function showLogin() {
+            loginSection.style.display = 'flex';
+            dashboardSection.classList.remove('active');
+            hideMessages();
+        }
+
+        // ============================================
+        // AUTH STATE LISTENER
+        // ============================================
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                showDashboard(user);
+            } else {
+                showLogin();
+            }
+        });
+
+        // ============================================
+        // LOGIN FORM
+        // ============================================
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideMessages();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const btn = loginForm.querySelector('button[type="submit"]');
+            
+            btn.textContent = 'Signing in...';
+            btn.disabled = true;
+            
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+            } catch (error) {
+                showError(getErrorMessage(error.code));
+            }
+            
+            btn.textContent = 'Sign In';
+            btn.disabled = false;
+        });
+
+        // ============================================
+        // REGISTER FORM
+        // ============================================
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideMessages();
+            
+            const firstName = document.getElementById('registerFirstName').value;
+            const lastName = document.getElementById('registerLastName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            const btn = registerForm.querySelector('button[type="submit"]');
+            
+            if (password !== confirmPassword) {
+                showError('Passwords do not match.');
+                return;
+            }
+            
+            btn.textContent = 'Creating account...';
+            btn.disabled = true;
+            
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                await userCredential.user.updateProfile({
+                    displayName: `${firstName} ${lastName}`
+                });
+                // Refresh to get updated profile
+                await auth.currentUser.reload();
+                showDashboard(auth.currentUser);
+            } catch (error) {
+                showError(getErrorMessage(error.code));
+            }
+            
+            btn.textContent = 'Create Account';
+            btn.disabled = false;
+        });
+
+        // ============================================
+        // GOOGLE SIGN IN
+        // ============================================
+        const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+        document.getElementById('googleSignIn').addEventListener('click', async () => {
+            try {
+                await auth.signInWithPopup(googleProvider);
+            } catch (error) {
+                showError(getErrorMessage(error.code));
+            }
+        });
+
+        document.getElementById('googleSignUp').addEventListener('click', async () => {
+            try {
+                await auth.signInWithPopup(googleProvider);
+            } catch (error) {
+                showError(getErrorMessage(error.code));
+            }
+        });
+
+        // ============================================
+        // PASSWORD RESET
+        // ============================================
+        document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            resetModal.classList.add('show');
+        });
+
+        document.getElementById('closeResetModal').addEventListener('click', () => {
+            resetModal.classList.remove('show');
+        });
+
+        resetModal.addEventListener('click', (e) => {
+            if (e.target === resetModal) {
+                resetModal.classList.remove('show');
+            }
+        });
+
+        resetForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('resetEmail').value;
+            const btn = resetForm.querySelector('button');
+            
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+            
+            try {
+                await auth.sendPasswordResetEmail(email);
+                resetModal.classList.remove('show');
+                showSuccess('Password reset email sent! Check your inbox.');
+                resetForm.reset();
+            } catch (error) {
+                showError(getErrorMessage(error.code));
+            }
+            
+            btn.textContent = 'Send Reset Link';
+            btn.disabled = false;
+        });
+
+        // ============================================
+        // LOGOUT
+        // ============================================
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try {
+                await auth.signOut();
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+        });
+
+        // ============================================
+        // ERROR MESSAGES
+        // ============================================
+        function getErrorMessage(errorCode) {
+            const messages = {
+                'auth/email-already-in-use': 'This email is already registered. Try signing in instead.',
+                'auth/invalid-email': 'Please enter a valid email address.',
+                'auth/operation-not-allowed': 'Email/password sign-in is not enabled.',
+                'auth/weak-password': 'Password should be at least 8 characters.',
+                'auth/user-disabled': 'This account has been disabled. Contact support.',
+                'auth/user-not-found': 'No account found with this email. Create an account first.',
+                'auth/wrong-password': 'Incorrect password. Please try again.',
+                'auth/too-many-requests': 'Too many failed attempts. Please try again later.',
+                'auth/popup-closed-by-user': 'Sign-in popup was closed. Please try again.',
+                'auth/network-request-failed': 'Network error. Check your internet connection.'
+            };
+            return messages[errorCode] || 'An error occurred. Please try again.';
+        }
+
+        // ============================================
+        // EXTERNAL LINKS SETUP
+        // ============================================
+        // Course launch buttons
+        document.querySelectorAll('.course-launch-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const courseId = btn.dataset.course;
+                const courseUrl = EXTERNAL_LINKS.courses[courseId];
+                if (courseUrl && courseUrl !== "https://www.canva.com/design/YOUR_FULLSTACK_COURSE_ID/view") {
+                    window.open(courseUrl, '_blank');
+                } else {
+                    alert('Course link coming soon! Your instructor will provide access before classes begin.');
+                }
+            });
+        });
+
+        // Quick link buttons
+        document.getElementById('linkTuition').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open(EXTERNAL_LINKS.tuition, '_blank');
+        });
+
+        document.getElementById('linkSchedule').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open(EXTERNAL_LINKS.schedule, '_blank');
+        });
+
+        document.getElementById('linkMentor').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open(EXTERNAL_LINKS.mentor, '_blank');
+        });
+
+        document.getElementById('linkCareer').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open(EXTERNAL_LINKS.career, '_blank');
+        });
+
+        document.getElementById('linkCommunity').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open(EXTERNAL_LINKS.community, '_blank');
+        });
+
+        document.getElementById('linkSupport').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open(EXTERNAL_LINKS.support, '_blank');
+        });
+
+        // Sidebar links (placeholder alerts for now)
+        document.getElementById('editProfileLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Profile editing coming soon!');
+        });
+
+        document.getElementById('changePasswordLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            auth.sendPasswordResetEmail(auth.currentUser.email)
+                .then(() => alert('Password reset email sent to ' + auth.currentUser.email))
+                .catch(error => alert('Error: ' + error.message));
+        });
+
+        document.getElementById('notificationSettingsLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Notification settings coming soon!');
+        });
+
+        document.getElementById('liveChatLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Live chat coming soon! For now, please email support@codexlabsinstitute.com');
+        });
+    </script>
+</body>
+</html>
