@@ -14,21 +14,15 @@
             --primary-light: #2c5282;
             --accent: #d4a92a;
             --accent-light: #e8bc3d;
-            --accent-dark: #b8922a;
             --white: #ffffff;
             --off-white: #f8f9fa;
             --light-gray: #e9ecef;
             --medium-gray: #5a6268;
-            --dark-gray: #2d3339;
             --text: #1a1a1a;
             --text-light: #4a5568;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -40,21 +34,12 @@
             flex-direction: column;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-weight: 600;
-        }
+        h1, h2 { font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; }
+        a { text-decoration: none; color: inherit; }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* Header */
         .main-header {
             background: var(--primary);
             padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .header-container {
@@ -86,12 +71,6 @@
             color: var(--primary-dark);
         }
 
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-
         .logo-name {
             font-family: 'Source Serif 4', serif;
             font-size: 1.375rem;
@@ -107,31 +86,23 @@
 
         .header-link {
             color: var(--white);
-            font-weight: 500;
             padding: 0.5rem 1rem;
             border-radius: 4px;
-            transition: background 0.2s;
         }
 
-        .header-link:hover {
-            background: rgba(255,255,255,0.1);
-        }
+        .header-link:hover { background: rgba(255,255,255,0.1); }
 
-        /* Login Section */
         .login-section {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 3rem 2rem;
-            background: linear-gradient(135deg, rgba(26, 58, 92, 0.95) 0%, rgba(15, 38, 64, 0.97) 100%),
-                        url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&q=80') center/cover no-repeat;
+            background: linear-gradient(135deg, rgba(26, 58, 92, 0.95), rgba(15, 38, 64, 0.97)),
+                        url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&q=80') center/cover;
         }
 
-        .login-container {
-            width: 100%;
-            max-width: 440px;
-        }
+        .login-container { width: 100%; max-width: 440px; }
 
         .login-header {
             text-align: center;
@@ -156,9 +127,7 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+        .form-group { margin-bottom: 1.5rem; }
 
         .form-group label {
             display: block;
@@ -175,19 +144,12 @@
             font-family: inherit;
             border: 2px solid var(--light-gray);
             border-radius: 8px;
-            background: var(--white);
-            color: var(--text);
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: border-color 0.2s;
         }
 
         .form-group input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(26, 58, 92, 0.1);
-        }
-
-        .form-group input::placeholder {
-            color: var(--medium-gray);
         }
 
         .form-options {
@@ -209,17 +171,10 @@
         .form-options input[type="checkbox"] {
             width: 18px;
             height: 18px;
-            accent-color: var(--primary);
         }
 
-        .form-options a {
-            color: var(--primary);
-            font-weight: 500;
-        }
-
-        .form-options a:hover {
-            text-decoration: underline;
-        }
+        .form-options a { color: var(--primary); font-weight: 500; }
+        .form-options a:hover { text-decoration: underline; }
 
         .btn {
             width: 100%;
@@ -242,16 +197,8 @@
             color: var(--white);
         }
 
-        .btn-primary:hover {
-            background: var(--primary-light);
-            transform: translateY(-1px);
-        }
-
-        .btn-primary:disabled {
-            background: var(--medium-gray);
-            cursor: not-allowed;
-            transform: none;
-        }
+        .btn-primary:hover { background: var(--primary-light); }
+        .btn-primary:disabled { background: var(--medium-gray); cursor: not-allowed; }
 
         .btn-google {
             background: var(--white);
@@ -260,15 +207,8 @@
             margin-top: 1rem;
         }
 
-        .btn-google:hover {
-            background: var(--off-white);
-            border-color: var(--medium-gray);
-        }
-
-        .btn-google img {
-            width: 20px;
-            height: 20px;
-        }
+        .btn-google:hover { background: var(--off-white); }
+        .btn-google img { width: 20px; height: 20px; }
 
         .divider {
             display: flex;
@@ -278,17 +218,14 @@
             font-size: 0.875rem;
         }
 
-        .divider::before,
-        .divider::after {
+        .divider::before, .divider::after {
             content: '';
             flex: 1;
             height: 1px;
             background: var(--light-gray);
         }
 
-        .divider span {
-            padding: 0 1rem;
-        }
+        .divider span { padding: 0 1rem; }
 
         .message {
             padding: 1rem;
@@ -298,21 +235,9 @@
             display: none;
         }
 
-        .message.show {
-            display: block;
-        }
-
-        .message.error {
-            background: #fee2e2;
-            border: 1px solid #fecaca;
-            color: #dc2626;
-        }
-
-        .message.success {
-            background: #dcfce7;
-            border: 1px solid #bbf7d0;
-            color: #16a34a;
-        }
+        .message.show { display: block; }
+        .message.error { background: #fee2e2; border: 1px solid #fecaca; color: #dc2626; }
+        .message.success { background: #dcfce7; border: 1px solid #bbf7d0; color: #16a34a; }
 
         .login-footer {
             text-align: center;
@@ -321,21 +246,9 @@
             border-top: 1px solid var(--light-gray);
         }
 
-        .login-footer p {
-            font-size: 1rem;
-            color: var(--text-light);
-        }
+        .login-footer p { font-size: 1rem; color: var(--text-light); }
+        .login-footer a { color: var(--primary); font-weight: 600; }
 
-        .login-footer a {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .login-footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -347,9 +260,7 @@
             padding: 2rem;
         }
 
-        .modal-overlay.show {
-            display: flex;
-        }
+        .modal-overlay.show { display: flex; }
 
         .modal-content {
             background: var(--white);
@@ -357,7 +268,6 @@
             padding: 2rem;
             max-width: 420px;
             width: 100%;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
 
         .modal-header {
@@ -367,10 +277,7 @@
             margin-bottom: 1rem;
         }
 
-        .modal-header h2 {
-            font-size: 1.375rem;
-            color: var(--primary);
-        }
+        .modal-header h2 { font-size: 1.375rem; color: var(--primary); }
 
         .modal-close {
             background: none;
@@ -378,20 +285,13 @@
             font-size: 1.75rem;
             color: var(--medium-gray);
             cursor: pointer;
-            line-height: 1;
-        }
-
-        .modal-close:hover {
-            color: var(--text);
         }
 
         .modal-content p {
             color: var(--text-light);
             margin-bottom: 1.5rem;
-            line-height: 1.6;
         }
 
-        /* Footer */
         .site-footer {
             background: var(--primary-dark);
             color: rgba(255,255,255,0.7);
@@ -400,16 +300,9 @@
             font-size: 0.875rem;
         }
 
-        .site-footer a {
-            color: rgba(255,255,255,0.7);
-            margin: 0 0.75rem;
-        }
+        .site-footer a { color: rgba(255,255,255,0.7); margin: 0 0.75rem; }
+        .site-footer a:hover { color: var(--white); }
 
-        .site-footer a:hover {
-            color: var(--white);
-        }
-
-        /* Loading spinner */
         .spinner {
             width: 20px;
             height: 20px;
@@ -419,11 +312,8 @@
             animation: spin 0.8s linear infinite;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Loading overlay */
         .loading-overlay {
             position: fixed;
             inset: 0;
@@ -434,9 +324,7 @@
             z-index: 9999;
         }
 
-        .loading-overlay.hidden {
-            display: none;
-        }
+        .loading-overlay.hidden { display: none; }
 
         .loading-spinner-large {
             width: 50px;
@@ -448,45 +336,29 @@
         }
 
         @media (max-width: 768px) {
-            .login-section {
-                padding: 2rem 1rem;
-            }
-
-            .login-card {
-                padding: 1.75rem;
-            }
-
-            .header-container {
-                padding: 0;
-            }
-
-            .logo-name {
-                font-size: 1.125rem;
-            }
+            .login-section { padding: 2rem 1rem; }
+            .login-card { padding: 1.75rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner-large"></div>
     </div>
 
-    <!-- Header -->
     <header class="main-header">
         <div class="header-container">
             <a href="index.html" class="logo">
                 <div class="logo-icon">C</div>
-                <div class="logo-text">
-                    <span class="logo-name">Codex Labs Institute</span>
-                    <span class="logo-tagline">From Code to Career</span>
+                <div>
+                    <div class="logo-name">Codex Labs Institute</div>
+                    <div class="logo-tagline">From Code to Career</div>
                 </div>
             </a>
             <a href="index.html" class="header-link">← Back to Home</a>
         </div>
     </header>
 
-    <!-- Login Section -->
     <section class="login-section">
         <div class="login-container">
             <div class="login-header">
@@ -500,11 +372,11 @@
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="you@example.com" required autocomplete="email">
+                        <input type="email" id="email" placeholder="you@example.com" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Enter your password" required autocomplete="current-password">
+                        <input type="password" id="password" placeholder="Enter your password" required>
                     </div>
                     <div class="form-options">
                         <label>
@@ -525,20 +397,19 @@
                 </button>
 
                 <div class="login-footer">
-                    <p>Don't have an account? <a href="register.html">Create Account</a></p>
+                    <p>Enrolled student? <a href="register.html">Create your account</a></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Password Reset Modal -->
     <div class="modal-overlay" id="resetModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Reset Password</h2>
                 <button class="modal-close" id="closeModal">&times;</button>
             </div>
-            <p>Enter your email address and we'll send you a link to reset your password.</p>
+            <p>Enter your email and we'll send you a reset link.</p>
             <form id="resetForm">
                 <div class="form-group">
                     <label for="resetEmail">Email Address</label>
@@ -549,37 +420,31 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="site-footer">
-        <p>© 2025 Codex Labs Institute. All rights reserved.</p>
+        <p>© 2025 Codex Labs Institute</p>
         <p>
-            <a href="coming-soon.html">Privacy Policy</a>
-            <a href="coming-soon.html">Terms of Service</a>
-            <a href="mailto:support@codexlabsinstitute.com">Contact Support</a>
+            <a href="coming-soon.html">Privacy</a>
+            <a href="coming-soon.html">Terms</a>
+            <a href="mailto:support@codexlabsinstitute.com">Support</a>
         </p>
     </footer>
 
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
     <script>
-        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCwdqc3dQe8eGyMqo8mZshbDaqJC4qUoVA",
             authDomain: "codex-labs-institute.firebaseapp.com",
             projectId: "codex-labs-institute",
             storageBucket: "codex-labs-institute.firebasestorage.app",
             messagingSenderId: "506810079338",
-            appId: "1:506810079338:web:60494ee74a07aeb8ff1213",
-            measurementId: "G-4CJ97JVS54"
+            appId: "1:506810079338:web:60494ee74a07aeb8ff1213"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        // DOM Elements
         const loginForm = document.getElementById('loginForm');
         const resetForm = document.getElementById('resetForm');
         const message = document.getElementById('message');
@@ -588,29 +453,19 @@
         const btnText = document.getElementById('btnText');
         const loadingOverlay = document.getElementById('loadingOverlay');
 
-        // Check if user is already logged in
         auth.onAuthStateChanged(user => {
             if (user) {
-                // User is signed in, redirect to portal
                 window.location.href = 'student-portal.html';
             } else {
-                // No user, hide loading and show login
                 loadingOverlay.classList.add('hidden');
             }
         });
 
-        // Show message helper
         function showMessage(text, type) {
             message.textContent = text;
             message.className = `message ${type} show`;
         }
 
-        // Hide message
-        function hideMessage() {
-            message.className = 'message';
-        }
-
-        // Set loading state
         function setLoading(loading) {
             if (loading) {
                 btnText.innerHTML = '<div class="spinner"></div>';
@@ -621,54 +476,42 @@
             }
         }
 
-        // Error messages
-        function getErrorMessage(code) {
-            const messages = {
-                'auth/invalid-email': 'Please enter a valid email address.',
-                'auth/user-disabled': 'This account has been disabled. Contact support.',
+        function getError(code) {
+            const errors = {
                 'auth/user-not-found': 'No account found with this email.',
-                'auth/wrong-password': 'Incorrect password. Please try again.',
-                'auth/too-many-requests': 'Too many failed attempts. Please try again later.',
-                'auth/network-request-failed': 'Network error. Check your internet connection.',
-                'auth/invalid-credential': 'Invalid email or password. Please try again.'
+                'auth/wrong-password': 'Incorrect password.',
+                'auth/invalid-credential': 'Invalid email or password.',
+                'auth/too-many-requests': 'Too many attempts. Try later.'
             };
-            return messages[code] || 'An error occurred. Please try again.';
+            return errors[code] || 'An error occurred. Try again.';
         }
 
-        // Login Form Submit
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            hideMessage();
+            message.className = 'message';
             setLoading(true);
 
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
             try {
-                await auth.signInWithEmailAndPassword(email, password);
-                // Redirect happens automatically via onAuthStateChanged
+                await auth.signInWithEmailAndPassword(
+                    document.getElementById('email').value,
+                    document.getElementById('password').value
+                );
             } catch (error) {
-                showMessage(getErrorMessage(error.code), 'error');
+                showMessage(getError(error.code), 'error');
                 setLoading(false);
             }
         });
 
-        // Google Sign In
         document.getElementById('googleSignIn').addEventListener('click', async () => {
-            hideMessage();
-            const provider = new firebase.auth.GoogleAuthProvider();
-            
             try {
-                await auth.signInWithPopup(provider);
-                // Redirect happens automatically via onAuthStateChanged
+                await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
             } catch (error) {
                 if (error.code !== 'auth/popup-closed-by-user') {
-                    showMessage(getErrorMessage(error.code), 'error');
+                    showMessage(getError(error.code), 'error');
                 }
             }
         });
 
-        // Forgot Password Modal
         document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
             e.preventDefault();
             resetModal.classList.add('show');
@@ -679,27 +522,22 @@
         });
 
         resetModal.addEventListener('click', (e) => {
-            if (e.target === resetModal) {
-                resetModal.classList.remove('show');
-            }
+            if (e.target === resetModal) resetModal.classList.remove('show');
         });
 
-        // Password Reset Form
         resetForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = document.getElementById('resetEmail').value;
             const btn = resetForm.querySelector('button');
-            
             btn.textContent = 'Sending...';
             btn.disabled = true;
 
             try {
-                await auth.sendPasswordResetEmail(email);
+                await auth.sendPasswordResetEmail(document.getElementById('resetEmail').value);
                 resetModal.classList.remove('show');
-                showMessage('Password reset email sent! Check your inbox.', 'success');
+                showMessage('Reset email sent! Check your inbox.', 'success');
                 resetForm.reset();
             } catch (error) {
-                showMessage(getErrorMessage(error.code), 'error');
+                showMessage(getError(error.code), 'error');
             }
 
             btn.textContent = 'Send Reset Link';
