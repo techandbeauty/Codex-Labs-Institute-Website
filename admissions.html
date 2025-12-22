@@ -1182,9 +1182,8 @@ footer {
             </div>
 
             <div class="application-form" id="applicationFormContainer">
-                <form id="applicationForm" name="application" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                    <input type="hidden" name="form-name" value="application">
-                    <p style="display:none;"><input name="bot-field"></p>
+                <form id="applicationForm" action="https://formspree.io/f/YOUR_APPLICATION_FORM_ID" method="POST">
+                    <input type="hidden" name="_subject" value="New Application Submission">
                     
                     <div class="form-section">
                         <h3 class="form-section-title">📋 Personal Information</h3>
@@ -1446,17 +1445,22 @@ footer {
             btn.innerHTML = 'Submitting...';
             btn.disabled = true;
             
-            fetch('/', {
+            // Formspree AJAX submission
+            fetch(form.action, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(new FormData(form)).toString()
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
             })
-            .then(() => {
-                form.style.display = 'none';
-                document.getElementById('successMessage').classList.add('active');
-                window.scrollTo({ top: document.getElementById('apply').offsetTop - 100, behavior: 'smooth' });
+            .then(response => {
+                if (response.ok) {
+                    form.style.display = 'none';
+                    document.getElementById('successMessage').classList.add('active');
+                    window.scrollTo({ top: document.getElementById('apply').offsetTop - 100, behavior: 'smooth' });
+                } else {
+                    throw new Error('Form submission failed');
+                }
             })
-            .catch((error) => {
+            .catch(error => {
                 btn.innerHTML = 'Error - Try Again';
                 btn.disabled = false;
                 btn.style.background = '#dc3545';

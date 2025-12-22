@@ -1,111 +1,89 @@
 # Codex Labs Institute Website
 
-A professional university-style website for Codex Labs Institute, an online coding school launching February 2026.
+A professional coding school website with Firebase authentication and student portal.
 
-## 🚀 Live Site
+## Hosting
 
-[View Live Site](https://codexlabsinstitute.netlify.app) *(update with your actual URL)*
+This site is designed for **GitHub Pages** hosting with **Firebase Authentication** and **Formspree** forms.
 
-## 📁 Project Structure
+**GitHub Repository:** https://github.com/techandbeauty/Codex-Labs-Institute-Website
 
-```
-codex-labs-site/
-├── index.html          # Homepage
-├── programs.html       # Course catalog with recommendation quiz
-├── admissions.html     # Admission process and application form
-├── financial-aid.html  # Tuition rates and financial aid info
-├── coming-soon.html    # Placeholder for pages under development
-├── styles.css          # Shared stylesheet
-├── netlify.toml        # Netlify configuration
-├── images/             # Image assets (add your own or use Cloudinary)
-└── README.md           # This file
-```
+## Pages
 
-## ✨ Features
+| File | Description |
+|------|-------------|
+| `index.html` | Homepage |
+| `programs.html` | Course catalog with quiz |
+| `admissions.html` | Application process & form |
+| `financial-aid.html` | Tuition & payment info |
+| `login.html` | Student sign in |
+| `register.html` | Create student account (for enrolled students) |
+| `student-portal.html` | Student dashboard (protected) |
+| `coming-soon.html` | Placeholder page |
 
-- **Responsive Design** - Works on desktop, tablet, and mobile
-- **University Aesthetic** - Professional navy/gold color scheme
-- **Netlify Forms** - All forms connected to Netlify for submissions
-- **Program Quiz** - Interactive questionnaire to recommend courses
-- **SEO Ready** - Semantic HTML structure
+## Firebase Setup
 
-## 📝 Forms Included
+The site uses Firebase Authentication with these credentials already configured:
+- Project: `codex-labs-institute`
+- Auth Domain: `codex-labs-institute.firebaseapp.com`
 
-| Form Name | Location | Purpose |
-|-----------|----------|---------|
-| `newsletter` | Homepage | Email signup |
-| `newsletter-programs` | Programs page | Email signup |
-| `application` | Admissions page | Full application |
-| `financial-aid-inquiry` | Financial Aid page | Aid request |
-| `notify-me` | Coming Soon page | Launch notifications |
+### Authentication Methods Enabled:
+- Email/Password
+- Google Sign-In
 
-## 🛠️ Setup
+### Demo Account
+The demo account email is set to: `msmeimi@gmail.com`
+This account will see sample course data in the portal.
 
-### Deploy to Netlify
+## Formspree Setup
 
-1. Push this repo to GitHub
-2. Connect to Netlify:
-   - Go to [Netlify](https://app.netlify.com)
-   - Click "Add new site" > "Import an existing project"
-   - Select your GitHub repo
-   - Deploy!
+Forms are integrated with Formspree for submission handling.
 
-### Configure Form Notifications
+### Required Forms to Create on Formspree:
 
-1. In Netlify dashboard, go to **Site settings > Forms**
-2. Click **Form notifications**
-3. Add email notification for each form
-4. Enter your email address (e.g., admissions@codexlabsinstitute.com)
+1. **Newsletter Form** - Used on index.html, programs.html, coming-soon.html
+2. **Application Form** - Used on admissions.html
+3. **Financial Aid Inquiry** - Used on financial-aid.html
 
-### Custom Domain
+### How to Set Up:
 
-1. In Netlify dashboard, go to **Domain settings**
-2. Add your custom domain
-3. Update DNS records as instructed
+1. Go to [formspree.io](https://formspree.io) and create an account
+2. Create a new form for each type above
+3. Copy each form's endpoint ID (e.g., `xyzabcde` from `https://formspree.io/f/xyzabcde`)
+4. Replace `YOUR_NEWSLETTER_FORM_ID`, `YOUR_APPLICATION_FORM_ID`, and `YOUR_FINANCIAL_AID_FORM_ID` in the HTML files
 
-## 🖼️ Images
+### Files to Update:
 
-### Option 1: Cloudinary (Recommended)
-1. Create a [Cloudinary](https://cloudinary.com) account
-2. Upload images to your media library
-3. Replace image URLs in HTML files with Cloudinary URLs
+| File | Form ID to Replace |
+|------|-------------------|
+| `index.html` | `YOUR_NEWSLETTER_FORM_ID` |
+| `programs.html` | `YOUR_NEWSLETTER_FORM_ID` |
+| `coming-soon.html` | `YOUR_NEWSLETTER_FORM_ID` |
+| `admissions.html` | `YOUR_APPLICATION_FORM_ID` |
+| `financial-aid.html` | `YOUR_FINANCIAL_AID_FORM_ID` |
 
-Example:
-```html
-<img src="https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/hero-image.jpg" alt="...">
-```
+## Deploying to GitHub Pages
 
-### Option 2: Local Images
-1. Add images to the `/images` folder
-2. Reference them in HTML:
-```html
-<img src="images/hero-image.jpg" alt="...">
+1. Push files to your GitHub repository
+2. Go to Settings → Pages
+3. Set Source to "Deploy from a branch"
+4. Select "main" branch and "/ (root)" folder
+5. Click Save
+
+## Customizing
+
+### Demo Account Email
+In `student-portal.html`, find and update:
+```javascript
+const DEMO_ACCOUNT_EMAIL = "msmeimi@gmail.com";
 ```
 
-### Option 3: Stock Photos (Current)
-The site currently uses emoji icons. To add stock photos:
-- [Unsplash](https://unsplash.com) - Free high-quality photos
-- [Pexels](https://pexels.com) - Free stock photos
+### Course Links
+In `student-portal.html`, update the `COURSE_LINKS` object with your Canva URLs.
 
-## 🎨 Customization
+### Resource Links
+In `student-portal.html`, update the `RESOURCE_LINKS` object with your Google Docs/Forms URLs.
 
-### Colors (in styles.css)
-```css
-:root {
-    --primary: #1a3a5c;      /* Deep navy */
-    --accent: #c9a227;       /* Gold */
-    --off-white: #f8f9fa;    /* Background */
-}
-```
+## Support
 
-### Fonts
-- Headings: Source Serif 4
-- Body: Source Sans 3
-
-## 📧 Contact
-
-For questions about this website, contact: admissions@codexlabsinstitute.com
-
----
-
-© 2025 Codex Labs Institute. All rights reserved.
+For questions about the website, contact: support@codexlabsinstitute.com

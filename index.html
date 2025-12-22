@@ -1297,10 +1297,9 @@ footer {
         <div class="email-signup-container">
             <h2>Stay Informed</h2>
             <p>Not ready to apply yet? Sign up to receive updates about programs, enrollment deadlines, and free resources.</p>
-            <form class="email-form" id="emailForm" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                <input type="hidden" name="form-name" value="newsletter">
-                <p class="hidden" style="display:none;"><input name="bot-field"></p>
+            <form class="email-form" id="emailForm" action="https://formspree.io/f/YOUR_NEWSLETTER_FORM_ID" method="POST">
                 <input type="email" name="email" placeholder="Enter your email address" required>
+                <input type="hidden" name="_subject" value="New Newsletter Signup">
                 <button type="submit" class="btn btn-primary">Subscribe</button>
             </form>
             <p class="form-note" style="margin-top: 1rem;">We respect your privacy. Unsubscribe anytime.</p>
@@ -1395,23 +1394,32 @@ footer {
             const btn = form.querySelector('button');
             const input = form.querySelector('input[type="email"]');
             
-            fetch('/', {
+            // Formspree AJAX submission
+            fetch(form.action, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(new FormData(form)).toString()
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
             })
-            .then(() => {
-                btn.innerHTML = '✓ Subscribed!';
-                btn.style.background = '#28a745';
-                input.value = '';
+            .then(response => {
+                if (response.ok) {
+                    btn.innerHTML = '✓ Subscribed!';
+                    btn.style.background = '#28a745';
+                    input.value = '';
+                    setTimeout(() => {
+                        btn.innerHTML = 'Subscribe';
+                        btn.style.background = '';
+                    }, 3000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                btn.innerHTML = 'Error - Try Again';
+                btn.style.background = '#dc3545';
                 setTimeout(() => {
                     btn.innerHTML = 'Subscribe';
                     btn.style.background = '';
                 }, 3000);
-            })
-            .catch((error) => {
-                btn.innerHTML = 'Error - Try Again';
-                btn.style.background = '#dc3545';
             });
         });
 

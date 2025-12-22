@@ -1303,9 +1303,8 @@ footer {
 
                 <div class="aid-form">
                     <h3>Request Information</h3>
-                    <form id="aidForm" name="financial-aid-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                        <input type="hidden" name="form-name" value="financial-aid-inquiry">
-                        <p style="display:none;"><input name="bot-field"></p>
+                    <form id="aidForm" action="https://formspree.io/f/YOUR_FINANCIAL_AID_FORM_ID" method="POST">
+                        <input type="hidden" name="_subject" value="Financial Aid Inquiry">
                         <div class="form-group">
                             <label for="aidName">Full Name *</label>
                             <input type="text" id="aidName" name="name" required>
@@ -1520,17 +1519,39 @@ footer {
             });
         });
 
-        // Aid form - Netlify
+        // Aid form - Formspree
         document.getElementById('aidForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const form = this;
             const btn = form.querySelector('button');
             
-            fetch('/', {
+            fetch(form.action, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(new FormData(form)).toString()
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
             })
-            .then(() => {
-                btn.innerHTML = '✓ Request Sent!';
-                btn.style.background = '#28a745'
+            .then(response => {
+                if (response.ok) {
+                    btn.innerHTML = '✓ Request Sent!';
+                    btn.style.background = '#28a745';
+                    form.reset();
+                    setTimeout(() => {
+                        btn.innerHTML = 'Request Information';
+                        btn.style.background = '';
+                    }, 3000);
+                } else {
+                    throw new Error('Failed');
+                }
+            })
+            .catch(error => {
+                btn.innerHTML = 'Error - Try Again';
+                btn.style.background = '#dc3545';
+                setTimeout(() => {
+                    btn.innerHTML = 'Request Information';
+                    btn.style.background = '';
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>
