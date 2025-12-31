@@ -1071,7 +1071,7 @@ footer {
                 <div class="nav-item">
                     <a href="coming-soon.html" class="nav-link">About</a>
                 </div>
-                <a href="admissions.html#apply" class="nav-cta">Apply Now</a>
+                <a href="login.html" class="nav-cta" style="background: var(--accent-dark); margin-right: 0.5rem;">Student Login</a><a href="admissions.html#apply" class="nav-cta">Apply Now</a>
             </nav>
             <button class="mobile-menu-btn">☰</button>
         </div>
@@ -1302,32 +1302,86 @@ footer {
                 </div>
 
                 <div class="aid-form">
-                    <h3>Request Information</h3>
-                    <form id="aidForm" action="https://formspree.io/f/xbdrznoy" method="POST">
-                        <input type="hidden" name="_subject" value="Financial Aid Inquiry">
+                    <h3>Payment Plan Request</h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--text-light);">Let us help you find a payment plan that works for your budget.</p>
+                    <form id="paymentForm" action="https://formspree.io/f/YOUR_PAYMENT_PLAN_FORM_ID" method="POST">
+                        <input type="hidden" name="_subject" value="Payment Plan Request">
+                        
                         <div class="form-group">
-                            <label for="aidName">Full Name *</label>
-                            <input type="text" id="aidName" name="name" required>
+                            <label for="paymentName">Full Name *</label>
+                            <input type="text" id="paymentName" name="name" required>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="aidEmail">Email Address *</label>
-                            <input type="email" id="aidEmail" name="email" required>
+                            <label for="paymentEmail">Email Address *</label>
+                            <input type="email" id="paymentEmail" name="email" required>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="aidProgram">Program of Interest</label>
-                            <select id="aidProgram" name="program">
+                            <label for="paymentPhone">Phone Number *</label>
+                            <input type="tel" id="paymentPhone" name="phone" placeholder="(555) 123-4567" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paymentProgram">Program Interested In *</label>
+                            <select id="paymentProgram" name="program" required>
                                 <option value="">Select a program</option>
-                                <option value="fullstack">Full-Stack Web Development</option>
-                                <option value="ios">iOS App Development</option>
-                                <option value="python">Python & Automation</option>
-                                <option value="startup">Tech Startup Foundations</option>
+                                <option value="Web Development - $297">Full-Stack Web Development Certificate - $297</option>
+                                <option value="Mobile App - $297">Mobile App Development Certificate - $297</option>
+                                <option value="IT Fundamentals - $197">IT Fundamentals Certificate - $197</option>
+                                <option value="AI Tools - $247">AI Tools & Automation Certificate - $247</option>
+                                <option value="Cloud - $297">Cloud Foundations Certificate - $297</option>
+                                <option value="Tech Business - $197">Tech Business Certificate - $197</option>
+                                <option value="Individual Course - $49">Individual Course - $49</option>
                             </select>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="aidMessage">Questions or Comments</label>
-                            <textarea id="aidMessage" name="message" placeholder="Tell us about your situation..." style="min-height: 80px;"></textarea>
+                            <label for="paymentAfford">How much can you afford per month? *</label>
+                            <select id="paymentAfford" name="monthlyBudget" required>
+                                <option value="">Select monthly budget</option>
+                                <option value="$49-99">$49 - $99 per month</option>
+                                <option value="$100-149">$100 - $149 per month</option>
+                                <option value="$150-199">$150 - $199 per month</option>
+                                <option value="$200+">$200+ per month</option>
+                                <option value="Pay in Full">I can pay in full upfront</option>
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Request Information</button>
+                        
+                        <div class="form-group">
+                            <label for="paymentPlan">Preferred Payment Plan *</label>
+                            <select id="paymentPlan" name="preferredPlan" required>
+                                <option value="">Select payment plan</option>
+                                <option value="Full Payment">Pay in Full (save 10%)</option>
+                                <option value="2 Payments">2 Equal Payments</option>
+                                <option value="3 Payments">3 Equal Payments</option>
+                                <option value="Monthly">Monthly Payments (duration of course)</option>
+                                <option value="Need Help">I need help deciding</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paymentStart">When do you plan to start? *</label>
+                            <select id="paymentStart" name="startDate" required>
+                                <option value="">Select start date</option>
+                                <option value="February 2026">February 2026</option>
+                                <option value="March 2026">March 2026</option>
+                                <option value="April 2026">April 2026</option>
+                                <option value="May 2026">May 2026</option>
+                                <option value="Later">Later in 2026</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paymentNotes">Additional Information (Optional)</label>
+                            <textarea id="paymentNotes" name="additionalInfo" placeholder="Any special circumstances we should know about? Questions about payment plans?" style="min-height: 100px;"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Request Payment Plan</button>
+                        
+                        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--medium-gray);">
+                            We'll review your information and contact you within 24 hours with custom payment options.
+                        </p>
                     </form>
                 </div>
             </div>
