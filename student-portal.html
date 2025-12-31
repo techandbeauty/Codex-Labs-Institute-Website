@@ -584,15 +584,184 @@
             color: var(--white);
         }
 
-        /* Demo badge */
-        .demo-badge {
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            transition: all 0.3s;
+        }
+
+        .chat-button:hover {
+            background: var(--accent-light);
+            transform: scale(1.1);
+        }
+
+        .chat-box {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            max-height: 500px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+        }
+
+        .chat-box.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .chat-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .chat-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.125rem;
+        }
+
+        .chat-status {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            max-height: 350px;
+        }
+
+        .chat-message {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .chat-message.bot {
+            flex-direction: row;
+        }
+
+        .chat-message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .user .message-avatar {
             background: var(--accent);
             color: var(--primary-dark);
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
+        }
+
+        .message-content {
+            background: var(--off-white);
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            max-width: 70%;
+            font-size: 0.9375rem;
+            line-height: 1.5;
+        }
+
+        .user .message-content {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .chat-input-area {
+            padding: 1rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .chat-input-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9375rem;
+        }
+
+        .chat-send {
+            background: var(--accent);
+            color: var(--primary-dark);
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
             font-weight: 600;
-            margin-left: 0.5rem;
         }
 
         /* Responsive */
@@ -651,6 +820,11 @@
             .course-action .btn {
                 width: 100%;
                 justify-content: center;
+            }
+
+            .chat-box {
+                width: calc(100vw - 2rem);
+                right: 1rem;
             }
         }
     </style>
@@ -728,46 +902,46 @@
                     </div>
                     <div class="card-body">
                         <div class="quick-links-grid">
-                            <button class="quick-link-item" id="linkTuition">
+                            <a href="financial-aid.html" class="quick-link-item">
                                 <div class="quick-link-icon">💳</div>
                                 <div class="quick-link-info">
                                     <h3>Tuition & Payments</h3>
-                                    <p>View balance, make payments</p>
+                                    <p>View payment options</p>
                                 </div>
-                            </button>
-                            <button class="quick-link-item" id="linkSchedule">
+                            </a>
+                            <a href="programs.html" class="quick-link-item">
                                 <div class="quick-link-icon">📅</div>
                                 <div class="quick-link-info">
                                     <h3>Class Schedule</h3>
-                                    <p>Live sessions & deadlines</p>
+                                    <p>View program details</p>
                                 </div>
-                            </button>
-                            <button class="quick-link-item" id="linkMentor">
+                            </a>
+                            <a href="mailto:codexlabsinstitute@gmail.com" class="quick-link-item">
                                 <div class="quick-link-icon">👤</div>
                                 <div class="quick-link-info">
-                                    <h3>Book Mentor Session</h3>
-                                    <p>Schedule 1:1 meeting</p>
+                                    <h3>Contact Instructor</h3>
+                                    <p>Email support</p>
                                 </div>
-                            </button>
-                            <button class="quick-link-item" id="linkCareer">
+                            </a>
+                            <a href="coming-soon.html" class="quick-link-item">
                                 <div class="quick-link-icon">💼</div>
                                 <div class="quick-link-info">
                                     <h3>Career Services</h3>
                                     <p>Resume, interviews, jobs</p>
                                 </div>
-                            </button>
-                            <button class="quick-link-item" id="linkCommunity">
+                            </a>
+                            <a href="coming-soon.html" class="quick-link-item">
                                 <div class="quick-link-icon">👥</div>
                                 <div class="quick-link-info">
                                     <h3>Student Community</h3>
                                     <p>Connect with classmates</p>
                                 </div>
-                            </button>
-                            <button class="quick-link-item" id="linkSupport">
-                                <div class="quick-link-icon">❓</div>
+                            </a>
+                            <button class="quick-link-item" id="liveChatBtn">
+                                <div class="quick-link-icon">💬</div>
                                 <div class="quick-link-info">
-                                    <h3>Help & Support</h3>
-                                    <p>FAQs, contact support</p>
+                                    <h3>Chat with CODEX</h3>
+                                    <p>AI assistant</p>
                                 </div>
                             </button>
                         </div>
@@ -781,11 +955,11 @@
                     <h3>📢 Announcements</h3>
                     <div class="announcement-list">
                         <div class="announcement-item">
-                            <div class="announcement-date">Dec 7, 2025</div>
+                            <div class="announcement-date">Dec 31, 2025</div>
                             <div class="announcement-title">Welcome to Codex Labs Institute! Your portal access is now active.</div>
                         </div>
                         <div class="announcement-item">
-                            <div class="announcement-date">Dec 5, 2025</div>
+                            <div class="announcement-date">Dec 15, 2025</div>
                             <div class="announcement-title">February 2026 cohort enrollment deadline extended to January 26th.</div>
                         </div>
                         <div class="announcement-item">
@@ -801,11 +975,11 @@
                     <div class="contact-list">
                         <div class="contact-item">
                             <span>📧</span>
-                            <a href="mailto:support@codexlabsinstitute.com">support@codexlabsinstitute.com</a>
+                            <a href="mailto:codexlabsinstitute@gmail.com">codexlabsinstitute@gmail.com</a>
                         </div>
                         <div class="contact-item">
                             <span>💬</span>
-                            <a id="liveChatBtn">Start Live Chat</a>
+                            <a id="liveChatBtn2">Chat with CODEX AI</a>
                         </div>
                         <div class="contact-item">
                             <span>📚</span>
@@ -828,7 +1002,7 @@
                         </div>
                         <div class="contact-item">
                             <span>🔔</span>
-                            <a id="notificationBtn">Notification Settings</a>
+                            <a href="coming-soon.html">Notification Settings</a>
                         </div>
                     </div>
                 </div>
@@ -836,13 +1010,44 @@
         </div>
     </main>
 
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-button" id="chatToggle">💬</button>
+        <div class="chat-box" id="chatBox">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <div class="chat-avatar">C</div>
+                    <div class="chat-info">
+                        <h4>CODEX AI</h4>
+                        <div class="chat-status">● Online</div>
+                    </div>
+                </div>
+                <button class="chat-close" id="chatClose">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-message bot">
+                    <div class="message-avatar">C</div>
+                    <div class="message-content">
+                        Hi! I'm CODEX, your AI learning assistant. How can I help you today?
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <form class="chat-input-form" id="chatForm">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything..." autocomplete="off">
+                    <button type="submit" class="chat-send">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="portal-footer">
         <p>© 2025 Codex Labs Institute. All rights reserved.</p>
         <p>
             <a href="coming-soon.html">Privacy Policy</a>
             <a href="coming-soon.html">Terms of Service</a>
-            <a href="mailto:support@codexlabsinstitute.com">Contact Support</a>
+            <a href="mailto:codexlabsinstitute@gmail.com">Contact Support</a>
         </p>
     </footer>
 
@@ -867,45 +1072,6 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
-
-        // ============================================
-        // CONFIGURATION
-        // ============================================
-        
-        // Demo account email - only this account sees sample course data
-        // Create this account in Firebase to test the enrolled student view
-        const DEMO_ACCOUNT_EMAIL = "msmeimi@gmail.com";
-
-        // External resource links - replace with your actual URLs
-        const RESOURCE_LINKS = {
-            tuition: "https://docs.google.com/forms/d/YOUR_TUITION_FORM_ID/viewform",
-            schedule: "https://docs.google.com/document/d/YOUR_SCHEDULE_DOC_ID/view",
-            mentor: "https://calendly.com/YOUR_CALENDLY_LINK",
-            career: "https://docs.google.com/document/d/YOUR_CAREER_DOC_ID/view",
-            community: "https://discord.gg/YOUR_DISCORD_INVITE",
-            support: "https://docs.google.com/forms/d/YOUR_SUPPORT_FORM_ID/viewform"
-        };
-
-        // Course links (Canva) - replace with your actual URLs
-        const COURSE_LINKS = {
-            fullstack: "https://www.canva.com/design/YOUR_FULLSTACK_COURSE_ID/view",
-            ios: "https://www.canva.com/design/YOUR_IOS_COURSE_ID/view",
-            python: "https://www.canva.com/design/YOUR_PYTHON_COURSE_ID/view",
-            startup: "https://www.canva.com/design/YOUR_STARTUP_COURSE_ID/view"
-        };
-
-        // Sample course data for demo account
-        const DEMO_COURSES = [
-            {
-                id: "fullstack",
-                name: "Full-Stack Web Development",
-                duration: "12-Week Certificate Program",
-                icon: "💻",
-                progress: 35,
-                week: 4,
-                totalWeeks: 12
-            }
-        ];
 
         // ============================================
         // DOM ELEMENTS
@@ -947,15 +1113,9 @@
         // LOAD USER COURSES
         // ============================================
         function loadUserCourses(user) {
-            // Check if this is the demo account
-            if (user.email === DEMO_ACCOUNT_EMAIL) {
-                // Show demo courses
-                displayCourses(DEMO_COURSES);
-            } else {
-                // In a real app, you would fetch courses from Firestore here
-                // For now, show "no courses" for all other users
-                displayNoCourses();
-            }
+            // For demo: show "no courses" for all users
+            // When you enroll students, you can add their email to a list here
+            displayNoCourses();
         }
 
         function displayCourses(courses) {
@@ -976,20 +1136,13 @@
                         <span class="progress-text">${course.progress}% Complete • Week ${course.week} of ${course.totalWeeks}</span>
                     </div>
                     <div class="course-action">
-                        <button class="btn btn-primary btn-small" data-course="${course.id}">Continue →</button>
+                        <a href="${course.canvasUrl}" target="_blank" class="btn btn-primary btn-small">Continue →</a>
                     </div>
                 </div>
             `).join('');
 
             courseList.style.display = 'flex';
             noCourses.style.display = 'none';
-
-            // Add click handlers to course buttons
-            courseList.querySelectorAll('[data-course]').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    launchCourse(this.dataset.course);
-                });
-            });
         }
 
         function displayNoCourses() {
@@ -998,80 +1151,130 @@
         }
 
         // ============================================
-        // LAUNCH COURSE
+        // CHAT WIDGET
         // ============================================
-        function launchCourse(courseId) {
-            const url = COURSE_LINKS[courseId];
-            
-            if (url && !url.includes('YOUR_')) {
-                window.open(url, '_blank');
-            } else {
-                alert('Course content is being prepared. Your instructor will provide access before classes begin on February 2, 2026.');
+        const chatToggle = document.getElementById('chatToggle');
+        const chatBox = document.getElementById('chatBox');
+        const chatClose = document.getElementById('chatClose');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+
+        chatToggle.addEventListener('click', () => {
+            chatBox.classList.toggle('active');
+            if (chatBox.classList.contains('active')) {
+                chatInput.focus();
             }
+        });
+
+        chatClose.addEventListener('click', () => {
+            chatBox.classList.remove('active');
+        });
+
+        document.getElementById('liveChatBtn').addEventListener('click', () => {
+            chatBox.classList.add('active');
+            chatInput.focus();
+        });
+
+        document.getElementById('liveChatBtn2').addEventListener('click', (e) => {
+            e.preventDefault();
+            chatBox.classList.add('active');
+            chatInput.focus();
+        });
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // Add user message
+            addMessage(message, 'user');
+            chatInput.value = '';
+
+            // Simulate bot response
+            setTimeout(() => {
+                const response = getCODEXResponse(message);
+                addMessage(response, 'bot');
+            }, 800);
+        });
+
+        function addMessage(text, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${type}`;
+            
+            const avatar = type === 'bot' ? 'C' : auth.currentUser.displayName?.charAt(0) || 'U';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${avatar}</div>
+                <div class="message-content">${text}</div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // ============================================
-        // RESOURCE LINKS
-        // ============================================
-        function openResource(resourceId) {
-            const url = RESOURCE_LINKS[resourceId];
+        function getCODEXResponse(message) {
+            const msg = message.toLowerCase();
             
-            if (url && !url.includes('YOUR_')) {
-                window.open(url, '_blank');
+            if (msg.includes('course') || msg.includes('class')) {
+                return "Our programs start February 2026! You can browse all available programs on our Programs page. Would you like help choosing the right program for you?";
+            } else if (msg.includes('enroll') || msg.includes('apply')) {
+                return "To enroll, visit our Admissions page and submit your application. Our team reviews applications within 2-3 business days. You can also email codexlabsinstitute@gmail.com for assistance!";
+            } else if (msg.includes('payment') || msg.includes('tuition') || msg.includes('cost')) {
+                return "Programs range from $197 to $297 depending on length. We offer payment plans including 2-pay, 3-pay, and monthly options. Check out our Tuition & Financial Aid page for details!";
+            } else if (msg.includes('help') || msg.includes('support')) {
+                return "I'm here to help! You can also email us at codexlabsinstitute@gmail.com or check our Help Center. What specific question do you have?";
+            } else if (msg.includes('canvas')) {
+                return "Canvas is our learning management system where you'll access course materials, submit assignments, and track progress. Once you're enrolled, your instructor will provide access details!";
+            } else if (msg.includes('schedule')) {
+                return "Our programs are self-paced with optional live sessions on Sundays. You can learn on your own schedule while getting support when you need it!";
             } else {
-                alert('This resource is coming soon! We\'re preparing everything for the February 2026 launch.');
+                return "Thanks for your message! For detailed assistance, please email codexlabsinstitute@gmail.com or browse our Help Center. Is there anything specific about our programs I can help you with?";
             }
         }
-
-        // Quick link button handlers
-        document.getElementById('linkTuition').addEventListener('click', () => openResource('tuition'));
-        document.getElementById('linkSchedule').addEventListener('click', () => openResource('schedule'));
-        document.getElementById('linkMentor').addEventListener('click', () => openResource('mentor'));
-        document.getElementById('linkCareer').addEventListener('click', () => openResource('career'));
-        document.getElementById('linkCommunity').addEventListener('click', () => openResource('community'));
-        document.getElementById('linkSupport').addEventListener('click', () => openResource('support'));
 
         // ============================================
         // SIDEBAR LINKS
         // ============================================
-        document.getElementById('liveChatBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('Live chat is coming soon! For now, please email support@codexlabsinstitute.com');
-        });
-
         document.getElementById('editProfileBtn').addEventListener('click', (e) => {
             e.preventDefault();
-            alert('Profile editing is coming soon!');
+            const user = auth.currentUser;
+            const newName = prompt('Enter your name:', user.displayName || '');
+            if (newName) {
+                user.updateProfile({ displayName: newName }).then(() => {
+                    alert('Profile updated!');
+                    displayUserInfo(user);
+                });
+            }
         });
 
         document.getElementById('changePasswordBtn').addEventListener('click', async (e) => {
             e.preventDefault();
             const user = auth.currentUser;
             if (user) {
-                try {
-                    await auth.sendPasswordResetEmail(user.email);
-                    alert('Password reset email sent to ' + user.email + '. Check your inbox!');
-                } catch (error) {
-                    alert('Error: ' + error.message);
+                if (confirm('Send password reset email to ' + user.email + '?')) {
+                    try {
+                        await auth.sendPasswordResetEmail(user.email);
+                        alert('Password reset email sent! Check your inbox.');
+                    } catch (error) {
+                        alert('Error: ' + error.message);
+                    }
                 }
             }
-        });
-
-        document.getElementById('notificationBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('Notification settings are coming soon!');
         });
 
         // ============================================
         // LOGOUT
         // ============================================
         document.getElementById('logoutBtn').addEventListener('click', async () => {
-            try {
-                await auth.signOut();
-                // Redirect happens via onAuthStateChanged
-            } catch (error) {
-                console.error('Logout error:', error);
-                alert('Error signing out. Please try again.');
+            if (confirm('Are you sure you want to sign out?')) {
+                try {
+                    await auth.signOut();
+                    // Redirect happens via onAuthStateChanged
+                } catch (error) {
+                    console.error('Logout error:', error);
+                    alert('Error signing out. Please try again.');
+                }
             }
         });
     </script>
