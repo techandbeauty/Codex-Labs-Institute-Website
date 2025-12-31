@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Codex Labs Institute</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3a5c;
+            --accent: #d4a92a;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --light-gray: #e9ecef;
+            --text: #1a1a1a;
+            --danger: #dc3545;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, #0f2640 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .login-container {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 400px;
+            overflow: hidden;
+        }
+
+        .login-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Source Serif 4', serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 0 auto 1rem;
+        }
+
+        .login-header h1 {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .login-body {
+            padding: 2rem;
+        }
+
+        .alert {
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            font-size: 1rem;
+            font-family: inherit;
+            border: 2px solid var(--light-gray);
+            border-radius: 6px;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn-login {
+            width: 100%;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-login:hover {
+            background: #e8bc3d;
+        }
+
+        .btn-login:disabled {
+            background: var(--light-gray);
+            cursor: not-allowed;
+        }
+
+        .login-footer {
+            padding: 1.5rem 2rem;
+            background: var(--off-white);
+            text-align: center;
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+
+        .login-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo-icon">C</div>
+            <h1>Admin Login</h1>
+            <p>Codex Labs Institute</p>
+        </div>
+
+        <div class="login-body">
+            <div class="alert alert-warning">
+                <strong>🔒 Admin Only</strong><br>
+                This portal is restricted to authorized administrators.
+            </div>
+
+            <div class="alert alert-danger" id="errorAlert" style="display: none;"></div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Admin Email</label>
+                    <input type="email" id="email" required autocomplete="email" placeholder="admin@codexlabsinstitute.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn-login" id="loginBtn">Sign In</button>
+            </form>
+        </div>
+
+        <div class="login-footer">
+            <a href="index.html">← Back to Website</a>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCwdqc3dQe8eGyMqo8mZshbDaqJC4qUoVA",
+            authDomain: "codex-labs-institute.firebaseapp.com",
+            projectId: "codex-labs-institute",
+            storageBucket: "codex-labs-institute.firebasestorage.app",
+            messagingSenderId: "506810079338",
+            appId: "1:506810079338:web:60494ee74a07aeb8ff1213"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        const ADMIN_EMAILS = [
+            'codexlabsinstitute@gmail.com',
+            'officeof.meishavernell@gmail.com'
+        ];
+
+        const errorAlert = document.getElementById('errorAlert');
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        // Check if already logged in
+        auth.onAuthStateChanged(user => {
+            if (user && ADMIN_EMAILS.includes(user.email)) {
+                window.location.href = 'admin-dashboard.html';
+            }
+        });
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+
+            // Check if email is admin
+            if (!ADMIN_EMAILS.includes(email)) {
+                showError('Access denied. This email is not authorized for admin access.');
+                return;
+            }
+
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Signing in...';
+            errorAlert.style.display = 'none';
+
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+                // Will redirect via onAuthStateChanged
+            } catch (error) {
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Sign In';
+
+                let message = 'Login failed. Please check your credentials.';
+                
+                if (error.code === 'auth/wrong-password') {
+                    message = 'Incorrect password. Please try again.';
+                } else if (error.code === 'auth/user-not-found') {
+                    message = 'No account found with this email.';
+                } else if (error.code === 'auth/invalid-email') {
+                    message = 'Invalid email address.';
+                } else if (error.code === 'auth/too-many-requests') {
+                    message = 'Too many failed attempts. Please try again later.';
+                }
+
+                showError(message);
+            }
+        });
+
+        function showError(message) {
+            errorAlert.textContent = message;
+            errorAlert.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
