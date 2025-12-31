@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment | Codex Labs Institute</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        :root {
+            --primary: #1a3a5c;
+            --primary-dark: #0f2640;
+            --accent: #d4a92a;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --light-gray: #e9ecef;
+            --text: #1a1a1a;
+            --text-light: #4a5568;
+            --success: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--off-white);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-weight: 600;
+        }
+
+        .portal-header {
+            background: var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Source Serif 4', serif;
+            font-weight: 700;
+            font-size: 1.375rem;
+            color: var(--primary-dark);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-name {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .logo-tagline {
+            font-size: 0.6875rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-link {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+
+        .main-content {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .payment-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+
+        .payment-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .payment-header h1 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-header p {
+            color: rgba(255,255,255,0.85);
+        }
+
+        .payment-body {
+            padding: 2rem;
+        }
+
+        .order-summary {
+            background: var(--off-white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .order-summary h3 {
+            font-size: 1.125rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        .payment-plan-info {
+            background: #e7f3ff;
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .payment-plan-info h4 {
+            font-size: 0.9375rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-plan-info p {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            font-size: 1rem;
+            font-family: inherit;
+            border: 2px solid var(--light-gray);
+            border-radius: 6px;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        #card-element {
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 6px;
+            background: var(--white);
+        }
+
+        #card-element.StripeElement--focus {
+            border-color: var(--primary);
+        }
+
+        #card-errors {
+            color: #fa755a;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-family: inherit;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary-dark);
+        }
+
+        .btn-primary:hover {
+            background: #e8bc3d;
+        }
+
+        .btn-primary:disabled {
+            background: var(--light-gray);
+            cursor: not-allowed;
+        }
+
+        .secure-badge {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .secure-badge span {
+            color: var(--success);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid var(--light-gray);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+                margin: 2rem auto;
+            }
+
+            .payment-body {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="portal-header">
+        <div class="header-container">
+            <a href="student-portal.html" class="logo">
+                <div class="logo-icon">C</div>
+                <div class="logo-text">
+                    <span class="logo-name">Codex Labs Institute</span>
+                    <span class="logo-tagline">Secure Payment</span>
+                </div>
+            </a>
+            <a href="student-portal.html" class="back-link">← Back to Portal</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="payment-card">
+            <div class="payment-header">
+                <h1>Complete Your Payment</h1>
+                <p>Secure payment processing powered by Stripe</p>
+            </div>
+
+            <div class="payment-body">
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-row">
+                        <span>Course:</span>
+                        <span><strong id="courseName">Full-Stack Web Development</strong></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Code:</span>
+                        <span id="courseCode">WEB101</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Session:</span>
+                        <span id="courseSession">Sundays 10:00 AM</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Payment Plan:</span>
+                        <span id="paymentPlan">Pay in Full</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Amount Due Today:</span>
+                        <span id="amountDue">$297.00</span>
+                    </div>
+                </div>
+
+                <!-- Payment Plan Info -->
+                <div class="payment-plan-info" id="planInfo">
+                    <h4>📋 Payment Plan Details</h4>
+                    <p id="planDetails">Full payment due today. You'll receive immediate access to Canvas after payment.</p>
+                </div>
+
+                <!-- Payment Form -->
+                <form id="payment-form">
+                    <div class="form-section">
+                        <h3>Billing Information</h3>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Payment Details</h3>
+                        <div class="form-group">
+                            <label for="card-element">Credit or Debit Card</label>
+                            <div id="card-element"></div>
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submit-button">
+                        <span id="button-text">Pay Now</span>
+                        <span id="button-spinner" style="display: none;">Processing...</span>
+                    </button>
+
+                    <div class="secure-badge">
+                        <span>🔒</span> Secure payment via Stripe. Your information is encrypted and protected.
+                    </div>
+                </form>
+
+                <!-- Loading State -->
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Processing your payment...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // STRIPE CONFIGURATION
+        // Replace with your actual Stripe publishable key
+        const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY_HERE');
+        const elements = stripe.elements();
+
+        // Create card element
+        const cardElement = elements.create('card', {
+            style: {
+                base: {
+                    fontSize: '16px',
+                    color: '#1a1a1a',
+                    fontFamily: '"Source Sans 3", sans-serif',
+                    '::placeholder': {
+                        color: '#5a6268'
+                    }
+                }
+            }
+        });
+
+        cardElement.mount('#card-element');
+
+        // Handle card errors
+        cardElement.on('change', (event) => {
+            const displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        // Get course details from URL or enrollment data
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseCode = urlParams.get('course') || 'WEB101';
+
+        // ENROLLMENT DATA
+        // This should match the data in student-portal.html
+        const courseData = {
+            'WEB101': {
+                name: 'Full-Stack Web Development',
+                price: 297,
+                session: 'Sundays 10:00 AM - 12:00 PM EST'
+            },
+            'IOS101': {
+                name: 'iOS App Development',
+                price: 297,
+                session: 'Sundays 2:00 PM - 4:00 PM EST'
+            },
+            'PY101': {
+                name: 'Python & Automation',
+                price: 197,
+                session: 'Sundays 10:00 AM - 11:30 AM EST'
+            },
+            'BUS101': {
+                name: 'Tech Startup Foundations',
+                price: 197,
+                session: 'Sundays 3:00 PM - 4:30 PM EST'
+            }
+        };
+
+        const course = courseData[courseCode];
+        if (course) {
+            document.getElementById('courseName').textContent = course.name;
+            document.getElementById('courseCode').textContent = courseCode;
+            document.getElementById('courseSession').textContent = course.session;
+            document.getElementById('amountDue').textContent = `$${course.price}.00`;
+        }
+
+        // Handle form submission
+        const form = document.getElementById('payment-form');
+        const submitButton = document.getElementById('submit-button');
+        const buttonText = document.getElementById('button-text');
+        const buttonSpinner = document.getElementById('button-spinner');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            // Disable submit button
+            submitButton.disabled = true;
+            buttonText.style.display = 'none';
+            buttonSpinner.style.display = 'inline';
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            try {
+                // STEP 1: Create Payment Intent on your server
+                // You'll need to create a server endpoint that creates a Stripe Payment Intent
+                const response = await fetch('/create-payment-intent', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        courseCode: courseCode,
+                        courseName: course.name,
+                        amount: course.price * 100, // Stripe uses cents
+                        email: email,
+                        name: name
+                    })
+                });
+
+                const { clientSecret } = await response.json();
+
+                // STEP 2: Confirm payment with Stripe
+                const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+                    payment_method: {
+                        card: cardElement,
+                        billing_details: {
+                            name: name,
+                            email: email
+                        }
+                    }
+                });
+
+                if (error) {
+                    // Show error to customer
+                    const errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = error.message;
+                    
+                    // Re-enable button
+                    submitButton.disabled = false;
+                    buttonText.style.display = 'inline';
+                    buttonSpinner.style.display = 'none';
+                } else if (paymentIntent.status === 'succeeded') {
+                    // Payment successful!
+                    // Redirect to success page
+                    window.location.href = `payment-success.html?course=${courseCode}`;
+                }
+            } catch (error) {
+                console.error('Payment error:', error);
+                alert('Payment failed. Please try again or contact support.');
+                
+                // Re-enable button
+                submitButton.disabled = false;
+                buttonText.style.display = 'inline';
+                buttonSpinner.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

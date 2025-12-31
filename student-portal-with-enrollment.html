@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal | Codex Labs Institute</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3a5c;
+            --primary-dark: #0f2640;
+            --primary-light: #2c5282;
+            --accent: #d4a92a;
+            --accent-light: #e8bc3d;
+            --accent-dark: #b8922a;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --light-gray: #e9ecef;
+            --medium-gray: #5a6268;
+            --dark-gray: #2d3339;
+            --text: #1a1a1a;
+            --text-light: #4a5568;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--off-white);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .loading-overlay.hidden {
+            display: none;
+        }
+
+        .loading-spinner-large {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--light-gray);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-text {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Header */
+        .portal-header {
+            background: var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Source Serif 4', serif;
+            font-weight: 700;
+            font-size: 1.375rem;
+            color: var(--primary-dark);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-name {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .logo-tagline {
+            font-size: 0.6875rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-nav a {
+            color: rgba(255,255,255,0.85);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9375rem;
+            transition: all 0.2s;
+        }
+
+        .header-nav a:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: var(--primary-dark);
+        }
+
+        .user-info {
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .user-email {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 2.5rem 2rem;
+            color: var(--white);
+        }
+
+        .welcome-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .welcome-banner h1 {
+            font-size: 1.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-banner p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.0625rem;
+        }
+
+        /* Main Content */
+        .portal-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 2rem;
+        }
+
+        .dashboard-main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h2 {
+            font-size: 1.125rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        /* No courses */
+        .no-courses {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .no-courses-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+
+        .no-courses h3 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .no-courses p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Enrolled Course */
+        .enrolled-courses {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .course-item {
+            background: var(--off-white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .course-info h3 {
+            font-size: 1.125rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .course-code {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .course-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        /* Payment Alert */
+        .payment-alert {
+            background: #fff3cd;
+            border: 2px solid var(--warning);
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .payment-alert-icon {
+            font-size: 1.5rem;
+        }
+
+        .payment-alert-content h4 {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .payment-alert-content p {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .balance-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.75rem;
+        }
+
+        /* Quick Links */
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .quick-link-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--off-white);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        .quick-link-item:hover {
+            background: var(--light-gray);
+            transform: translateY(-2px);
+        }
+
+        .quick-link-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.375rem;
+            flex-shrink: 0;
+        }
+
+        .quick-link-info h3 {
+            font-size: 0.9375rem;
+            color: var(--primary);
+            margin-bottom: 0.125rem;
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+        }
+
+        .quick-link-info p {
+            font-size: 0.8125rem;
+            color: var(--text-light);
+        }
+
+        /* Sidebar */
+        .dashboard-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            padding: 1.5rem;
+        }
+
+        .sidebar-card h3 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+        }
+
+        .announcement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .announcement-item {
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .announcement-item:last-child {
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .announcement-date {
+            font-size: 0.75rem;
+            color: var(--accent-dark);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .announcement-title {
+            font-size: 0.9375rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9375rem;
+            color: var(--text);
+        }
+
+        .contact-item span {
+            font-size: 1rem;
+        }
+
+        .contact-item a {
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .portal-footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.7);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+            margin-top: 2rem;
+        }
+
+        .portal-footer a {
+            color: rgba(255,255,255,0.7);
+            margin: 0 0.75rem;
+        }
+
+        .portal-footer a:hover {
+            color: var(--white);
+        }
+
+        /* SAGE Chat Modal */
+        .chat-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .chat-modal.active {
+            display: flex;
+        }
+
+        .chat-box {
+            width: 100%;
+            max-width: 600px;
+            max-height: 80vh;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .chat-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary-dark);
+        }
+
+        .chat-info h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .chat-status {
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+        }
+
+        .chat-close:hover {
+            opacity: 0.7;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            max-height: 50vh;
+        }
+
+        .chat-message {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .chat-message.bot {
+            flex-direction: row;
+        }
+
+        .chat-message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .user .message-avatar {
+            background: var(--accent);
+            color: var(--primary-dark);
+        }
+
+        .message-content {
+            background: var(--off-white);
+            padding: 0.875rem 1.125rem;
+            border-radius: 12px;
+            max-width: 75%;
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        .user .message-content {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .chat-input-area {
+            padding: 1.25rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .chat-input-form {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9375rem;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .chat-send {
+            background: var(--accent);
+            color: var(--primary-dark);
+            border: none;
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            transition: background 0.2s;
+        }
+
+        .chat-send:hover {
+            background: var(--accent-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-sidebar {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                height: auto;
+                padding: 1rem;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .header-nav {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .user-info {
+                display: none;
+            }
+
+            .welcome-banner {
+                padding: 1.5rem;
+            }
+
+            .welcome-banner h1 {
+                font-size: 1.5rem;
+            }
+
+            .portal-content {
+                padding: 1rem;
+            }
+
+            .quick-links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-box {
+                max-width: 100%;
+                max-height: 90vh;
+            }
+
+            .course-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .course-actions {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner-large"></div>
+        <p class="loading-text">Loading your portal...</p>
+    </div>
+
+    <!-- Header -->
+    <header class="portal-header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">C</div>
+                <div class="logo-text">
+                    <span class="logo-name">Codex Labs Institute</span>
+                    <span class="logo-tagline">Student Portal</span>
+                </div>
+            </a>
+            <nav class="header-nav">
+                <a href="index.html">Home</a>
+                <a href="programs.html">Programs</a>
+                <div class="user-menu">
+                    <div class="user-avatar" id="userAvatar">S</div>
+                    <div class="user-info">
+                        <span class="user-name" id="userName">Student</span>
+                        <span class="user-email" id="userEmail">student@example.com</span>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">Sign Out</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Welcome Banner -->
+    <section class="welcome-banner">
+        <div class="welcome-container">
+            <h1>Welcome back, <span id="welcomeName">Student</span>! 👋</h1>
+            <p>Here's what's happening with your learning journey today.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="portal-content">
+        <div class="dashboard-grid">
+            <div class="dashboard-main">
+                <!-- My Courses -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>📚 My Courses</h2>
+                        <a href="course-catalog.html" class="btn btn-outline btn-small" id="browseCatalogBtn">Browse Catalog</a>
+                    </div>
+                    <div class="card-body">
+                        <!-- Payment Alert (shown if enrolled but not paid) -->
+                        <div class="payment-alert" id="paymentAlert" style="display: none;">
+                            <div class="payment-alert-icon">⚠️</div>
+                            <div class="payment-alert-content">
+                                <h4>Payment Required</h4>
+                                <p>Complete your payment to access course materials in Canvas.</p>
+                                <div class="balance-amount" id="balanceAmount">$0.00</div>
+                                <a href="payment.html" class="btn btn-primary btn-small">Pay Now</a>
+                            </div>
+                        </div>
+
+                        <!-- No Courses (default) -->
+                        <div class="no-courses" id="noCourses">
+                            <div class="no-courses-icon">📖</div>
+                            <h3>No Active Enrollments</h3>
+                            <p>You're not currently enrolled in any courses.<br>Browse our catalog and enroll to start your coding journey!</p>
+                            <a href="course-catalog.html" class="btn btn-primary">Browse Course Catalog</a>
+                        </div>
+
+                        <!-- Enrolled Courses (hidden by default) -->
+                        <div class="enrolled-courses" id="enrolledCourses" style="display: none;">
+                            <!-- Filled by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Student Resources -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>🔗 Student Resources</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="quick-links-grid">
+                            <a href="financial-aid.html" class="quick-link-item">
+                                <div class="quick-link-icon">💳</div>
+                                <div class="quick-link-info">
+                                    <h3>Tuition & Payments</h3>
+                                    <p>View payment options</p>
+                                </div>
+                            </a>
+                            <a href="programs.html" class="quick-link-item">
+                                <div class="quick-link-icon">📅</div>
+                                <div class="quick-link-info">
+                                    <h3>Program Details</h3>
+                                    <p>View all programs</p>
+                                </div>
+                            </a>
+                            <a href="mailto:codexlabsinstitute@gmail.com" class="quick-link-item">
+                                <div class="quick-link-icon">👤</div>
+                                <div class="quick-link-info">
+                                    <h3>Contact Instructor</h3>
+                                    <p>Email support</p>
+                                </div>
+                            </a>
+                            <a href="coming-soon.html" class="quick-link-item">
+                                <div class="quick-link-icon">💼</div>
+                                <div class="quick-link-info">
+                                    <h3>Career Services</h3>
+                                    <p>Resume, interviews, jobs</p>
+                                </div>
+                            </a>
+                            <a href="coming-soon.html" class="quick-link-item">
+                                <div class="quick-link-icon">👥</div>
+                                <div class="quick-link-info">
+                                    <h3>Student Community</h3>
+                                    <p>Connect with classmates</p>
+                                </div>
+                            </a>
+                            <button class="quick-link-item" id="openSageBtn">
+                                <div class="quick-link-icon">💬</div>
+                                <div class="quick-link-info">
+                                    <h3>Chat with SAGE</h3>
+                                    <p>Academic guidance assistant</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-sidebar">
+                <!-- Announcements -->
+                <div class="sidebar-card">
+                    <h3>📢 Announcements</h3>
+                    <div class="announcement-list">
+                        <div class="announcement-item">
+                            <div class="announcement-date">Dec 31, 2025</div>
+                            <div class="announcement-title">Welcome to Codex Labs Institute! Your portal access is now active.</div>
+                        </div>
+                        <div class="announcement-item">
+                            <div class="announcement-date">Dec 15, 2025</div>
+                            <div class="announcement-title">February 2026 cohort enrollment deadline extended to January 26th.</div>
+                        </div>
+                        <div class="announcement-item">
+                            <div class="announcement-date">Dec 1, 2025</div>
+                            <div class="announcement-title">Holiday office hours: Dec 23 - Jan 2. Support available via email.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Need Help -->
+                <div class="sidebar-card">
+                    <h3>📞 Need Help?</h3>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <span>📧</span>
+                            <a href="mailto:codexlabsinstitute@gmail.com">codexlabsinstitute@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <span>💬</span>
+                            <a id="openSageBtn2">Chat with SAGE</a>
+                        </div>
+                        <div class="contact-item">
+                            <span>📚</span>
+                            <a href="coming-soon.html">Help Center & FAQs</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Settings -->
+                <div class="sidebar-card">
+                    <h3>⚙️ Account</h3>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <span>👤</span>
+                            <a id="editProfileBtn">Edit Profile</a>
+                        </div>
+                        <div class="contact-item">
+                            <span>🔒</span>
+                            <a id="changePasswordBtn">Change Password</a>
+                        </div>
+                        <div class="contact-item">
+                            <span>🔔</span>
+                            <a href="coming-soon.html">Notification Settings</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SAGE Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-box">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <div class="chat-avatar">S</div>
+                    <div class="chat-info">
+                        <h4>SAGE</h4>
+                        <div class="chat-status">Student Academic Guidance Engine</div>
+                    </div>
+                </div>
+                <button class="chat-close" id="chatClose">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-message bot">
+                    <div class="message-avatar">S</div>
+                    <div class="message-content">
+                        Hello, I'm SAGE, the Student Academic Guidance Engine for Codex Labs Institute. I can help you with enrollment questions, student account information, financial aid basics, course details, and technical support.<br><br>How can I assist you today?
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <form class="chat-input-form" id="chatForm">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Type your question..." autocomplete="off">
+                    <button type="submit" class="chat-send">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="portal-footer">
+        <p>© 2025 Codex Labs Institute. All rights reserved.</p>
+        <p>
+            <a href="coming-soon.html">Privacy Policy</a>
+            <a href="coming-soon.html">Terms of Service</a>
+            <a href="mailto:codexlabsinstitute@gmail.com">Contact Support</a>
+        </p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCwdqc3dQe8eGyMqo8mZshbDaqJC4qUoVA",
+            authDomain: "codex-labs-institute.firebaseapp.com",
+            projectId: "codex-labs-institute",
+            storageBucket: "codex-labs-institute.firebasestorage.app",
+            messagingSenderId: "506810079338",
+            appId: "1:506810079338:web:60494ee74a07aeb8ff1213",
+            measurementId: "G-4CJ97JVS54"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+        // AUTH STATE - Protect Page
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                displayUserInfo(user);
+                checkEnrollmentStatus(user.email);
+                loadingOverlay.classList.add('hidden');
+            } else {
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Display User Info
+        function displayUserInfo(user) {
+            const displayName = user.displayName || user.email.split('@')[0];
+            const firstName = displayName.split(' ')[0];
+            const initials = displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+            document.getElementById('welcomeName').textContent = firstName;
+            document.getElementById('userName').textContent = displayName;
+            document.getElementById('userEmail').textContent = user.email;
+            document.getElementById('userAvatar').textContent = initials;
+        }
+
+        // Check Enrollment Status
+        function checkEnrollmentStatus(email) {
+            // ENROLLMENT LOGIC
+            // This object defines which students are enrolled in which courses
+            // Add student emails here after they enroll
+            
+            const enrolledStudents = {
+                // Example format:
+                // 'student@example.com': {
+                //     courseCode: 'WEB101',
+                //     courseName: 'Full-Stack Web Development',
+                //     session: 'Sundays 10:00 AM - 12:00 PM EST',
+                //     tuition: 297,
+                //     paymentPlan: '3-pay',
+                //     paid: false,
+                //     balance: 297,
+                //     canvasUrl: 'https://canvas.instructure.com/courses/YOUR_COURSE_ID'
+                // },
+                
+                // Add enrolled students manually after they enroll:
+                // 'msmeimi@gmail.com': {
+                //     courseCode: 'WEB101',
+                //     courseName: 'Full-Stack Web Development',
+                //     session: 'Sundays 10:00 AM - 12:00 PM EST',
+                //     tuition: 297,
+                //     paymentPlan: 'full',
+                //     paid: true,
+                //     balance: 0,
+                //     canvasUrl: 'https://canvas.instructure.com/courses/12345'
+                // }
+            };
+
+            const enrollment = enrolledStudents[email];
+
+            if (enrollment) {
+                // Student is enrolled
+                document.getElementById('noCourses').style.display = 'none';
+                document.getElementById('enrolledCourses').style.display = 'block';
+                
+                if (!enrollment.paid && enrollment.balance > 0) {
+                    // Show payment alert
+                    document.getElementById('paymentAlert').style.display = 'flex';
+                    document.getElementById('balanceAmount').textContent = `$${enrollment.balance}`;
+                }
+
+                // Display enrolled course
+                displayEnrolledCourse(enrollment);
+            } else {
+                // No enrollment - show default
+                document.getElementById('noCourses').style.display = 'block';
+                document.getElementById('enrolledCourses').style.display = 'none';
+                document.getElementById('paymentAlert').style.display = 'none';
+            }
+        }
+
+        function displayEnrolledCourse(enrollment) {
+            const container = document.getElementById('enrolledCourses');
+            
+            const actionButton = enrollment.paid 
+                ? `<a href="${enrollment.canvasUrl}" target="_blank" class="btn btn-success btn-small">Access Canvas →</a>`
+                : `<a href="payment.html?course=${enrollment.courseCode}" class="btn btn-primary btn-small">Pay Now</a>`;
+
+            container.innerHTML = `
+                <div class="course-item">
+                    <div class="course-info">
+                        <h3>${enrollment.courseName}</h3>
+                        <div class="course-code">${enrollment.courseCode}</div>
+                        <div class="course-meta">
+                            <span>📅 ${enrollment.session}</span>
+                            <span>💳 ${enrollment.paymentPlan}</span>
+                            ${enrollment.paid ? '<span style="color: var(--success);">✓ Paid</span>' : `<span style="color: var(--danger);">Balance: $${enrollment.balance}</span>`}
+                        </div>
+                    </div>
+                    <div class="course-actions">
+                        ${actionButton}
+                    </div>
+                </div>
+            `;
+        }
+
+        // SAGE Chat Modal
+        const chatModal = document.getElementById('chatModal');
+        const chatClose = document.getElementById('chatClose');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+
+        document.getElementById('openSageBtn').addEventListener('click', () => {
+            chatModal.classList.add('active');
+            chatInput.focus();
+        });
+
+        document.getElementById('openSageBtn2').addEventListener('click', (e) => {
+            e.preventDefault();
+            chatModal.classList.add('active');
+            chatInput.focus();
+        });
+
+        chatClose.addEventListener('click', () => {
+            chatModal.classList.remove('active');
+        });
+
+        chatModal.addEventListener('click', (e) => {
+            if (e.target === chatModal) {
+                chatModal.classList.remove('active');
+            }
+        });
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            chatInput.value = '';
+
+            setTimeout(() => {
+                const response = getSAGEResponse(message);
+                addMessage(response, 'bot');
+            }, 800);
+        });
+
+        function addMessage(text, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${type}`;
+            
+            const avatar = type === 'bot' ? 'S' : (auth.currentUser.displayName?.charAt(0) || 'U');
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${avatar}</div>
+                <div class="message-content">${text}</div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getSAGEResponse(message) {
+            const msg = message.toLowerCase();
+            
+            if (msg.includes('loan') || msg.includes('fafsa') || msg.includes('tax') || 
+                (msg.includes('financial aid') && (msg.includes('exact') || msg.includes('how much') || msg.includes('amount')))) {
+                return "I can provide general information, but a financial aid advisor will need to assist with this request. Please email codexlabsinstitute@gmail.com for personalized financial guidance.";
+            }
+            
+            if (msg.includes('password reset') || msg.includes('change password') || msg.includes('forgot password')) {
+                return "For security reasons, I cannot reset your password directly. Please use the 'Change Password' option in your Account Settings, or click 'Forgot Password' on the login page to receive a reset email.";
+            }
+            
+            if (msg.includes('account') && (msg.includes('access') || msg.includes('modify') || msg.includes('update'))) {
+                return "For privacy and security reasons, I can't access or modify account information. Please use the Account Settings in your portal, or contact codexlabsinstitute@gmail.com for assistance.";
+            }
+            
+            if (msg.includes('grade') || msg.includes('grading') || msg.includes('dispute') || msg.includes('appeal')) {
+                return "That decision requires review by an academic advisor or administrator. Please email your instructor or contact codexlabsinstitute@gmail.com for academic matters.";
+            }
+            
+            if (msg.includes('complaint') || msg.includes('grievance') || msg.includes('emergency')) {
+                return "This matter needs to be handled directly by a Codex Labs team member. Please email codexlabsinstitute@gmail.com or call during business hours for urgent matters.";
+            }
+            
+            if (msg.includes('enroll') || msg.includes('apply') || msg.includes('application') || msg.includes('admission')) {
+                return "To enroll, visit our Course Catalog and select a course with your preferred session time. The enrollment deadline for February 2026 is January 26th. For specific enrollment questions, contact codexlabsinstitute@gmail.com.";
+            }
+            
+            if (msg.includes('course') || msg.includes('class') || msg.includes('program')) {
+                if (msg.includes('when') || msg.includes('start') || msg.includes('begin')) {
+                    return "Our programs start February 2, 2026. Course length varies: Full-Stack Web (12 weeks), iOS Development (8 weeks), Python & Automation (6 weeks), and Tech Startup (6 weeks). Visit the Course Catalog for detailed schedules and available session times.";
+                }
+                if (msg.includes('require') || msg.includes('prerequisite')) {
+                    return "No prior coding experience is required for any program. You need: a computer with internet access, ability to dedicate 10-30 hours per week, and English proficiency. Specific requirements are listed on each program's page.";
+                }
+                return "We offer four certificate programs starting February 2026. Visit our Course Catalog to see all courses, session times, and enrollment options. For program-specific questions, email codexlabsinstitute@gmail.com.";
+            }
+            
+            if (msg.includes('cost') || msg.includes('tuition') || msg.includes('payment') || msg.includes('price')) {
+                return "Programs range from $197 to $297 depending on length. We offer flexible payment plans: pay in full (10% discount), 2-pay, 3-pay, or monthly installments. Visit our Tuition & Financial Aid page for detailed pricing and payment options.";
+            }
+            
+            if (msg.includes('canvas') || msg.includes('lms')) {
+                return "Canvas is our learning management system. Once you're enrolled and payment is confirmed, you'll receive Canvas login instructions via email. All course materials, assignments, and grades are accessed through Canvas. For technical issues, contact codexlabsinstitute@gmail.com.";
+            }
+            
+            if (msg.includes('schedule') || msg.includes('time') || msg.includes('when')) {
+                return "Programs are self-paced with optional live sessions. When you enroll, you select your preferred session time (morning, afternoon, or evening). Live sessions are held on Sundays. You can complete coursework on your own schedule within the program timeframe.";
+            }
+            
+            if (msg.includes('portal') || msg.includes('login') || msg.includes('access')) {
+                return "Your student portal provides access to announcements, resources, and account settings. After enrollment and payment, you'll receive Canvas access for course materials. Contact codexlabsinstitute@gmail.com if you're experiencing access issues.";
+            }
+            
+            if (msg.includes('help') || msg.includes('support') || msg.includes('question')) {
+                return "I can assist with enrollment questions, student account information, financial aid basics, course details, and technical support. For matters requiring human review, please email codexlabsinstitute@gmail.com. What specific information do you need?";
+            }
+            
+            return "I'm here to help with enrollment questions, student account information, financial aid basics, course details, and technical support. For personalized assistance or matters requiring human review, please email codexlabsinstitute@gmail.com. Could you please clarify your question?";
+        }
+
+        // Account Settings
+        document.getElementById('editProfileBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            const user = auth.currentUser;
+            const newName = prompt('Enter your name:', user.displayName || '');
+            if (newName && newName.trim()) {
+                user.updateProfile({ displayName: newName.trim() }).then(() => {
+                    alert('Profile updated!');
+                    displayUserInfo(user);
+                }).catch(err => {
+                    alert('Error updating profile: ' + err.message);
+                });
+            }
+        });
+
+        document.getElementById('changePasswordBtn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const user = auth.currentUser;
+            if (user && confirm('Send password reset email to ' + user.email + '?')) {
+                try {
+                    await auth.sendPasswordResetEmail(user.email);
+                    alert('Password reset email sent! Check your inbox.');
+                } catch (error) {
+                    alert('Error: ' + error.message);
+                }
+            }
+        });
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            if (confirm('Are you sure you want to sign out?')) {
+                try {
+                    await auth.signOut();
+                } catch (error) {
+                    alert('Error signing out: ' + error.message);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
