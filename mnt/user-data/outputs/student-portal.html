@@ -11,27 +11,18 @@
         :root {
             --primary: #1a3a5c;
             --primary-dark: #0f2640;
-            --primary-light: #2c5282;
             --accent: #d4a92a;
             --accent-light: #e8bc3d;
-            --accent-dark: #b8922a;
             --white: #ffffff;
             --off-white: #f8f9fa;
             --light-gray: #e9ecef;
-            --medium-gray: #5a6268;
-            --dark-gray: #2d3339;
             --text: #1a1a1a;
             --text-light: #4a5568;
             --success: #28a745;
             --warning: #ffc107;
-            --danger: #dc3545;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -46,12 +37,8 @@
             font-weight: 600;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+        a { text-decoration: none; color: inherit; }
 
-        /* Loading overlay */
         .loading-overlay {
             position: fixed;
             inset: 0;
@@ -64,9 +51,7 @@
             gap: 1rem;
         }
 
-        .loading-overlay.hidden {
-            display: none;
-        }
+        .loading-overlay.hidden { display: none; }
 
         .loading-spinner-large {
             width: 50px;
@@ -77,16 +62,8 @@
             animation: spin 1s linear infinite;
         }
 
-        .loading-text {
-            color: var(--text-light);
-            font-size: 1rem;
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Header */
         .portal-header {
             background: var(--primary);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -186,22 +163,9 @@
             color: var(--primary-dark);
         }
 
-        .user-info {
-            color: var(--white);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .user-name {
-            font-size: 0.9375rem;
-            font-weight: 600;
-            line-height: 1.2;
-        }
-
-        .user-email {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.7);
-        }
+        .user-info { color: var(--white); display: flex; flex-direction: column; }
+        .user-name { font-size: 0.9375rem; font-weight: 600; line-height: 1.2; }
+        .user-email { font-size: 0.75rem; color: rgba(255,255,255,0.7); }
 
         .logout-btn {
             background: transparent;
@@ -220,29 +184,16 @@
             border-color: rgba(255,255,255,0.5);
         }
 
-        /* Welcome Banner */
         .welcome-banner {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             padding: 2.5rem 2rem;
             color: var(--white);
         }
 
-        .welcome-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        .welcome-container { max-width: 1400px; margin: 0 auto; }
+        .welcome-banner h1 { font-size: 1.875rem; margin-bottom: 0.5rem; }
+        .welcome-banner p { color: rgba(255,255,255,0.85); font-size: 1.0625rem; }
 
-        .welcome-banner h1 {
-            font-size: 1.875rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .welcome-banner p {
-            color: rgba(255,255,255,0.85);
-            font-size: 1.0625rem;
-        }
-
-        /* Main Content */
         .portal-content {
             max-width: 1400px;
             margin: 0 auto;
@@ -261,7 +212,6 @@
             gap: 2rem;
         }
 
-        /* Cards */
         .card {
             background: var(--white);
             border-radius: 12px;
@@ -287,9 +237,7 @@
             font-weight: 600;
         }
 
-        .card-body {
-            padding: 1.5rem;
-        }
+        .card-body { padding: 1.5rem; }
 
         .btn {
             display: inline-flex;
@@ -311,76 +259,82 @@
             color: var(--primary-dark);
         }
 
-        .btn-primary:hover {
-            background: var(--accent-light);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: var(--white);
-        }
+        .btn-primary:hover { background: var(--accent-light); }
 
         .btn-success {
             background: var(--success);
             color: var(--white);
         }
 
-        .btn-success:hover {
-            background: #218838;
-        }
+        .btn-success:hover { background: #218838; }
 
-        .btn-small {
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-        }
+        .btn-small { padding: 0.5rem 1rem; font-size: 0.875rem; }
 
-        /* No courses */
-        .no-courses {
+        /* No Enrollment State */
+        .no-enrollment {
             text-align: center;
             padding: 3rem 2rem;
         }
 
-        .no-courses-icon {
+        .no-enrollment-icon {
             font-size: 4rem;
             margin-bottom: 1rem;
             opacity: 0.6;
         }
 
-        .no-courses h3 {
+        .no-enrollment h3 {
             font-size: 1.25rem;
             color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
-        .no-courses p {
+        .no-enrollment p {
             color: var(--text-light);
             margin-bottom: 1.5rem;
             line-height: 1.6;
         }
 
-        /* Enrolled Course */
-        .enrolled-courses {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        /* Payment Required State */
+        .payment-required {
+            background: #fff3cd;
+            border: 2px solid var(--warning);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
         }
 
-        .course-item {
+        .payment-required-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .payment-required h3 {
+            font-size: 1.25rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-required p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .balance-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Enrolled Course State */
+        .enrolled-course {
             background: var(--off-white);
             padding: 1.5rem;
             border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            margin-bottom: 1rem;
         }
 
-        .course-info h3 {
+        .enrolled-course h3 {
             font-size: 1.125rem;
             color: var(--primary);
             margin-bottom: 0.25rem;
@@ -389,7 +343,7 @@
         .course-code {
             font-size: 0.875rem;
             color: var(--text-light);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .course-meta {
@@ -397,47 +351,28 @@
             gap: 1.5rem;
             font-size: 0.875rem;
             color: var(--text-light);
-        }
-
-        .course-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        /* Payment Alert */
-        .payment-alert {
-            background: #fff3cd;
-            border: 2px solid var(--warning);
-            border-radius: 10px;
-            padding: 1.25rem;
             margin-bottom: 1rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
         }
 
-        .payment-alert-icon {
-            font-size: 1.5rem;
+        .canvas-access {
+            text-align: center;
+            padding: 2rem;
         }
 
-        .payment-alert-content h4 {
-            font-size: 1rem;
-            color: var(--text);
-            margin-bottom: 0.25rem;
+        .canvas-access-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
-        .payment-alert-content p {
-            font-size: 0.875rem;
+        .canvas-access h3 {
+            font-size: 1.25rem;
+            color: var(--success);
+            margin-bottom: 0.5rem;
+        }
+
+        .canvas-access p {
             color: var(--text-light);
-            margin-bottom: 0.75rem;
-        }
-
-        .balance-amount {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--danger);
-            margin-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
         }
 
         /* Quick Links */
@@ -539,7 +474,7 @@
 
         .announcement-date {
             font-size: 0.75rem;
-            color: var(--accent-dark);
+            color: var(--accent);
             font-weight: 600;
             margin-bottom: 0.25rem;
         }
@@ -564,18 +499,14 @@
             color: var(--text);
         }
 
-        .contact-item span {
-            font-size: 1rem;
-        }
+        .contact-item span { font-size: 1rem; }
 
         .contact-item a {
             color: var(--primary);
             cursor: pointer;
         }
 
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
+        .contact-item a:hover { text-decoration: underline; }
 
         /* Footer */
         .portal-footer {
@@ -592,9 +523,7 @@
             margin: 0 0.75rem;
         }
 
-        .portal-footer a:hover {
-            color: var(--white);
-        }
+        .portal-footer a:hover { color: var(--white); }
 
         /* SAGE Chat Modal */
         .chat-modal {
@@ -608,9 +537,7 @@
             padding: 1rem;
         }
 
-        .chat-modal.active {
-            display: flex;
-        }
+        .chat-modal.active { display: flex; }
 
         .chat-box {
             width: 100%;
@@ -677,9 +604,7 @@
             transition: opacity 0.2s;
         }
 
-        .chat-close:hover {
-            opacity: 0.7;
-        }
+        .chat-close:hover { opacity: 0.7; }
 
         .chat-messages {
             flex: 1;
@@ -694,13 +619,8 @@
             gap: 0.75rem;
         }
 
-        .chat-message.bot {
-            flex-direction: row;
-        }
-
-        .chat-message.user {
-            flex-direction: row-reverse;
-        }
+        .chat-message.bot { flex-direction: row; }
+        .chat-message.user { flex-direction: row-reverse; }
 
         .message-avatar {
             width: 36px;
@@ -772,19 +692,11 @@
             transition: background 0.2s;
         }
 
-        .chat-send:hover {
-            background: var(--accent-light);
-        }
+        .chat-send:hover { background: var(--accent-light); }
 
-        /* Responsive */
         @media (max-width: 1024px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .dashboard-sidebar {
-                order: -1;
-            }
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .dashboard-sidebar { order: -1; }
         }
 
         @media (max-width: 768px) {
@@ -794,57 +706,28 @@
                 flex-wrap: wrap;
                 gap: 1rem;
             }
-
             .header-nav {
                 width: 100%;
                 justify-content: space-between;
             }
-
-            .user-info {
-                display: none;
-            }
-
-            .welcome-banner {
-                padding: 1.5rem;
-            }
-
-            .welcome-banner h1 {
-                font-size: 1.5rem;
-            }
-
-            .portal-content {
-                padding: 1rem;
-            }
-
-            .quick-links-grid {
-                grid-template-columns: 1fr;
-            }
-
+            .user-info { display: none; }
+            .welcome-banner { padding: 1.5rem; }
+            .welcome-banner h1 { font-size: 1.5rem; }
+            .portal-content { padding: 1rem; }
+            .quick-links-grid { grid-template-columns: 1fr; }
             .chat-box {
                 max-width: 100%;
                 max-height: 90vh;
-            }
-
-            .course-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .course-actions {
-                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner-large"></div>
-        <p class="loading-text">Loading your portal...</p>
+        <p style="color: var(--text-light);">Loading your portal...</p>
     </div>
 
-    <!-- Header -->
     <header class="portal-header">
         <div class="header-container">
             <a href="index.html" class="logo">
@@ -869,7 +752,6 @@
         </div>
     </header>
 
-    <!-- Welcome Banner -->
     <section class="welcome-banner">
         <div class="welcome-container">
             <h1>Welcome back, <span id="welcomeName">Student</span>! 👋</h1>
@@ -877,44 +759,18 @@
         </div>
     </section>
 
-    <!-- Main Content -->
     <main class="portal-content">
         <div class="dashboard-grid">
             <div class="dashboard-main">
-                <!-- My Courses -->
                 <div class="card">
                     <div class="card-header">
-                        <h2>📚 My Courses</h2>
-                        <a href="course-catalog.html" class="btn btn-outline btn-small" id="browseCatalogBtn">Browse Catalog</a>
+                        <h2>📚 My Enrollment</h2>
                     </div>
-                    <div class="card-body">
-                        <!-- Payment Alert (shown if enrolled but not paid) -->
-                        <div class="payment-alert" id="paymentAlert" style="display: none;">
-                            <div class="payment-alert-icon">⚠️</div>
-                            <div class="payment-alert-content">
-                                <h4>Payment Required</h4>
-                                <p>Complete your payment to access course materials in Canvas.</p>
-                                <div class="balance-amount" id="balanceAmount">$0.00</div>
-                                <a href="payment.html" class="btn btn-primary btn-small">Pay Now</a>
-                            </div>
-                        </div>
-
-                        <!-- No Courses (default) -->
-                        <div class="no-courses" id="noCourses">
-                            <div class="no-courses-icon">📖</div>
-                            <h3>No Active Enrollments</h3>
-                            <p>You're not currently enrolled in any courses.<br>Browse our catalog and enroll to start your coding journey!</p>
-                            <a href="course-catalog.html" class="btn btn-primary">Browse Course Catalog</a>
-                        </div>
-
-                        <!-- Enrolled Courses (hidden by default) -->
-                        <div class="enrolled-courses" id="enrolledCourses" style="display: none;">
-                            <!-- Filled by JavaScript -->
-                        </div>
+                    <div class="card-body" id="enrollmentArea">
+                        <!-- Content filled by JavaScript based on enrollment status -->
                     </div>
                 </div>
 
-                <!-- Student Resources -->
                 <div class="card">
                     <div class="card-header">
                         <h2>🔗 Student Resources</h2>
@@ -969,7 +825,6 @@
             </div>
 
             <div class="dashboard-sidebar">
-                <!-- Announcements -->
                 <div class="sidebar-card">
                     <h3>📢 Announcements</h3>
                     <div class="announcement-list">
@@ -988,7 +843,6 @@
                     </div>
                 </div>
 
-                <!-- Need Help -->
                 <div class="sidebar-card">
                     <h3>📞 Need Help?</h3>
                     <div class="contact-list">
@@ -1007,7 +861,6 @@
                     </div>
                 </div>
 
-                <!-- Account Settings -->
                 <div class="sidebar-card">
                     <h3>⚙️ Account</h3>
                     <div class="contact-list">
@@ -1029,7 +882,6 @@
         </div>
     </main>
 
-    <!-- SAGE Chat Modal -->
     <div class="chat-modal" id="chatModal">
         <div class="chat-box">
             <div class="chat-header">
@@ -1059,7 +911,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="portal-footer">
         <p>© 2025 Codex Labs Institute. All rights reserved.</p>
         <p>
@@ -1069,39 +920,32 @@
         </p>
     </footer>
 
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
     <script>
-        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCwdqc3dQe8eGyMqo8mZshbDaqJC4qUoVA",
             authDomain: "codex-labs-institute.firebaseapp.com",
             projectId: "codex-labs-institute",
             storageBucket: "codex-labs-institute.firebasestorage.app",
             messagingSenderId: "506810079338",
-            appId: "1:506810079338:web:60494ee74a07aeb8ff1213",
-            measurementId: "G-4CJ97JVS54"
+            appId: "1:506810079338:web:60494ee74a07aeb8ff1213"
         };
 
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        const loadingOverlay = document.getElementById('loadingOverlay');
-
-        // AUTH STATE - Protect Page
         auth.onAuthStateChanged(user => {
             if (user) {
                 displayUserInfo(user);
                 checkEnrollmentStatus(user.email);
-                loadingOverlay.classList.add('hidden');
+                document.getElementById('loadingOverlay').classList.add('hidden');
             } else {
                 window.location.href = 'login.html';
             }
         });
 
-        // Display User Info
         function displayUserInfo(user) {
             const displayName = user.displayName || user.email.split('@')[0];
             const firstName = displayName.split(' ')[0];
@@ -1113,87 +957,77 @@
             document.getElementById('userAvatar').textContent = initials;
         }
 
-        // Check Enrollment Status
         function checkEnrollmentStatus(email) {
-            // ENROLLMENT LOGIC
-            // This object defines which students are enrolled in which courses
-            // Add student emails here after they enroll
-            
+            // ENROLLMENT DATABASE
+            // Add enrolled students here after they enroll
             const enrolledStudents = {
-                // Example format:
-                // 'student@example.com': {
-                //     courseCode: 'WEB101',
-                //     courseName: 'Full-Stack Web Development',
-                //     session: 'Sundays 10:00 AM - 12:00 PM EST',
-                //     tuition: 297,
-                //     paymentPlan: '3-pay',
-                //     paid: false,
-                //     balance: 297,
-                //     canvasUrl: 'https://canvas.instructure.com/courses/YOUR_COURSE_ID'
-                // },
-                
-                // Add enrolled students manually after they enroll:
-                // 'msmeimi@gmail.com': {
+                // Example:
+                // 'student@email.com': {
                 //     courseCode: 'WEB101',
                 //     courseName: 'Full-Stack Web Development',
                 //     session: 'Sundays 10:00 AM - 12:00 PM EST',
                 //     tuition: 297,
                 //     paymentPlan: 'full',
-                //     paid: true,
-                //     balance: 0,
+                //     paid: false,
+                //     balance: 297,
                 //     canvasUrl: 'https://canvas.instructure.com/courses/12345'
                 // }
             };
 
             const enrollment = enrolledStudents[email];
+            const container = document.getElementById('enrollmentArea');
 
-            if (enrollment) {
-                // Student is enrolled
-                document.getElementById('noCourses').style.display = 'none';
-                document.getElementById('enrolledCourses').style.display = 'block';
-                
-                if (!enrollment.paid && enrollment.balance > 0) {
-                    // Show payment alert
-                    document.getElementById('paymentAlert').style.display = 'flex';
-                    document.getElementById('balanceAmount').textContent = `$${enrollment.balance}`;
-                }
-
-                // Display enrolled course
-                displayEnrolledCourse(enrollment);
-            } else {
-                // No enrollment - show default
-                document.getElementById('noCourses').style.display = 'block';
-                document.getElementById('enrolledCourses').style.display = 'none';
-                document.getElementById('paymentAlert').style.display = 'none';
-            }
-        }
-
-        function displayEnrolledCourse(enrollment) {
-            const container = document.getElementById('enrolledCourses');
-            
-            const actionButton = enrollment.paid 
-                ? `<a href="${enrollment.canvasUrl}" target="_blank" class="btn btn-success btn-small">Access Canvas →</a>`
-                : `<a href="payment.html?course=${enrollment.courseCode}" class="btn btn-primary btn-small">Pay Now</a>`;
-
-            container.innerHTML = `
-                <div class="course-item">
-                    <div class="course-info">
+            if (!enrollment) {
+                // STATE 1: NOT ENROLLED
+                container.innerHTML = `
+                    <div class="no-enrollment">
+                        <div class="no-enrollment-icon">📖</div>
+                        <h3>Not Enrolled in a Program</h3>
+                        <p>Ready to start your coding journey? Browse our programs and enroll today!</p>
+                        <a href="course-catalog.html" class="btn btn-primary">Enroll into a Program</a>
+                    </div>
+                `;
+            } else if (!enrollment.paid) {
+                // STATE 2: ENROLLED BUT NOT PAID
+                container.innerHTML = `
+                    <div class="enrolled-course">
                         <h3>${enrollment.courseName}</h3>
                         <div class="course-code">${enrollment.courseCode}</div>
                         <div class="course-meta">
                             <span>📅 ${enrollment.session}</span>
                             <span>💳 ${enrollment.paymentPlan}</span>
-                            ${enrollment.paid ? '<span style="color: var(--success);">✓ Paid</span>' : `<span style="color: var(--danger);">Balance: $${enrollment.balance}</span>`}
                         </div>
                     </div>
-                    <div class="course-actions">
-                        ${actionButton}
+                    <div class="payment-required">
+                        <div class="payment-required-icon">💳</div>
+                        <h3>Payment Required to Start Class</h3>
+                        <p>Complete your payment to unlock your course materials and begin learning.</p>
+                        <div class="balance-amount">$${enrollment.balance.toFixed(2)}</div>
+                        <a href="payment.html?course=${enrollment.courseCode}" class="btn btn-primary">Pay to Start Class</a>
                     </div>
-                </div>
-            `;
+                `;
+            } else {
+                // STATE 3: ENROLLED AND PAID
+                container.innerHTML = `
+                    <div class="enrolled-course">
+                        <h3>${enrollment.courseName}</h3>
+                        <div class="course-code">${enrollment.courseCode}</div>
+                        <div class="course-meta">
+                            <span>📅 ${enrollment.session}</span>
+                            <span style="color: var(--success);">✓ Paid</span>
+                        </div>
+                    </div>
+                    <div class="canvas-access">
+                        <div class="canvas-access-icon">🎓</div>
+                        <h3>Your Course is Ready!</h3>
+                        <p>Access your course materials, assignments, and live sessions in Canvas.</p>
+                        <a href="${enrollment.canvasUrl}" target="_blank" class="btn btn-success">Access Canvas Course →</a>
+                    </div>
+                `;
+            }
         }
 
-        // SAGE Chat Modal
+        // SAGE Chat
         const chatModal = document.getElementById('chatModal');
         const chatClose = document.getElementById('chatClose');
         const chatForm = document.getElementById('chatForm');
@@ -1211,14 +1045,9 @@
             chatInput.focus();
         });
 
-        chatClose.addEventListener('click', () => {
-            chatModal.classList.remove('active');
-        });
-
+        chatClose.addEventListener('click', () => chatModal.classList.remove('active'));
         chatModal.addEventListener('click', (e) => {
-            if (e.target === chatModal) {
-                chatModal.classList.remove('active');
-            }
+            if (e.target === chatModal) chatModal.classList.remove('active');
         });
 
         chatForm.addEventListener('submit', (e) => {
@@ -1238,14 +1067,11 @@
         function addMessage(text, type) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `chat-message ${type}`;
-            
             const avatar = type === 'bot' ? 'S' : (auth.currentUser.displayName?.charAt(0) || 'U');
-            
             messageDiv.innerHTML = `
                 <div class="message-avatar">${avatar}</div>
                 <div class="message-content">${text}</div>
             `;
-            
             chatMessages.appendChild(messageDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
@@ -1253,62 +1079,23 @@
         function getSAGEResponse(message) {
             const msg = message.toLowerCase();
             
-            if (msg.includes('loan') || msg.includes('fafsa') || msg.includes('tax') || 
-                (msg.includes('financial aid') && (msg.includes('exact') || msg.includes('how much') || msg.includes('amount')))) {
-                return "I can provide general information, but a financial aid advisor will need to assist with this request. Please email codexlabsinstitute@gmail.com for personalized financial guidance.";
+            if (msg.includes('enroll') || msg.includes('apply')) {
+                return "To enroll, click 'Enroll into a Program' in your portal to browse our course catalog. Select a course, choose your session time, and complete enrollment. The deadline for February 2026 is January 26th.";
             }
             
-            if (msg.includes('password reset') || msg.includes('change password') || msg.includes('forgot password')) {
-                return "For security reasons, I cannot reset your password directly. Please use the 'Change Password' option in your Account Settings, or click 'Forgot Password' on the login page to receive a reset email.";
+            if (msg.includes('payment') || msg.includes('pay') || msg.includes('cost')) {
+                return "Programs range from $197 to $297. We offer flexible payment plans: pay in full (10% discount), 2-pay, 3-pay, or monthly installments. After enrolling, you'll see payment options.";
             }
             
-            if (msg.includes('account') && (msg.includes('access') || msg.includes('modify') || msg.includes('update'))) {
-                return "For privacy and security reasons, I can't access or modify account information. Please use the Account Settings in your portal, or contact codexlabsinstitute@gmail.com for assistance.";
+            if (msg.includes('canvas') || msg.includes('access') || msg.includes('course')) {
+                return "After enrollment and payment confirmation, you'll receive Canvas login credentials via email. Click 'Access Canvas Course' in your portal to start learning. For technical issues, contact codexlabsinstitute@gmail.com.";
             }
             
-            if (msg.includes('grade') || msg.includes('grading') || msg.includes('dispute') || msg.includes('appeal')) {
-                return "That decision requires review by an academic advisor or administrator. Please email your instructor or contact codexlabsinstitute@gmail.com for academic matters.";
+            if (msg.includes('start') || msg.includes('when') || msg.includes('begin')) {
+                return "Programs start February 2, 2026. Self-paced coursework with optional live sessions on Sundays. After payment, you'll have immediate access to course materials.";
             }
-            
-            if (msg.includes('complaint') || msg.includes('grievance') || msg.includes('emergency')) {
-                return "This matter needs to be handled directly by a Codex Labs team member. Please email codexlabsinstitute@gmail.com or call during business hours for urgent matters.";
-            }
-            
-            if (msg.includes('enroll') || msg.includes('apply') || msg.includes('application') || msg.includes('admission')) {
-                return "To enroll, visit our Course Catalog and select a course with your preferred session time. The enrollment deadline for February 2026 is January 26th. For specific enrollment questions, contact codexlabsinstitute@gmail.com.";
-            }
-            
-            if (msg.includes('course') || msg.includes('class') || msg.includes('program')) {
-                if (msg.includes('when') || msg.includes('start') || msg.includes('begin')) {
-                    return "Our programs start February 2, 2026. Course length varies: Full-Stack Web (12 weeks), iOS Development (8 weeks), Python & Automation (6 weeks), and Tech Startup (6 weeks). Visit the Course Catalog for detailed schedules and available session times.";
-                }
-                if (msg.includes('require') || msg.includes('prerequisite')) {
-                    return "No prior coding experience is required for any program. You need: a computer with internet access, ability to dedicate 10-30 hours per week, and English proficiency. Specific requirements are listed on each program's page.";
-                }
-                return "We offer four certificate programs starting February 2026. Visit our Course Catalog to see all courses, session times, and enrollment options. For program-specific questions, email codexlabsinstitute@gmail.com.";
-            }
-            
-            if (msg.includes('cost') || msg.includes('tuition') || msg.includes('payment') || msg.includes('price')) {
-                return "Programs range from $197 to $297 depending on length. We offer flexible payment plans: pay in full (10% discount), 2-pay, 3-pay, or monthly installments. Visit our Tuition & Financial Aid page for detailed pricing and payment options.";
-            }
-            
-            if (msg.includes('canvas') || msg.includes('lms')) {
-                return "Canvas is our learning management system. Once you're enrolled and payment is confirmed, you'll receive Canvas login instructions via email. All course materials, assignments, and grades are accessed through Canvas. For technical issues, contact codexlabsinstitute@gmail.com.";
-            }
-            
-            if (msg.includes('schedule') || msg.includes('time') || msg.includes('when')) {
-                return "Programs are self-paced with optional live sessions. When you enroll, you select your preferred session time (morning, afternoon, or evening). Live sessions are held on Sundays. You can complete coursework on your own schedule within the program timeframe.";
-            }
-            
-            if (msg.includes('portal') || msg.includes('login') || msg.includes('access')) {
-                return "Your student portal provides access to announcements, resources, and account settings. After enrollment and payment, you'll receive Canvas access for course materials. Contact codexlabsinstitute@gmail.com if you're experiencing access issues.";
-            }
-            
-            if (msg.includes('help') || msg.includes('support') || msg.includes('question')) {
-                return "I can assist with enrollment questions, student account information, financial aid basics, course details, and technical support. For matters requiring human review, please email codexlabsinstitute@gmail.com. What specific information do you need?";
-            }
-            
-            return "I'm here to help with enrollment questions, student account information, financial aid basics, course details, and technical support. For personalized assistance or matters requiring human review, please email codexlabsinstitute@gmail.com. Could you please clarify your question?";
+
+            return "I'm here to help with enrollment questions, payment information, course access, and technical support. For personalized assistance, email codexlabsinstitute@gmail.com. What specific question do you have?";
         }
 
         // Account Settings
@@ -1320,8 +1107,6 @@
                 user.updateProfile({ displayName: newName.trim() }).then(() => {
                     alert('Profile updated!');
                     displayUserInfo(user);
-                }).catch(err => {
-                    alert('Error updating profile: ' + err.message);
                 });
             }
         });
@@ -1339,7 +1124,6 @@
             }
         });
 
-        // Logout
         document.getElementById('logoutBtn').addEventListener('click', async () => {
             if (confirm('Are you sure you want to sign out?')) {
                 try {
