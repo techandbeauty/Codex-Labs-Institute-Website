@@ -328,83 +328,7 @@
             font-size: 0.875rem;
         }
 
-        /* Courses Section */
-        .course-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .course-item {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-            padding: 1.25rem;
-            background: var(--off-white);
-            border-radius: 10px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .course-item:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-
-        .course-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.75rem;
-            flex-shrink: 0;
-        }
-
-        .course-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .course-info h3 {
-            font-size: 1.0625rem;
-            color: var(--primary);
-            margin-bottom: 0.25rem;
-            font-family: 'Source Sans 3', sans-serif;
-            font-weight: 600;
-        }
-
-        .course-info p {
-            font-size: 0.875rem;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-        }
-
-        .progress-bar {
-            height: 6px;
-            background: var(--light-gray);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 3px;
-            transition: width 0.3s;
-        }
-
-        .progress-text {
-            font-size: 0.8125rem;
-            color: var(--text-light);
-            margin-top: 0.375rem;
-        }
-
-        .course-action {
-            flex-shrink: 0;
-        }
-
+        /* No courses */
         .no-courses {
             text-align: center;
             padding: 3rem 2rem;
@@ -584,55 +508,37 @@
             color: var(--white);
         }
 
-        /* Chat Widget */
-        .chat-widget {
+        /* SAGE Chat Modal */
+        .chat-modal {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 1000;
-        }
-
-        .chat-button {
-            width: 60px;
-            height: 60px;
-            background: var(--accent);
-            border-radius: 50%;
-            border: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            cursor: pointer;
-            display: flex;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            display: none;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
-            transition: all 0.3s;
+            padding: 1rem;
         }
 
-        .chat-button:hover {
-            background: var(--accent-light);
-            transform: scale(1.1);
+        .chat-modal.active {
+            display: flex;
         }
 
         .chat-box {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            width: 350px;
-            max-height: 500px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 80vh;
             background: var(--white);
             border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
-        }
-
-        .chat-box.active {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
             display: flex;
+            flex-direction: column;
         }
 
         .chat-header {
             background: var(--primary);
             color: var(--white);
-            padding: 1rem 1.5rem;
+            padding: 1.5rem;
             border-radius: 12px 12px 0 0;
             display: flex;
             justify-content: space-between;
@@ -646,46 +552,52 @@
         }
 
         .chat-avatar {
-            width: 36px;
-            height: 36px;
+            width: 48px;
+            height: 48px;
             background: var(--accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
+            font-size: 1.25rem;
             color: var(--primary-dark);
         }
 
         .chat-info h4 {
-            font-size: 1rem;
-            margin-bottom: 0.125rem;
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
         }
 
         .chat-status {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.7);
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,0.8);
         }
 
         .chat-close {
             background: none;
             border: none;
             color: var(--white);
-            font-size: 1.5rem;
+            font-size: 2rem;
             cursor: pointer;
             padding: 0;
-            width: 30px;
-            height: 30px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: opacity 0.2s;
+        }
+
+        .chat-close:hover {
+            opacity: 0.7;
         }
 
         .chat-messages {
             flex: 1;
-            padding: 1rem;
+            padding: 1.5rem;
             overflow-y: auto;
-            max-height: 350px;
+            max-height: 50vh;
         }
 
         .chat-message {
@@ -703,8 +615,8 @@
         }
 
         .message-avatar {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             background: var(--primary);
             border-radius: 50%;
             display: flex;
@@ -723,11 +635,11 @@
 
         .message-content {
             background: var(--off-white);
-            padding: 0.75rem 1rem;
+            padding: 0.875rem 1.125rem;
             border-radius: 12px;
-            max-width: 70%;
+            max-width: 75%;
             font-size: 0.9375rem;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .user .message-content {
@@ -736,32 +648,44 @@
         }
 
         .chat-input-area {
-            padding: 1rem;
+            padding: 1.25rem;
             border-top: 1px solid var(--light-gray);
         }
 
         .chat-input-form {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
 
         .chat-input {
             flex: 1;
-            padding: 0.75rem;
-            border: 1px solid var(--light-gray);
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--light-gray);
             border-radius: 8px;
             font-family: inherit;
             font-size: 0.9375rem;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--primary);
         }
 
         .chat-send {
             background: var(--accent);
             color: var(--primary-dark);
             border: none;
-            padding: 0.75rem 1rem;
+            padding: 0.875rem 1.5rem;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 0.9375rem;
+            transition: background 0.2s;
+        }
+
+        .chat-send:hover {
+            background: var(--accent-light);
         }
 
         /* Responsive */
@@ -808,23 +732,9 @@
                 grid-template-columns: 1fr;
             }
 
-            .course-item {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .course-action {
-                width: 100%;
-            }
-
-            .course-action .btn {
-                width: 100%;
-                justify-content: center;
-            }
-
             .chat-box {
-                width: calc(100vw - 2rem);
-                right: 1rem;
+                max-width: 100%;
+                max-height: 90vh;
             }
         }
     </style>
@@ -880,12 +790,6 @@
                         <a href="programs.html" class="btn btn-outline btn-small">Browse Programs</a>
                     </div>
                     <div class="card-body">
-                        <!-- Course list for enrolled students (hidden by default) -->
-                        <div class="course-list" id="courseList" style="display: none;">
-                            <!-- Courses will be populated dynamically -->
-                        </div>
-
-                        <!-- No courses placeholder (shown by default) -->
                         <div class="no-courses" id="noCourses">
                             <div class="no-courses-icon">📖</div>
                             <h3>No Active Enrollments</h3>
@@ -937,11 +841,11 @@
                                     <p>Connect with classmates</p>
                                 </div>
                             </a>
-                            <button class="quick-link-item" id="liveChatBtn">
+                            <button class="quick-link-item" id="openSageBtn">
                                 <div class="quick-link-icon">💬</div>
                                 <div class="quick-link-info">
-                                    <h3>Chat with CODEX</h3>
-                                    <p>AI assistant</p>
+                                    <h3>Chat with SAGE</h3>
+                                    <p>Academic guidance assistant</p>
                                 </div>
                             </button>
                         </div>
@@ -979,7 +883,7 @@
                         </div>
                         <div class="contact-item">
                             <span>💬</span>
-                            <a id="liveChatBtn2">Chat with CODEX AI</a>
+                            <a id="openSageBtn2">Chat with SAGE</a>
                         </div>
                         <div class="contact-item">
                             <span>📚</span>
@@ -1010,31 +914,30 @@
         </div>
     </main>
 
-    <!-- Chat Widget -->
-    <div class="chat-widget">
-        <button class="chat-button" id="chatToggle">💬</button>
-        <div class="chat-box" id="chatBox">
+    <!-- SAGE Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-box">
             <div class="chat-header">
                 <div class="chat-title">
-                    <div class="chat-avatar">C</div>
+                    <div class="chat-avatar">S</div>
                     <div class="chat-info">
-                        <h4>CODEX AI</h4>
-                        <div class="chat-status">● Online</div>
+                        <h4>SAGE</h4>
+                        <div class="chat-status">Student Academic Guidance Engine</div>
                     </div>
                 </div>
                 <button class="chat-close" id="chatClose">×</button>
             </div>
             <div class="chat-messages" id="chatMessages">
                 <div class="chat-message bot">
-                    <div class="message-avatar">C</div>
+                    <div class="message-avatar">S</div>
                     <div class="message-content">
-                        Hi! I'm CODEX, your AI learning assistant. How can I help you today?
+                        Hello, I'm SAGE, the Student Academic Guidance Engine for Codex Labs Institute. I can help you with enrollment questions, student account information, financial aid basics, course details, and technical support.<br><br>How can I assist you today?
                     </div>
                 </div>
             </div>
             <div class="chat-input-area">
                 <form class="chat-input-form" id="chatForm">
-                    <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything..." autocomplete="off">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Type your question..." autocomplete="off">
                     <button type="submit" class="chat-send">Send</button>
                 </form>
             </div>
@@ -1056,9 +959,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
     <script>
-        // ============================================
-        // FIREBASE CONFIGURATION
-        // ============================================
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCwdqc3dQe8eGyMqo8mZshbDaqJC4qUoVA",
             authDomain: "codex-labs-institute.firebaseapp.com",
@@ -1069,35 +970,22 @@
             measurementId: "G-4CJ97JVS54"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        // ============================================
-        // DOM ELEMENTS
-        // ============================================
         const loadingOverlay = document.getElementById('loadingOverlay');
-        const courseList = document.getElementById('courseList');
-        const noCourses = document.getElementById('noCourses');
 
-        // ============================================
-        // AUTH STATE - PROTECT PAGE
-        // ============================================
+        // AUTH STATE - Protect Page
         auth.onAuthStateChanged(user => {
             if (user) {
-                // User is signed in - show dashboard
                 displayUserInfo(user);
-                loadUserCourses(user);
                 loadingOverlay.classList.add('hidden');
             } else {
-                // No user - redirect to login
                 window.location.href = 'login.html';
             }
         });
 
-        // ============================================
-        // DISPLAY USER INFO
-        // ============================================
+        // Display User Info
         function displayUserInfo(user) {
             const displayName = user.displayName || user.email.split('@')[0];
             const firstName = displayName.split(' ')[0];
@@ -1109,91 +997,47 @@
             document.getElementById('userAvatar').textContent = initials;
         }
 
-        // ============================================
-        // LOAD USER COURSES
-        // ============================================
-        function loadUserCourses(user) {
-            // For demo: show "no courses" for all users
-            // When you enroll students, you can add their email to a list here
-            displayNoCourses();
-        }
-
-        function displayCourses(courses) {
-            if (courses.length === 0) {
-                displayNoCourses();
-                return;
-            }
-
-            courseList.innerHTML = courses.map(course => `
-                <div class="course-item">
-                    <div class="course-icon">${course.icon}</div>
-                    <div class="course-info">
-                        <h3>${course.name}</h3>
-                        <p>${course.duration}</p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: ${course.progress}%;"></div>
-                        </div>
-                        <span class="progress-text">${course.progress}% Complete • Week ${course.week} of ${course.totalWeeks}</span>
-                    </div>
-                    <div class="course-action">
-                        <a href="${course.canvasUrl}" target="_blank" class="btn btn-primary btn-small">Continue →</a>
-                    </div>
-                </div>
-            `).join('');
-
-            courseList.style.display = 'flex';
-            noCourses.style.display = 'none';
-        }
-
-        function displayNoCourses() {
-            courseList.style.display = 'none';
-            noCourses.style.display = 'block';
-        }
-
-        // ============================================
-        // CHAT WIDGET
-        // ============================================
-        const chatToggle = document.getElementById('chatToggle');
-        const chatBox = document.getElementById('chatBox');
+        // SAGE Chat Modal
+        const chatModal = document.getElementById('chatModal');
         const chatClose = document.getElementById('chatClose');
         const chatForm = document.getElementById('chatForm');
         const chatInput = document.getElementById('chatInput');
         const chatMessages = document.getElementById('chatMessages');
 
-        chatToggle.addEventListener('click', () => {
-            chatBox.classList.toggle('active');
-            if (chatBox.classList.contains('active')) {
-                chatInput.focus();
+        // Open SAGE from buttons
+        document.getElementById('openSageBtn').addEventListener('click', () => {
+            chatModal.classList.add('active');
+            chatInput.focus();
+        });
+
+        document.getElementById('openSageBtn2').addEventListener('click', (e) => {
+            e.preventDefault();
+            chatModal.classList.add('active');
+            chatInput.focus();
+        });
+
+        // Close SAGE
+        chatClose.addEventListener('click', () => {
+            chatModal.classList.remove('active');
+        });
+
+        chatModal.addEventListener('click', (e) => {
+            if (e.target === chatModal) {
+                chatModal.classList.remove('active');
             }
         });
 
-        chatClose.addEventListener('click', () => {
-            chatBox.classList.remove('active');
-        });
-
-        document.getElementById('liveChatBtn').addEventListener('click', () => {
-            chatBox.classList.add('active');
-            chatInput.focus();
-        });
-
-        document.getElementById('liveChatBtn2').addEventListener('click', (e) => {
-            e.preventDefault();
-            chatBox.classList.add('active');
-            chatInput.focus();
-        });
-
+        // Handle messages
         chatForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const message = chatInput.value.trim();
             if (!message) return;
 
-            // Add user message
             addMessage(message, 'user');
             chatInput.value = '';
 
-            // Simulate bot response
             setTimeout(() => {
-                const response = getCODEXResponse(message);
+                const response = getSAGEResponse(message);
                 addMessage(response, 'bot');
             }, 800);
         });
@@ -1202,7 +1046,7 @@
             const messageDiv = document.createElement('div');
             messageDiv.className = `chat-message ${type}`;
             
-            const avatar = type === 'bot' ? 'C' : auth.currentUser.displayName?.charAt(0) || 'U';
+            const avatar = type === 'bot' ? 'S' : (auth.currentUser.displayName?.charAt(0) || 'U');
             
             messageDiv.innerHTML = `
                 <div class="message-avatar">${avatar}</div>
@@ -1213,37 +1057,90 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        function getCODEXResponse(message) {
+        function getSAGEResponse(message) {
             const msg = message.toLowerCase();
             
-            if (msg.includes('course') || msg.includes('class')) {
-                return "Our programs start February 2026! You can browse all available programs on our Programs page. Would you like help choosing the right program for you?";
-            } else if (msg.includes('enroll') || msg.includes('apply')) {
-                return "To enroll, visit our Admissions page and submit your application. Our team reviews applications within 2-3 business days. You can also email codexlabsinstitute@gmail.com for assistance!";
-            } else if (msg.includes('payment') || msg.includes('tuition') || msg.includes('cost')) {
-                return "Programs range from $197 to $297 depending on length. We offer payment plans including 2-pay, 3-pay, and monthly options. Check out our Tuition & Financial Aid page for details!";
-            } else if (msg.includes('help') || msg.includes('support')) {
-                return "I'm here to help! You can also email us at codexlabsinstitute@gmail.com or check our Help Center. What specific question do you have?";
-            } else if (msg.includes('canvas')) {
-                return "Canvas is our learning management system where you'll access course materials, submit assignments, and track progress. Once you're enrolled, your instructor will provide access details!";
-            } else if (msg.includes('schedule')) {
-                return "Our programs are self-paced with optional live sessions on Sundays. You can learn on your own schedule while getting support when you need it!";
-            } else {
-                return "Thanks for your message! For detailed assistance, please email codexlabsinstitute@gmail.com or browse our Help Center. Is there anything specific about our programs I can help you with?";
+            // Financial & Legal Restrictions
+            if (msg.includes('loan') || msg.includes('fafsa') || msg.includes('tax') || 
+                (msg.includes('financial aid') && (msg.includes('exact') || msg.includes('how much') || msg.includes('amount')))) {
+                return "I can provide general information, but a financial aid advisor will need to assist with this request. Please email codexlabsinstitute@gmail.com for personalized financial guidance.";
             }
+            
+            // Account & Privacy Restrictions
+            if (msg.includes('password reset') || msg.includes('change password') || msg.includes('forgot password')) {
+                return "For security reasons, I cannot reset your password directly. Please use the 'Change Password' option in your Account Settings, or click 'Forgot Password' on the login page to receive a reset email.";
+            }
+            
+            if (msg.includes('account') && (msg.includes('access') || msg.includes('modify') || msg.includes('update'))) {
+                return "For privacy and security reasons, I can't access or modify account information. Please use the Account Settings in your portal, or contact codexlabsinstitute@gmail.com for assistance.";
+            }
+            
+            // Academic Authority Limits
+            if (msg.includes('grade') || msg.includes('grading') || msg.includes('dispute') || msg.includes('appeal')) {
+                return "That decision requires review by an academic advisor or administrator. Please email your instructor or contact codexlabsinstitute@gmail.com for academic matters.";
+            }
+            
+            // Human-Only Issues
+            if (msg.includes('complaint') || msg.includes('grievance') || msg.includes('emergency')) {
+                return "This matter needs to be handled directly by a Codex Labs team member. Please email codexlabsinstitute@gmail.com or call during business hours for urgent matters.";
+            }
+            
+            // Enrollment Questions
+            if (msg.includes('enroll') || msg.includes('apply') || msg.includes('application') || msg.includes('admission')) {
+                return "To enroll, visit our Admissions page and submit your application. Our team reviews applications within 2-3 business days. The application deadline for February 2026 is January 26th. For specific enrollment questions, contact codexlabsinstitute@gmail.com.";
+            }
+            
+            // Course & Program Questions
+            if (msg.includes('course') || msg.includes('class') || msg.includes('program')) {
+                if (msg.includes('when') || msg.includes('start') || msg.includes('begin')) {
+                    return "Our programs start February 2, 2026. Course length varies: Full-Stack Web (12 weeks), iOS Development (8 weeks), Python & Automation (6 weeks), and Tech Startup (6 weeks). Visit the Programs page for detailed schedules.";
+                }
+                if (msg.includes('require') || msg.includes('prerequisite')) {
+                    return "No prior coding experience is required for any program. You need: a computer with internet access, ability to dedicate 10-30 hours per week, and English proficiency. Specific requirements are listed on each program's page.";
+                }
+                return "We offer four certificate programs starting February 2026. Visit our Programs page to see course details, schedules, and curriculum. For program-specific questions, email codexlabsinstitute@gmail.com.";
+            }
+            
+            // Tuition & Payment Questions
+            if (msg.includes('cost') || msg.includes('tuition') || msg.includes('payment') || msg.includes('price')) {
+                return "Programs range from $197 to $297 depending on length. We offer flexible payment plans: pay in full (10% discount), 2-pay, 3-pay, or monthly installments. Visit our Tuition & Financial Aid page for detailed pricing and payment options.";
+            }
+            
+            // Canvas & Technical
+            if (msg.includes('canvas') || msg.includes('lms')) {
+                return "Canvas is our learning management system. Once enrolled, you'll receive login instructions via email. All course materials, assignments, and grades are accessed through Canvas. For technical issues, contact codexlabsinstitute@gmail.com.";
+            }
+            
+            // Schedule Questions
+            if (msg.includes('schedule') || msg.includes('time') || msg.includes('when')) {
+                return "Programs are self-paced with optional live sessions on Sundays. You can complete coursework on your own schedule within the program timeframe. Specific session times are shared after enrollment.";
+            }
+            
+            // Student Portal
+            if (msg.includes('portal') || msg.includes('login') || msg.includes('access')) {
+                return "Your student portal provides access to announcements, resources, and account settings. For enrollment in courses, you'll receive Canvas access after payment confirmation. Contact codexlabsinstitute@gmail.com if you're experiencing access issues.";
+            }
+            
+            // General Help
+            if (msg.includes('help') || msg.includes('support') || msg.includes('question')) {
+                return "I can assist with enrollment questions, student account information, financial aid basics, course details, and technical support. For matters requiring human review, please email codexlabsinstitute@gmail.com. What specific information do you need?";
+            }
+            
+            // Default response
+            return "I'm here to help with enrollment questions, student account information, financial aid basics, course details, and technical support. For personalized assistance or matters requiring human review, please email codexlabsinstitute@gmail.com. Could you please clarify your question?";
         }
 
-        // ============================================
-        // SIDEBAR LINKS
-        // ============================================
+        // Account Settings
         document.getElementById('editProfileBtn').addEventListener('click', (e) => {
             e.preventDefault();
             const user = auth.currentUser;
             const newName = prompt('Enter your name:', user.displayName || '');
-            if (newName) {
-                user.updateProfile({ displayName: newName }).then(() => {
+            if (newName && newName.trim()) {
+                user.updateProfile({ displayName: newName.trim() }).then(() => {
                     alert('Profile updated!');
                     displayUserInfo(user);
+                }).catch(err => {
+                    alert('Error updating profile: ' + err.message);
                 });
             }
         });
@@ -1251,29 +1148,23 @@
         document.getElementById('changePasswordBtn').addEventListener('click', async (e) => {
             e.preventDefault();
             const user = auth.currentUser;
-            if (user) {
-                if (confirm('Send password reset email to ' + user.email + '?')) {
-                    try {
-                        await auth.sendPasswordResetEmail(user.email);
-                        alert('Password reset email sent! Check your inbox.');
-                    } catch (error) {
-                        alert('Error: ' + error.message);
-                    }
+            if (user && confirm('Send password reset email to ' + user.email + '?')) {
+                try {
+                    await auth.sendPasswordResetEmail(user.email);
+                    alert('Password reset email sent! Check your inbox.');
+                } catch (error) {
+                    alert('Error: ' + error.message);
                 }
             }
         });
 
-        // ============================================
-        // LOGOUT
-        // ============================================
+        // Logout
         document.getElementById('logoutBtn').addEventListener('click', async () => {
             if (confirm('Are you sure you want to sign out?')) {
                 try {
                     await auth.signOut();
-                    // Redirect happens via onAuthStateChanged
                 } catch (error) {
-                    console.error('Logout error:', error);
-                    alert('Error signing out. Please try again.');
+                    alert('Error signing out: ' + error.message);
                 }
             }
         });
